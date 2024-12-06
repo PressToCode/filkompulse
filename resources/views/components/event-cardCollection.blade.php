@@ -6,10 +6,10 @@
                     @csrf
                     @method('PATCH')
                     <input type="checkbox" class="form-check-input border-gray-500" 
-                           onChange="this.form.submit()" 
-                           {{ $event->is_selected ? 'checked' : '' }}>
+                        onChange="this.form.submit()" 
+                        {{ $event->is_selected ? 'checked' : '' }}>
                 </form>
-                <img src="{{ asset($event->image) }}" alt="" class="w-20 h-20 rounded object-cover">
+                <img src="{{ asset($event->image ?? URL::asset('images/cardPlaceholder.svg')) }}" alt="" class="w-20 h-20 rounded object-cover">
                 <div class="flex-1 min-w-0">
                     <h3 class="text-lg font-semibold text-blue-400 mb-2">{{ $event->title }}</h3>
                     <p class="text-sm text-gray-400 line-clamp-2">{{ $event->description }}</p>
