@@ -3,12 +3,12 @@
 @section('title', 'Event Collections')
 
 @section('content')
-    <div class="flex justify-between items-center mb-8">
+    <div class="flex justify-between items-center mb-8 pt-5 mt-5 px-5">
         <h1 class="text-3xl font-semibold">Collections</h1>
         <a href="{{ route('events.index') }}" class="btn btn-outline-primary bg-blue-500 hover:bg-blue-600 text-white">Go Back</a>
     </div>
 
-    <div class="grid grid-cols-12 gap-4 mb-4 px-4">
+    <div class="grid grid-cols-12 gap-4 mb-4 px-4 px-5">
         <div class="col-span-6 md:col-span-7">
             <h2 class="text-lg font-semibold text-gray-300">Events</h2>
         </div>
@@ -23,8 +23,10 @@
         </div>
     </div>
 
-    @foreach ($events as $event)
-        @include('components.event-cardCollection', ['event' => $event])
-    @endforeach
+    <div class="px-5">
+        @foreach ($events as $event)
+            @include('components.event-cardCollection', ['event' => $event])
+        @endforeach
+    </div>
 @endsection
 
