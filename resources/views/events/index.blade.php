@@ -9,21 +9,24 @@
     </div>
 
     <div class="grid grid-cols-12 gap-4 mb-4 px-4">
-        <div class="col-span-6 md:col-span-7">
+        <div class="col-span-12">
             <h2 class="text-lg font-semibold text-gray-300">Events</h2>
-        </div>
-        <div class="col-span-2 md:col-span-2 text-right"> <!-- Align DELETE column to the right -->
-            <span class="px-3 py-1 bg-red-500 rounded text-sm">DELETE</span>
-        </div>
-        <div class="col-span-2 md:col-span-2 text-right"> <!-- Align Date column to the right -->
-            <span class="text-gray-300">Date</span>
-        </div>
-        <div class="col-span-2 md:col-span-1 text-right"> <!-- Align Reminder column to the right -->
-            <span class="text-gray-300">Reminder</span>
         </div>
     </div>
 
     @foreach ($events as $event)
-        @include('components.event-card', ['event' => $event])
+        <div class="grid grid-cols-12 gap-4 bg-gray-800 p-4 rounded-lg mb-4">
+            <!-- Event Details -->
+            <div class="col-span-9">
+                @include('components.event-card', ['event' => $event])
+            </div>
+
+            <!-- Right Column: Actions & Info -->
+            <div class="col-span-3 flex flex-col items-end space-y-2">
+                <span class="px-3 py-1 bg-red-500 rounded text-sm text-white cursor-pointer">DELETE</span>
+                <span class="text-sm text-gray-300">{{ $event->date->format('d M, Y') }}</span>
+                <span class="text-sm text-gray-300">{{ $event->reminder ? 'On' : 'Off' }}</span>
+            </div>
+        </div>
     @endforeach
 @endsection
