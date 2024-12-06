@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appCollection')
 
 @section('title', 'Event Collections')
 
@@ -24,7 +24,7 @@
     </div>
 
     @foreach ($events as $event)
-        @include('components.event-card', ['event' => $event])
+        @include('components.event-cardCollection', ['event' => $event])
     @endforeach
 @endsection
 

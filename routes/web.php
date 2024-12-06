@@ -26,7 +26,7 @@ require __DIR__.'/auth.php';
 
 //dari taqi
 use App\Http\Controllers\EventController;
-Route::get('/', [EventController::class, 'index'])->name('events.index');
+Route::get('/events', [EventController::class, 'index'])->name('events.index');
 Route::patch('/events/{event}/toggle-reminder', [EventController::class, 'toggleReminder'])->name('events.toggleReminder');
 Route::patch('/events/{event}/toggle-select', [EventController::class, 'toggleSelect'])->name('events.toggleSelect');
 Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
