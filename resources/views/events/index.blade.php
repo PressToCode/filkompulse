@@ -18,7 +18,7 @@
         <div class="grid grid-cols-12 gap-4 bg-gray-800 p-4 rounded-lg mb-4">
             <!-- Event Details -->
             <div class="col-span-9">
-                @include('components.event-card', ['event' => $event])
+                @include('components.event-cardCollection', ['event' => $event])
             </div>
 
             <!-- Right Column: Actions & Info -->
