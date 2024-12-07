@@ -1,4 +1,4 @@
-<nav class="navbar bg-dark fixed-top border" style="height: calc(100%/10);">
+<nav class="navbar bg-dark fixed-top border" style="height: 10vh;">
   <div class="d-flex flex-row flex-grow-1 px-2 px-md-3 h-100">
     <div class="d-flex col">
         <a href="{{ route('dashboard') }}">
