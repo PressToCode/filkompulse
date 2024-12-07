@@ -1,6 +1,6 @@
 <x-app-layout>
     <!-- Navbar -->
-    <nav class="bg-slate-900 shadow">
+    <nav class="bg-slate-900 shadow pt-5 mt-5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex">

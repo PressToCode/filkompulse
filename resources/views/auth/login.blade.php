@@ -10,7 +10,7 @@
     </x-slot:splash>
 
     <!-- Form contents -->
-    <div class="d-flex col flex-col rounded-5">
+    <div class="d-flex row flex-col rounded-5 border">
         <x-auth-header></x-auth-header>
         <div class="d-flex flex-column flex-grow-1 justify-content-center">
             <x-auth-title title="Hello Champion!" subtitle="Welcome to Filkom Pulse!!" googleText="Sign In with Google"></x-auth-title>
