@@ -27,12 +27,12 @@
         <div class="d-flex col align-content-center justify-content-end">
             <div class="h-100 align-content-center">
                 <a href="{{ route('profile.edit') }}">
-                    <i class="bi bi-person-circle fs-4"></i>
+                    <i class="bi bi-person-circle fs-3"></i>
                 </a>
             </div>
             <div class="dropdown">
                 <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-three-dots-vertical"></i>
+                    <i class="bi bi-three-dots-vertical fs-4"></i>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li>

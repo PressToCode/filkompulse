@@ -1,61 +1,61 @@
 <x-app-layout>
     <!-- Navbar -->
-    <nav class="bg-slate-900 shadow pt-5 mt-5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex">
-                    <a href="#" class="text-slate-100 font-semibold text-lg">My App</a>
+    <nav class="tw-bg-slate-900 tw-shadow pt-5 mt-5">
+        <div class="tw-max-w-7xl tw-mx-auto tw-px-4 sm:tw-px-6 lg:tw-px-8">
+            <div class="tw-flex tw-justify-between tw-h-16">
+                <div class="tw-flex">
+                    <a href="#" class="tw-text-slate-100 tw-font-semibold tw-text-lg">My App</a>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <a href="#" class="text-slate-400 hover:text-slate-100">Home</a>
-                    <a href="#" class="text-slate-400 hover:text-slate-100">Settings</a>
+                <div class="tw-flex tw-items-center tw-space-x-4">
+                    <a href="#" class="tw-text-slate-400 hover:tw-text-slate-100">Home</a>
+                    <a href="#" class="tw-text-slate-400 hover:tw-text-slate-100">Settings</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Page Header -->
-    <header class="shadow bg-gray-800">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <h1 class="text-3xl font-bold">Profile</h1>
+    <header class="tw-shadow tw-bg-gray-800">
+        <div class="tw-max-w-7xl tw-mx-auto tw-py-6 tw-px-4 sm:tw-px-6 lg:tw-px-8">
+            <h1 class="tw-text-3xl tw-font-bold">Profile</h1>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <div class="px-4 py-6 sm:px-0">
-            <div x-data="{ activeTab: 0 }" class="space-y-6">
+    <main class="tw-max-w-7xl tw-mx-8 tw-py-6 sm:tw-px-6 lg:tw-px-8 border">
+        <div class="tw-px-4 tw-py-6 sm:tw-px-0">
+            <div x-data="{ activeTab: 0 }" class="tw-space-y-6">
                 <!-- Tab Buttons -->
-                <div class="flex p-1 space-x-1 bg-gray-800 rounded-xl">
+                <div class="tw-flex tw-p-1 tw-space-x-1 tw-bg-gray-800 tw-rounded-xl">
                     <button
-                        class="w-full py-3 text-sm font-medium rounded-lg focus:outline-none"
-                        :class="activeTab === 0 ? 'bg-gray-500 text-gray-800 shadow' : 'text-gray-400 hover:bg-gray-200 hover:text-gray-700'"
+                        class="tw-w-full tw-py-3 tw-text-sm tw-font-medium tw-rounded-lg focus:tw-outline-none"
+                        :class="activeTab === 0 ? 'tw-bg-gray-500 tw-text-gray-800 tw-shadow' : 'tw-text-gray-400 hover:tw-bg-gray-200 hover:tw-text-gray-700'"
                         @click="activeTab = 0"
                     >
-                        <i class="bi bi-person mr-2"></i> Profile Information
+                        <i class="bi bi-person tw-mr-2"></i> Profile Information
                     </button>
                     <button
-                        class="w-full py-3 text-sm font-medium rounded-lg focus:outline-none"
-                        :class="activeTab === 1 ? 'bg-gray-500 text-gray-800 shadow' : 'text-gray-400 hover:bg-gray-200 hover:text-gray-700'"
+                        class="tw-w-full tw-py-3 tw-text-sm tw-font-medium tw-rounded-lg focus:tw-outline-none"
+                        :class="activeTab === 1 ? 'tw-bg-gray-500 tw-text-gray-800 tw-shadow' : 'tw-text-gray-400 hover:tw-bg-gray-200 hover:tw-text-gray-700'"
                         @click="activeTab = 1"
                     >
-                        <i class="bi bi-key mr-2"></i> Update Password
+                        <i class="bi bi-key tw-mr-2"></i> Update Password
                     </button>
                     <button
-                        class="w-full py-3 text-sm font-medium rounded-lg focus:outline-none"
-                        :class="activeTab === 2 ? 'bg-gray-500 text-gray-800 shadow' : 'text-gray-400 hover:bg-gray-200 hover:text-gray-700'"
+                        class="tw-w-full tw-py-3 tw-text-sm tw-font-medium tw-rounded-lg focus:tw-outline-none"
+                        :class="activeTab === 2 ? 'tw-bg-gray-500 tw-text-gray-800 tw-shadow' : 'tw-text-gray-400 hover:tw-bg-gray-200 hover:tw-text-gray-700'"
                         @click="activeTab = 2"
                     >
-                        <i class="bi bi-x-circle mr-2"></i> Delete Account
+                        <i class="bi bi-x-circle tw-mr-2"></i> Delete Account
                     </button>
                 </div>
 
                 <!-- Tab Panels -->
-                <div class="mt-2">
+                <div class="tw-mt-2">
                     <!-- Profile Information -->
                     <div 
                         x-show="activeTab === 0" 
-                        class="bg-gray-800 text-white rounded-lg p-6 border border-gray-700"
+                        class="tw-bg-gray-800 tw-text-white tw-rounded-lg tw-p-6 tw-border tw-border-gray-700"
                     >
                         @include('profile.partials.update-profile-information-form')
                     </div>
@@ -63,7 +63,7 @@
                     <!-- Update Password -->
                     <div 
                         x-show="activeTab === 1" 
-                        class="bg-gray-800 text-white rounded-lg p-6 border border-gray-700"
+                        class="tw-bg-gray-800 tw-text-white tw-rounded-lg tw-p-6 tw-border tw-border-gray-700"
                     >
                         @include('profile.partials.update-password-form')
                     </div>
@@ -71,7 +71,7 @@
                     <!-- Delete Account -->
                     <div 
                         x-show="activeTab === 2" 
-                        class="bg-gray-800 text-white rounded-lg p-6 border border-gray-700"
+                        class="tw-bg-gray-800 tw-text-white tw-rounded-lg tw-p-6 tw-border tw-border-gray-700"
                     >
                         @include('profile.partials.delete-user-form')
                     </div>

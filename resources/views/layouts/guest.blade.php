@@ -12,7 +12,12 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(
+            ['resources/css/bootstrap.css', 
+            'resources/js/app.js',
+            'resources/css/tailwind.css',
+            'resources/js/bootstrap.js'
+            ])
     </head>
     <body class="tw-font-sans tw-text-gray-900 tw-antialiased">
         <div class="min-h-screen flex flex-col sm:tw-justify-center items-center pt-6 sm:tw-pt-0 bg-gray-100 dark:bg-gray-900">

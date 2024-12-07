@@ -5,7 +5,7 @@
                 <div class="d-flex col-6 row align-content-center">
                     <h1 class="d-flex fs-1 fw-bolder justify-content-center fadeInAnimation">Search Nearest<br>Event Easily!</h1>
                     <div class="d-flex flex-row align-content-center justify-content-center pt-2 pe-5 fadeInAnimation" style="animation-delay: 1s;">
-                        <div class="d-flex flex-row pt-1">
+                        <div class="d-flex flex-column pt-1">
                             <i class="bi bi-diamond-fill" style="margin-bottom: -1em; font-size: 1dvw;"></i>
                             <div class="d-flex flex-grow-1 justify-content-center">
                                 <span class="d-flex justify-self-center vr px-0" style="background: linear-gradient(to bottom, white, transparent);"></span>
@@ -15,7 +15,7 @@
                             <p>Search for the Newest and <br> Trending Upcoming Events</p>
                             <p>Be Verified and Host your <br> own events! </p>
                             <p>Chat Forum and More! </p>
-                            <button class="btn btn-outline-light">
+                            <button class="btn btn-outline-light popout">
                                 <a href="">
                                     {{ __('Find Events') }}
                                 </a>

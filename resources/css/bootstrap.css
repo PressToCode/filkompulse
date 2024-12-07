@@ -1,10 +1,6 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 @import "bootstrap-icons/font/bootstrap-icons.css";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
