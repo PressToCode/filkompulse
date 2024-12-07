@@ -1,8 +1,8 @@
-<nav class="navbar bg-dark fixed-top">
-  <div class="d-flex flex-row flex-grow-1 px-2 px-md-3">
+<nav class="navbar bg-dark fixed-top border" style="height: calc(100%/10);">
+  <div class="d-flex flex-row flex-grow-1 px-2 px-md-3 h-100">
     <div class="d-flex col">
         <a href="{{ route('dashboard') }}">
-            <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+            <x-application-logo class="h-100 w-auto" />    
         </a>
     </div>
     <form class="d-flex col-6" role="search">
