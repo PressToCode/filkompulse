@@ -1,19 +1,4 @@
 <x-app-layout>
-    <!-- Navbar -->
-    <nav class="tw-bg-slate-900 tw-shadow pt-5 mt-5">
-        <div class="tw-max-w-7xl tw-mx-auto tw-px-4 sm:tw-px-6 lg:tw-px-8">
-            <div class="tw-flex tw-justify-between tw-h-16">
-                <div class="tw-flex">
-                    <a href="#" class="tw-text-slate-100 tw-font-semibold tw-text-lg">My App</a>
-                </div>
-                <div class="tw-flex tw-items-center tw-space-x-4">
-                    <a href="#" class="tw-text-slate-400 hover:tw-text-slate-100">Home</a>
-                    <a href="#" class="tw-text-slate-400 hover:tw-text-slate-100">Settings</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
     <!-- Page Header -->
     <header class="tw-shadow tw-bg-gray-800">
         <div class="tw-max-w-7xl tw-mx-auto tw-py-6 tw-px-4 sm:tw-px-6 lg:tw-px-8">
