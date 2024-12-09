@@ -7,7 +7,7 @@
     </div>
 
     <!-- Carousel -->
-    <div id="trendingCarousel" class="carousel slide mx-5 px-4" data-bs-ride="carousel">
+    <div id="trendingCarousel" class="carousel slide mx-5 px-4">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <!-- Temporary for now -->
