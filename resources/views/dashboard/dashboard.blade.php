@@ -1,9 +1,9 @@
 <x-app-layout>
     <x-slot:header>
-        <div class="d-flex vh-100 pt-5">
-            <div class="d-flex flex-grow-1 h-100 pt-3">
-                <div class="d-flex col-6 row align-content-center">
-                    <h1 class="d-flex fs-1 fw-bolder justify-content-center fadeInAnimation">Search Nearest<br>Event Easily!</h1>
+        <div class="tw-flex tw-h-dvh">
+            <div class="d-flex flex-grow-1">
+                <div class="d-flex col-6 row align-content-center fadeInAnimation">
+                    <h1 class="d-flex fs-1 fw-bolder justify-content-center popout">Search Nearest<br>Event Easily!</h1>
                     <div class="d-flex flex-row align-content-center justify-content-center pt-2 pe-5 fadeInAnimation" style="animation-delay: 1s;">
                         <div class="d-flex flex-column pt-1">
                             <i class="bi bi-diamond-fill" style="margin-bottom: -1em; font-size: 1dvw;"></i>
@@ -12,9 +12,9 @@
                             </div>
                         </div>
                         <div class="d-grid ps-3 text-light gap-0 row-gap-3">
-                            <p>Search for the Newest and <br> Trending Upcoming Events</p>
-                            <p>Be Verified and Host your <br> own events! </p>
-                            <p>Chat Forum and More! </p>
+                            <p class="popout">Search for the Newest and <br> Trending Upcoming Events</p>
+                            <p class="popout">Be Verified and Host your <br> own events! </p>
+                            <p class="popout">Chat Forum and More! </p>
                             <button class="btn btn-outline-light popout">
                                 <a href="">
                                     {{ __('Find Events') }}
@@ -23,14 +23,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex col-6 h-100 align-self-center justify-content-center overflow-hidden fadeInNoAnimation" 
+                <div class="d-flex flex-grow-1 col-6 tw-h-full align-self-center justify-content-center overflow-hidden fadeInNoAnimation" 
                 style="
                     background-image: url({{URL::asset('/images/heroImageGlow.svg')}}); 
                     background-size: 100% 100%;
                     background-position: center;
                     background-repeat: no-repeat;
                 ">
-                    <img src="{{URL::asset('/images/heroImageDevice.png')}}" class="img-fluid w-75 object-fit-scale popout" alt="">
+                    <img src="{{URL::asset('/images/heroImageDevice.png')}}" class="img-fluid w-75 object-fit-scale tw-transition tw-ease-in-out tw-delay-100 hover:tw-scale-110 tw-duration-500" alt="">
                 </div>
             </div>
         </div>

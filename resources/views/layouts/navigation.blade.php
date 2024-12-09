@@ -1,16 +1,16 @@
-<nav class="navbar bg-dark fixed-top">
-  <div class="d-flex flex-row flex-grow-1 px-2 px-md-3">
+<nav class="navbar fixed-top tw-w-full tw-top-0 tw-backdrop-blur-sm tw-shadow-lg tw-shadow-gray-800/60 tw-drop-shadow tw-transition-colors tw-duration-500 tw-bg-transparent tw-border-b tw-border-slate-300/10">
+  <div class="d-flex flex-row flex-grow-1 px-3 px-md-4">
     <div class="d-flex col">
         <a href="{{ route('dashboard') }}">
             <x-application-logo class="d-flex tw-h-full tw-w-[2.0625rem]" />    
         </a>
     </div>
-    <form class="d-flex col-6" role="search">
-        <div class="input-group rounded-pill border-0 bg-secondary">
-            <div class="rounded-start-pill align-self-center" id="search-icon">
+    <form class="d-flex col" role="search">
+        <div class="input-group rounded-pill border-0 tw-bg-slate-100/10 tw-backdrop-blur">
+            <div class="rounded-start-pill tw-bg-inherit tw-h-full align-content-center border-0" id="search-icon">
                 <i class="bi bi-list pe-2 ps-3"></i>
             </div>
-            <input class="form-control border-0 bg-secondary" list="datalistOption" type="search" placeholder="Search Bar" aria-label="Search">
+            <input class="form-control border-0 tw-bg-inherit focus:tw-bg-inherit focus:tw-shadow-none focus:tw-outline-none" list="datalistOption" type="search" placeholder="Search Bar" aria-label="Search">
             <datalist id="datalistOption">
                 <option value="Event A">
                 <option value="Event B">
@@ -18,7 +18,7 @@
                 <option value="Event D">
                 <option value="Event E">
             </datalist>
-            <button class="btn rounded-end-pill border-0" type="submit">
+            <button class="btn rounded-end-pill border-0 tw-bg-inherit" type="submit">
                 <i class="bi bi-search"></i>
             </button>
         </div>
@@ -54,12 +54,12 @@
         <!-- Authentication -->
     @else
         <div class="d-flex col align-content-center justify-content-end">
-            <button class="btn rounded-pill me-2 px-4 authBtn">
+            <button class="btn rounded-pill me-2 px-4 tw-transition tw-ease-in-out tw-delay-100 hover:tw-scale-110 tw-duration-100">
                 <a href="{{ route("register") }}">
                     {{ __("Register") }}
                 </a>
             </button>
-            <button class="btn rounded-pill px-4 authBtn">
+            <button class="btn rounded-pill px-4 tw-transition tw-ease-in-out tw-delay-100 hover:tw-scale-110 tw-duration-100">
                 <a href="{{ route("login") }}">
                     {{ __("Login") }}
                 </a>
@@ -68,18 +68,3 @@
     @endif
   </div>
 </nav>
-
-<style>
-    input.form-control:focus {
-        box-shadow: none !important;
-        outline: none !important;
-    }
-
-    .authBtn {
-        background-color: #65558F;
-
-        &:hover {
-            background-color: #65558F !important;
-        }
-    }
-</style>
