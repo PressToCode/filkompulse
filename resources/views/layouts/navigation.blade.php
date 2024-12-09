@@ -5,12 +5,12 @@
             <x-application-logo class="d-flex tw-h-full tw-w-[2.0625rem]" />    
         </a>
     </div>
-    <form class="d-flex col" role="search">
+    <form class="d-md-flex d-none col" role="search">
         <div class="input-group rounded-pill border-0 tw-bg-slate-100/10 tw-backdrop-blur">
             <div class="rounded-start-pill tw-bg-inherit tw-h-full align-content-center border-0" id="search-icon">
                 <i class="bi bi-list pe-2 ps-3"></i>
             </div>
-            <input class="form-control border-0 tw-bg-inherit focus:tw-bg-inherit focus:tw-shadow-none focus:tw-outline-none" list="datalistOption" type="search" placeholder="Search Bar" aria-label="Search">
+            <input class="form-control border-0 tw-bg-inherit focus:tw-ring-0 focus:tw-bg-inherit focus:tw-shadow-none focus:tw-outline-none " list="datalistOption" type="search" placeholder="Search Bar" aria-label="Search">
             <datalist id="datalistOption">
                 <option value="Event A">
                 <option value="Event B">
@@ -54,12 +54,12 @@
         <!-- Authentication -->
     @else
         <div class="d-flex col align-content-center justify-content-end">
-            <button class="btn rounded-pill me-2 px-4 tw-transition tw-ease-in-out tw-delay-100 hover:tw-scale-110 tw-duration-100">
+            <button class="btn rounded-pill me-2 px-4 active:tw-outline-none tw-transition tw-ease-in-out tw-delay-100 hover:tw-scale-110 tw-duration-100">
                 <a href="{{ route("register") }}">
                     {{ __("Register") }}
                 </a>
             </button>
-            <button class="btn rounded-pill px-4 tw-transition tw-ease-in-out tw-delay-100 hover:tw-scale-110 tw-duration-100">
+            <button class="btn rounded-pill px-4 active:tw-outline-none tw-transition tw-ease-in-out tw-delay-100 hover:tw-scale-110 tw-duration-100">
                 <a href="{{ route("login") }}">
                     {{ __("Login") }}
                 </a>

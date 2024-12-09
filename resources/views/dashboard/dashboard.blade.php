@@ -1,17 +1,17 @@
 <x-app-layout>
     <x-slot:header>
         <div class="tw-flex tw-h-dvh">
-            <div class="d-flex flex-grow-1">
-                <div class="d-flex col-6 row align-content-center fadeInAnimation">
-                    <h1 class="d-flex fs-1 fw-bolder justify-content-center popout">Search Nearest<br>Event Easily!</h1>
-                    <div class="d-flex flex-row align-content-center justify-content-center pt-2 pe-5 fadeInAnimation" style="animation-delay: 1s;">
-                        <div class="d-flex flex-column pt-1">
+            <div class="d-flex flex-column flex-md-row flex-grow-1">
+                <div class="d-flex order-2 order-md-1 col col-md-6 row align-content-center fadeInAnimation">
+                    <h1 class="d-flex fs-1 fw-bolder justify-content-center text-center text-md-start popout">Search Nearest<br>Event Easily!</h1>
+                    <div class="d-flex flex-row align-content-center justify-content-center pt-2 pe-md-5 pe-0 fadeInAnimation" style="animation-delay: 1s;">
+                        <div class="d-md-flex d-none flex-column pt-1">
                             <i class="bi bi-diamond-fill" style="margin-bottom: -1em; font-size: 1dvw;"></i>
                             <div class="d-flex flex-grow-1 justify-content-center">
                                 <span class="d-flex justify-self-center vr px-0" style="background: linear-gradient(to bottom, white, transparent);"></span>
                             </div>
                         </div>
-                        <div class="d-grid ps-3 text-light gap-0 row-gap-3">
+                        <div class="d-grid ps-md-3 text-light gap-0 row-gap-3 text-center text-md-start justify-self-center align-self-center">
                             <p class="popout">Search for the Newest and <br> Trending Upcoming Events</p>
                             <p class="popout">Be Verified and Host your <br> own events! </p>
                             <p class="popout">Chat Forum and More! </p>
@@ -23,10 +23,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex flex-grow-1 col-6 tw-h-full align-self-center justify-content-center overflow-hidden fadeInNoAnimation" 
+                <div class="d-flex flex-grow-1 order-1 order-md-2 mt-5 mt-md-0 col col-md-6 md:tw-h-full align-self-center justify-content-center overflow-hidden fadeInNoAnimation" 
                 style="
                     background-image: url({{URL::asset('/images/heroImageGlow.svg')}}); 
-                    background-size: 100% 100%;
+                    background-size: contain;
                     background-position: center;
                     background-repeat: no-repeat;
                 ">
