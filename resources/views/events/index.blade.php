@@ -3,30 +3,59 @@
 @section('title', 'Event Collections')
 
 @section('content')
-    <div class="tw-flex tw-justify-between tw-items-center tw-mb-8 pt-5 mt-5">
-        <h1 class="tw-text-3xl tw-font-semibold">Collections</h1>
-        <a href="{{ route('events.index') }}" class="tw-btn tw-btn-outline-primary tw-bg-blue-500 hover:tw-bg-blue-600 tw-text-white">Go Back</a>
+<div class="tw-container tw-mx-auto tw-px-4 tw-py-8">
+    <div class="tw-flex tw-justify-between tw-items-center tw-mb-8">
+        <h1 class="tw-text-3xl tw-font-bold tw-text-white">Event Collections</h1>
+        <a href="{{ route('events.index') }}" class="tw-bg-blue-500 hover:tw-bg-blue-600 tw-text-white tw-font-semibold tw-py-2 tw-px-4 tw-rounded-full tw-transition-colors">
+            Back to Events
+        </a>
     </div>
 
-    <div class="grid grid-cols-12 gap-4 mb-4 px-4">
-        <div class="col-span-12">
-            <h2 class="text-lg font-semibold text-gray-300">Events</h2>
-        </div>
+    <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-6">
+        @foreach ($events as $event)
+            <div class="tw-bg-gray-800 tw-rounded-lg tw-overflow-hidden tw-shadow-lg tw-transition-all hover:tw-shadow-2xl">
+                <div class="tw-aspect-w-16 tw-aspect-h-9">
+                    <img src="/placeholder.svg?height=200&width=400" alt="Event image" class="tw-object-cover tw-w-full tw-h-full" />
+                </div>
+                <div class="tw-p-6">
+                    <div class="tw-flex tw-justify-between tw-items-start tw-mb-4">
+                        <h2 class="tw-text-xl tw-font-semibold tw-text-white tw-mb-2">{{ $event->title }}</h2>
+                        <div class="tw-flex tw-items-center">
+                            <input 
+                                type="checkbox" 
+                                name="selected_events[]" 
+                                value="{{ $event->id }}"
+                                class="tw-form-checkbox tw-h-5 tw-w-5 tw-text-blue-500 tw-rounded tw-border-gray-600 tw-bg-gray-700"
+                            >
+                        </div>
+                    </div>
+                    
+                    <p class="tw-text-gray-300 tw-mb-4">{{ Str::limit($event->description, 100) }}</p>
+                    
+                    <div class="tw-flex tw-justify-between tw-items-center tw-mb-4">
+                        <span class="tw-text-sm tw-text-gray-400">{{ $event->date->format('d M, Y') }}</span>
+                        <div class="tw-flex tw-items-center">
+                            <span class="tw-text-sm tw-text-gray-400 tw-mr-2">Reminder</span>
+                            <input 
+                                type="checkbox" 
+                                name="reminder" 
+                                {{ $event->reminder ? 'checked' : '' }}
+                                class="tw-form-checkbox tw-h-5 tw-w-5 tw-text-blue-500 tw-rounded tw-border-gray-600 tw-bg-gray-700"
+                            >
+                        </div>
+                    </div>
+                    
+                    <div class="tw-flex tw-justify-end">
+                        <button 
+                            class="tw-bg-red-500 hover:tw-bg-red-600 tw-text-white tw-font-semibold tw-py-2 tw-px-4 tw-rounded tw-text-sm tw-transition-colors"
+                        >
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+        @endforeach
     </div>
-
-    @foreach ($events as $event)
-        <div class="grid grid-cols-12 gap-4 bg-gray-800 p-4 rounded-lg mb-4">
-            <!-- Event Details -->
-            <div class="col-span-9">
-                @include('components.event-cardCollection', ['event' => $event])
-            </div>
-
-            <!-- Right Column: Actions & Info -->
-            <div class="col-span-3 flex flex-col items-end space-y-2">
-                <span class="px-3 py-1 bg-red-500 rounded text-sm text-white cursor-pointer">DELETE</span>
-                <span class="text-sm text-gray-300">{{ $event->date->format('d M, Y') }}</span>
-                <span class="text-sm text-gray-300">{{ $event->reminder ? 'On' : 'Off' }}</span>
-            </div>
-        </div>
-    @endforeach
+</div>
 @endsection
+
