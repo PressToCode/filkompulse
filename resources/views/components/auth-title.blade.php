@@ -1,4 +1,4 @@
-@props(['title', 'subtitle', 'link', 'googleText'])
+@props(['title', 'subtitle', 'googleText'])
 
 <div class="d-flex flex-column text-center">
     <!-- Heading and Google OAUTH -->
@@ -14,13 +14,7 @@
     @endif
     @if (isset($googleText))
         <x-primary-button class="mx-3 my-3 w-50 text-center align-self-center justify-content-center tw-transition tw-ease-in-out tw-delay-100 hover:tw-scale-105 tw-duration-100">
-            <a href="
-                @if (isset($link))
-                    @if (route::has($link))
-                        {{ route($link) }}
-                    @endif
-                @endif
-            ">
+            <a href="{{ route('login.google') }}">
                 {{ __($googleText) }}
             </a>
         </x-primary-button>

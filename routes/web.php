@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\GoogleAuthController;
 
 Route::get('/', function () {
     return view('dashboard.dashboard');
@@ -16,6 +17,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// Google OAUTH Routing (Redirect to Controller)
+Route::get('oauth/google', [GoogleAuthController::class, 'redirectToGoogle'])->name('login.google');
+
+Route::get('oauth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
 
 // for testing purposes
 Route::get('/event-detail', function() {
