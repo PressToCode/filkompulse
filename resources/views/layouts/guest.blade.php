@@ -13,8 +13,7 @@
 
         <!-- Scripts -->
         @vite(
-            ['resources/css/bootstrap.css', 
-            'resources/js/app.js',
+            ['resources/js/app.js',
             'resources/css/tailwind.css',
             'resources/js/bootstrap.js'
             ])
