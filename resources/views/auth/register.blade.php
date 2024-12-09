@@ -1,14 +1,12 @@
 <x-FilkompulseAuth-Layout>
     <!-- Splash Image -->
-    <x-slot:splash>
-        <div class="d-flex col-3 col-md-6 mh-100">
-            <img src="{{URL::asset('/images/loginSplash.svg')}}" class="img-fluid w-100 object-fit-cover rounded-start-5" alt="">
-        </div>
-    </x-slot:splash>
+    <div class="tw-flex-auto tw-h-full tw-max-h-full tw-w-full tw-max-w-full tw-rounded-s-3xl tw-overflow-hidden">
+        <img src="{{URL::asset('/images/loginSplash.svg')}}" class="tw-h-full tw-w-full tw-object-cover" alt="">
+    </div>
     
     <!-- Form contents -->
-    <div class="d-flex row flex-col rounded-5">
-        <x-auth-header></x-auth-header>
+    <div class="tw-flex-auto tw-h-full tw-w-full tw-rounded-e-3xl">
+    <x-auth-header></x-auth-header>
         <div class="d-flex flex-column flex-grow-1 justify-content-center px-4">
             <x-auth-title title="Hello Champion!" subtitle="Welcome to Filkom Pulse!!" googleText="Sign Up with Google"></x-auth-title>
             <div class="d-flex justify-content-center">

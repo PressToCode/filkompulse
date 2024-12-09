@@ -1,4 +1,4 @@
-@props(['title', 'subtitle', 'link', 'googleText']);
+@props(['title', 'subtitle', 'link', 'googleText'])
 
 <div class="d-flex flex-column text-center">
     <!-- Heading and Google OAUTH -->

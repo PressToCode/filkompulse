@@ -30,7 +30,7 @@
                     background-position: center;
                     background-repeat: no-repeat;
                 ">
-                    <img src="{{URL::asset('/images/heroImageDevice.png')}}" class="img-fluid w-75 object-fit-scale tw-transition tw-ease-in-out tw-delay-100 hover:tw-scale-110 tw-duration-500" alt="">
+                    <img src="{{URL::asset('/images/heroImageDevice.png')}}" class="img-fluid w-75 object-fit-scale tw-transition tw-ease-out hover:tw-scale-110 tw-duration-200" alt="">
                 </div>
             </div>
         </div>
@@ -69,7 +69,7 @@
     }
 
     .popout:hover {
-        transition: transform 0.3s ease; 
+        transition: transform 0.3s ease-out; 
         transform: scale(1.05);
     }
 </style>

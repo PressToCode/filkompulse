@@ -19,19 +19,33 @@
             'resources/js/bootstrap.js'
             ])
     </head>
-    <body class="tw-font-sans tw-text-gray-900 tw-antialiased">
-    <!-- min-h-screen d-flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900 border border-3 -->
-        <div class="vh-100 d-flex py-md-5">
-
-            <!-- w-full sm:max-w-md mt-6 px-6 py-4 bg-dark dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg -->
-            <div class="container-fluid d-flex flex-row h-auto bg-dark rounded-5 px-0 mx-0 mx-md-5">
-                @if (isset($splash))
-                    @if ($splash->hasActualContent())
-                        {{ $splash }}
-                    @endif
-                @endif
+    <body class="tw-font-sans tw-text-gray-900 tw-bg-gray-900 tw-antialiased tw-overflow-hidden">
+        <!-- <div class="tw-absolute tw-z-20 tw-border-[200px] tw-rounded-full tw-border-blue-500 tw-blur-sm moveRight"></div>
+        <div class="tw-absolute tw-z-20 tw-border-[200px] tw-rounded-full tw-border-yellow-500 tw-blur-sm tw-right-1/3 tw-top-1/3 moveRight"></div>
+        <div class="tw-absolute tw-z-30 tw-border-[200px] tw-rounded-full tw-border-red-500 tw-blur-sm tw-bottom-0 tw-right-0 moveRight"></div> -->
+        <div class="tw-h-dvh d-flex py-5 px-5 tw-z-10">
+            <div class="tw-grid tw-grid-flow-col tw-grid-cols-2 tw-h-full tw-max-h-full tw-w-full tw-max-w-full tw-rounded-3xl tw-bg-gray-600/10 tw-backdrop-blur-lg tw-z-40 tw-shadow tw-shadow-gray-500/30">
                 {{ $slot }}
             </div>
         </div>
     </body>
 </html>
+
+<!-- <style>
+    @keyframes translateMove {
+        0% {
+            transform: translateX(-100vw);
+        }
+        100% {
+            transform: translateX(100vw);
+        }
+    }
+
+    .moveRight {
+        animation: translateMove 1s linear infinite;
+    }
+
+    .moveLeft {
+        animation: translateMove 1s linear reverse infinite;
+    }
+</style> -->
