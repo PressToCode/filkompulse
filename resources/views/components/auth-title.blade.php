@@ -13,7 +13,7 @@
         </h3>
     @endif
     @if (isset($googleText))
-        <x-primary-button class="mx-3 my-3 w-50 text-center align-self-center justify-content-center">
+        <x-primary-button class="mx-3 my-3 w-50 text-center align-self-center justify-content-center tw-transition tw-ease-in-out tw-delay-100 hover:tw-scale-105 tw-duration-100">
             <a href="
                 @if (isset($link))
                     @if (route::has($link))

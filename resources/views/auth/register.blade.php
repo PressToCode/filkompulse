@@ -44,7 +44,7 @@
                     <!-- Sign Up -->
                     <p class="text-light mt-0 mt-md-3 text-center">
                         Already have an account?
-                        <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
+                        <a class="tw-underline tw-text-sm tw-text-gray-400 hover:tw-text-gray-100 tw-rounded-md focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-offset-gray-800" href="{{ route('login') }}">
                             {{ __('Sign In') }}
                         </a>
                     </p>
