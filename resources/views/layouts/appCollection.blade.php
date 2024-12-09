@@ -20,7 +20,7 @@
             ])
     </head>
     <body class="tw-font-sans tw-antialiased">
-        <div class="tw-min-h-screen tw-bg-gray-100 dark:tw-bg-gray-900">
+        <div class="tw-min-h-screen tw-bg-gray-900">
             @include('layouts.navigation')
 
             <!-- Page Content -->
