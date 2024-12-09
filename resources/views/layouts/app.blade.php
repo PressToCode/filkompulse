@@ -18,8 +18,8 @@
             'resources/js/bootstrap.js'
             ])
     </head>
-    <body class="tw-font-sans tw-antialiased">
-        <div class="tw-min-h-screen tw-bg-gray-900">
+    <body class="font-sans antialiased">
+        <div class="min-h-screen bg-gray-900">
             @include('layouts.navigation')
 
             <!-- Hero Image -->

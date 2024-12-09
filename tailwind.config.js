@@ -18,6 +18,4 @@ export default {
     },
 
     plugins: [forms],
-
-    prefix: "tw-", // Prefixed to tw-....
 };
