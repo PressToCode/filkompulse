@@ -5,9 +5,9 @@
     </div>
     
     <!-- Form contents -->
-    <div class="tw-flex-auto tw-h-full tw-w-full tw-rounded-e-3xl">
+    <div class="tw-flex tw-flex-auto tw-flex-col tw-h-full tw-w-full tw-rounded-e-3xl">
     <x-auth-header></x-auth-header>
-        <div class="d-flex flex-column flex-grow-1 justify-content-center px-4">
+        <div class="d-flex flex-column flex-grow-1 justify-content-center tw-content-center px-4">
             <x-auth-title title="Hello Champion!" subtitle="Welcome to Filkom Pulse!!" googleText="Sign Up with Google"></x-auth-title>
             <div class="d-flex justify-content-center">
                 <form method="POST" action="{{ route('register') }}" class="w-50 py-3">

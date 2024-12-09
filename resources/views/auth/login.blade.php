@@ -8,9 +8,9 @@
     </div>
 
     <!-- Form contents -->
-    <div class="tw-flex-auto tw-h-full tw-w-full tw-rounded-e-3xl">
+    <div class="tw-flex tw-flex-auto tw-flex-col tw-h-full tw-w-full tw-rounded-e-3xl tw-overflow-auto">
         <x-auth-header></x-auth-header>
-        <div class="d-flex flex-column flex-grow-1 justify-content-center">
+        <div class="tw-flex-1 tw-justify-center tw-content-center">
             <x-auth-title title="Hello Champion!" subtitle="Welcome to Filkom Pulse!!" googleText="Sign In with Google"></x-auth-title>
             <div class="d-flex justify-content-center">
                 <form method="POST" action="{{ route('login') }}" class="w-50 py-3">
