@@ -18,6 +18,7 @@ class CompetitionController extends Controller
             'description' => 'This is a sample competition description.',
         ];
 
-        return view('competition.show', compact('competition'));
+        return view('competition.show', $competition);
+        // return view('competition.show', compact('competition')); -- bad use of compact when only 1 controller is returning view
     }
 }

@@ -17,10 +17,8 @@ Route::get('/event-detail', function() {
 
 require __DIR__.'/auth.php';
 
-//
-
+// Andhika's Route
 use App\Http\Controllers\CompetitionController;
-
 Route::get('/competition/{id}', [CompetitionController::class, 'show'])->name('competition.show');
 
 //dari taqi
