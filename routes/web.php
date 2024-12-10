@@ -3,13 +3,23 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GoogleAuthController;
+use App\Http\Middleware\AuthCheck;
 
-Route::get('/', function () {
-    return view('dashboard.dashboard');
-})->name('dashboard');
+// For pages that does not need authentication to access
+// But have different views when authenticated or not
+// Checked via custom middleware (to avoid headache)
+// Views have global variable $isAuthenticated
+// Session have is_authenticated access via
+// session('is_authenticated', false) -> default is false
+Route::middleware([AuthCheck::class])->group(function () {
+    Route::get('/', function () {
+        return view('dashboard.dashboard');
+    })->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return view('dashboard.dashboard');
+    Route::get('/dashboard', function () {
+        return view('dashboard.dashboard');
+    });
+
 });
 
 Route::middleware('auth')->group(function () {
@@ -20,7 +30,6 @@ Route::middleware('auth')->group(function () {
 
 // Google OAUTH Routing (Redirect to Controller)
 Route::get('oauth/google', [GoogleAuthController::class, 'redirectToGoogle'])->name('login.google');
-
 Route::get('oauth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
 
 // for testing purposes

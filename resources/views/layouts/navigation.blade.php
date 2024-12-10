@@ -23,7 +23,7 @@
             </button>
         </div>
     </form>
-    @if (Auth::check())
+    @if ($isAuthenticated)
         <div class="d-flex col align-content-center justify-content-end">
             <div class="h-100 align-content-center">
                 <a href="{{ route('profile.edit') }}">

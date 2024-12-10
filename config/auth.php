@@ -40,6 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'google' => [
+            'driver' => 'session',
+            'provider' => 'google_accounts', 
+        ],
     ],
 
     /*
@@ -63,6 +68,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
+        ],
+
+        'google_accounts' => [
+            'driver' => 'eloquent',
+            'model' => env('GOOGLE_AUTH_MODEL', App\Models\GoogleAccountAuth::class),
         ],
 
         // 'users' => [

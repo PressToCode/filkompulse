@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\User;
+use App\Models\GoogleAccountAuth;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Log;
 
 class GoogleAuthController extends Controller
 {
@@ -18,23 +18,20 @@ class GoogleAuthController extends Controller
     public function handleGoogleCallback()
     {
         try {
-            $Googleuser = Socialite::driver('google')->user();
-            $user = User::where('google_id', $Googleuser->id)->first();
+            $Googleuser = Socialite::driver('google')->user();         
+            $user = GoogleAccountAuth::UpdateOrCreate([
+                'google_id' => $Googleuser->getId(),
+            ],[
+                'name' => $Googleuser->getName(),
+                'nickname' => $Googleuser->getNickname(),
+                'email' => $Googleuser->getEmail(),
+                'avatar' => $Googleuser->getAvatar(),
+            ]);
 
-            if ($user === null) {
-                $user = User::create([
-                    'name' => $Googleuser->name,
-                    'email' => $Googleuser->email,
-                    'password' => encrypt('admin_123'),
-                    'google_id'=> $Googleuser->id,
-                ]);
-            }
-
-            Auth::login($user);
+            Auth::guard('google')->login($user);
             return redirect()->intended('dashboard');
         } catch (\Exception $e) {
-            dd($e->getMessage());
-            \Log::error('Unexpected error occurred', ['message' => $e->getMessage(), 'stack' => $e->getTraceAsString()]);
+            Log::error('Unexpected error occurred', ['message' => $e->getMessage(), 'stack' => $e->getTraceAsString()]);
             return response()->json(['error' => 'An unexpected error occurred. Please try again later.'], 500);
         }
     }
