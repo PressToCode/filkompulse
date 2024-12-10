@@ -10,8 +10,8 @@
 
     <!-- Why is there even 2 header with the same title????? -->
 
-    <main class="container mt-5 pt-5">
-        <h1 class="text-center mb-5">
+    <main class="container pt-5 tw-h-dvh">
+        <h1 class="text-center mb-5 mt-5">
             <span class="red-underline">SHOW MANAGER</span>
         </h1>
 
