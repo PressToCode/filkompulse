@@ -9,8 +9,14 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\Auth\GoogleAuthController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\AuthCheck;
 use Illuminate\Support\Facades\Route;
+
+// Google OAUTH Routing (Redirect to Controller)
+Route::get('oauth/google', [GoogleAuthController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('oauth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
@@ -57,4 +63,8 @@ Route::middleware([AuthCheck::class])->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
+
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
