@@ -18,14 +18,12 @@ class AuthCheck
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $isAuthenticated = Auth::check() || Auth::guard('google')->check();
-
-        // Put in session
-        Session::put('is_authenticated', $isAuthenticated);
-
-        // Put in view
-        View::share('isAuthenticated', $isAuthenticated);
-
-        return $next($request);
+        // Check if authenticated
+        if (Auth::check() || Auth::guard('google')->check()) {
+            return $next($request);
+        }
+        
+        // Redirect to login
+        return redirect()->route('login');
     }
 }

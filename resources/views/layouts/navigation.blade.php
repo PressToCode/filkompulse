@@ -23,7 +23,7 @@
             </button>
         </div>
     </form>
-    @if ($isAuthenticated)
+    @if (Auth::guard('google')->check() || Auth::check())
         <div class="d-flex col align-content-center justify-content-end">
             <div class="h-100 align-content-center">
                 <a href="{{ route('profile.edit') }}">
