@@ -5,19 +5,13 @@
             <x-application-logo class="d-flex tw-h-full tw-w-[2.0625rem]" />    
         </a>
     </div>
-    <form class="d-md-flex d-none col" role="search">
+    <form class="d-flex flex-grow-1 col-4" role="search" method="GET" action="{{ route('search') }}">
         <div class="input-group rounded-pill border-0 tw-bg-slate-100/10 tw-backdrop-blur">
             <div class="rounded-start-pill tw-bg-inherit tw-h-full align-content-center border-0" id="search-icon">
                 <i class="bi bi-list pe-2 ps-3"></i>
             </div>
-            <input class="form-control border-0 tw-bg-inherit focus:tw-ring-0 focus:tw-bg-inherit focus:tw-shadow-none focus:tw-outline-none " list="datalistOption" type="search" placeholder="Search Bar" aria-label="Search">
-            <datalist id="datalistOption">
-                <option value="Event A">
-                <option value="Event B">
-                <option value="Event C">
-                <option value="Event D">
-                <option value="Event E">
-            </datalist>
+            <input id="search-bar" class="form-control border-0 tw-bg-inherit focus:tw-ring-0 focus:tw-bg-inherit focus:tw-shadow-none focus:tw-outline-none " list="datalistOption" type="search" placeholder="Search Bar" aria-label="Search" name="q" autocomplete="off">
+            <datalist id="datalistOption"></datalist>
             <button class="btn rounded-end-pill border-0 tw-bg-inherit" type="submit">
                 <i class="bi bi-search"></i>
             </button>
@@ -53,7 +47,7 @@
         </div>
         <!-- Authentication -->
     @else
-        <div class="d-flex col align-content-center justify-content-end">
+        <div class="d-none d-md-flex col align-content-center justify-content-end">
             <button class="btn rounded-pill me-2 px-4 active:tw-outline-none tw-transition tw-ease-in-out tw-delay-100 hover:tw-scale-110 tw-duration-100">
                 <a href="{{ route("register") }}">
                     {{ __("Register") }}
@@ -65,6 +59,59 @@
                 </a>
             </button>
         </div>
+        <div class="d-flex col justify-content-end dropdown d-md-none">
+            <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-three-dots-vertical fs-4"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                    <a class="dropdown-item" href="{{ route("register") }}">
+                        {{ __("Register") }}
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="{{ route("login") }}">
+                        {{ __("Login") }}
+                    </a>
+                </li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+        </div>
     @endif
   </div>
 </nav>
+
+<!-- Only acceptable JQuery CDN cause less headache (Minified) -->
+<!-- In case, you're wondering, this is only for search bar -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+<!-- TODO: Change implementation to user friendly, replace datalist -->
+<script>
+$(document).ready(function() {
+    $('#search-bar').on('input', function() {
+        var query = $(this).val(); // Get the user input
+
+        // Search every 2 char or more
+        if (query.length >= 2) {
+            $.ajax({
+                url: '{{ route('search.suggest') }}',
+                type: 'GET',
+                data: { query: query },
+                success: function(data) {
+                    // Get the datalist and clear previous options
+                    $('#datalistOption').empty();
+
+                    // Populate the datalist with new options based on the search results
+                    $.each(data.suggestions, function(index, item) {
+                        var option = $('<option>').val(item.title);
+                        $('#datalistOption').append(option);
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching search suggestions:', error);
+                }
+            });
+        }
+    });
+});
+</script>

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SearchController;
 
 Route::get('/', function () {
     return view('dashboard.dashboard');
@@ -11,9 +12,14 @@ Route::get('/dashboard', function () {
 });
 
 // for testing purposes
+// TODO: BLOCK W/ MIDDLEWARE LATER!!!
 Route::get('/event-detail', function() {
     return view('event-detail');
 });
+
+// TODO: Change Routing Implementation cuz this suck asf
+Route::get('/search', [SearchController::class, 'index'])->name('search');
+Route::get('/search-suggestion', [SearchController::class, 'suggest'])->name('search.suggest');
 
 require __DIR__.'/auth.php';
 
