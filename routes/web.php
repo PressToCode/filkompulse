@@ -17,11 +17,14 @@ Route::get('/event-detail', function() {
 
 require __DIR__.'/auth.php';
 
-//
-
+//Andhika
 use App\Http\Controllers\CompetitionController;
 
-Route::get('/competition/{id}', [CompetitionController::class, 'show'])->name('competition.show');
+Route::get('/competitions/{id}', [CompetitionController::class, 'show'])->name('competitions.show');
+Route::get('/competitions/type/{type}', [CompetitionController::class, 'showType'])->name('competitions.type');
+Route::post('/add-to-collection/{competition}', [CompetitionController::class, 'addToCollection'])->name('competitions.addToCollection');
+
+
 
 //dari taqi
 use App\Http\Controllers\EventController;
