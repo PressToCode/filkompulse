@@ -1,0 +1,48 @@
+@resultArray =
+[
+    'current_page' => 1,
+    'data' => [
+        [
+            'id' => 1,
+            'title' => 'Event Title 1',
+            'description' => 'Event Description 1',
+            // other event fields
+        ],
+        [
+            'id' => 2,
+            'title' => 'Event Title 2',
+            'description' => 'Event Description 2',
+            // other event fields
+        ],
+        // More events...
+    ],
+    'first_page_url' => 'http://example.com/events?page=1',
+    'from' => 1,
+    'last_page' => 5,
+    'last_page_url' => 'http://example.com/events?page=5',
+    'next_page_url' => 'http://example.com/events?page=2',
+    'path' => 'http://example.com/events',
+    'per_page' => 5,
+    'prev_page_url' => null,
+    'to' => 5,
+    'total' => 25,
+]
+
+<!-- Display event titles and descriptions -->
+@foreach($result['data'] as $event)
+    <div>
+        <h3>{{ $event['title'] }}</h3>
+        <p>{{ $event['description'] }}</p>
+    </div>
+@endforeach
+
+<!-- Display Pagination Links -->
+<div class="pagination">
+    @if($result['current_page'] > 1)
+        <a href="{{ $result['prev_page_url'] }}">Previous</a>
+    @endif
+
+    @if($result['next_page_url'])
+        <a href="{{ $result['next_page_url'] }}">Next</a>
+    @endif
+</div>

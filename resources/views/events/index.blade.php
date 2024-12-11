@@ -20,14 +20,6 @@
                 <div class="tw-p-6">
                     <div class="tw-flex tw-justify-between tw-items-start tw-mb-4">
                         <h2 class="tw-text-xl tw-font-semibold tw-text-white tw-mb-2">{{ $event->title }}</h2>
-                        <div class="tw-flex tw-items-center">
-                            <input 
-                                type="checkbox" 
-                                name="selected_events[]" 
-                                value="{{ $event->id }}"
-                                class="tw-form-checkbox tw-h-5 tw-w-5 tw-text-blue-500 tw-rounded tw-border-gray-600 tw-bg-gray-700"
-                            >
-                        </div>
                     </div>
                     
                     <p class="tw-text-gray-300 tw-mb-4">{{ Str::limit($event->description, 100) }}</p>
