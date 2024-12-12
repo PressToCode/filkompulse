@@ -12,13 +12,16 @@ class GoogleAuthController extends Controller
 {
     public function redirectToGoogle()
     {
-        return Socialite::driver('google')->redirect();
+        // TODO: CHANGE STATELESS, SECURITY VULNERABILITY
+        // ! https://stackoverflow.com/questions/30660847/laravel-socialite-invalidstateexception
+        return Socialite::driver('google')->stateless()->redirect();
     }
 
     public function handleGoogleCallback()
     {
         try {
-            $Googleuser = Socialite::driver('google')->user();         
+            // TODO: CHANGE STATELESS, SECURITY VULNERABILITY
+            $Googleuser = Socialite::driver('google')->stateless()->user(); 
             $user = GoogleAccountAuth::UpdateOrCreate([
                 'google_id' => $Googleuser->getId(),
             ],[
