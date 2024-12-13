@@ -6,7 +6,7 @@
                 <div class="">
                     <h1 class="tw-text-4xl tw-font-bold tw-mb-4 tw-col-span-1">{{ $event->title }}</h1>
                     <div class="tw-bg-white tw-w-full tw-rounded-lg">
-                        <img src="{{ URL::asset('images/cardPlaceholder.svg') }}" alt="{{ $event->title }}" class="tw-w-full tw-h-full tw-object-cover tw-rounded-lg">
+                        <img src="{{ URL::asset('images/cardPlaceholder.svg') }}" alt="{{ $event->title }}" class="tw-w-full tw-h-full tw-object-cover tw-rounded-lg tw-transition tw-ease-out hover:tw-scale-105 tw-duration-200">
                     </div>
                 </div>
                 <div>
@@ -14,10 +14,10 @@
                     <h1 class="tw-text-4xl tw-font-bold tw-mb-4 tw-hidden md:tw-block md:tw-text-transparent">{{ $event->title }}</h1>
                     <p class="tw-mb-6">{{ $event->description }}</p>
                     <div class="tw-flex tw-gap-4 tw-mb-8">
-                        <a href="#about" class="tw-bg-white/20 tw-px-6 tw-py-2 tw-rounded-full">Selengkapnya</a>
+                        <a href="#about" class="tw-bg-white/20 tw-px-6 tw-py-2 tw-rounded-full tw-transition tw-ease-out hover:tw-scale-110 tw-duration-200">{{ __('Details')}}</a>
                         <form action="{{ route('event.addToCollection', $event) }}" method="POST">
                             @csrf
-                            <button type="submit" class="tw-bg-blue-500 tw-px-6 tw-py-2 tw-rounded-full">Add to Collection</button>
+                            <button type="submit" class="tw-bg-blue-500 tw-px-6 tw-py-2 tw-rounded-full tw-transition tw-ease-out hover:tw-scale-110 tw-duration-200">Add to Collection</button>
                         </form>
                     </div>
                     <div class="tw-bg-white/20 tw-p-4 tw-rounded-lg tw-flex tw-justify-between tw-items-center">
@@ -31,7 +31,7 @@
                         </div>
                         <form action="{{ route('event.addToCollection', $event) }}" method="POST">
                             @csrf
-                            <button type="submit" class="tw-bg-blue-500 tw-px-6 tw-py-2 tw-rounded-full">Add to Collection</button>
+                            <button type="submit" class="tw-bg-blue-500 tw-px-6 tw-py-2 tw-rounded-full tw-transition tw-ease-out hover:tw-scale-110 tw-duration-200">Add to Collection</button>
                         </form>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
 
     {{-- About Section --}}
     <section id="about" class="tw-py-16">
-        <div class="tw-w-full tw-px-8">
+        <div class="tw-max-w-6xl tw-mx-auto tw-px-8 md:tw-px-0">
             <h2 class="tw-text-3xl tw-font-bold tw-mb-6">ABOUT</h2>
             <p class="tw-max-w-2xl">{{ $event->description }}</p>
         </div>
