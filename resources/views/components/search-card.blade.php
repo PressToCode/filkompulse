@@ -1,6 +1,6 @@
-@props(['title', 'description', 'date', 'image'])
+@props(['id', 'title', 'description', 'date', 'image'])
 
-<a href="{{ Route('dashboard') }}" class="tw-grid tw-grid-cols-10 overflow-hidden tw-rounded-md tw-mb-5 tw-border tw-transition tw-ease-out hover:tw-scale-105 tw-duration-200">
+<a href="event/{{ $id }}" class="tw-grid tw-grid-cols-10 overflow-hidden tw-rounded-md tw-mb-5 tw-border tw-transition tw-ease-out hover:tw-scale-105 tw-duration-200">
     <div class="tw-col-span-3">
     <img src="{{ $image ?? URL::asset('images/cardPlaceholder.svg') }}" class="tw-h-full tw-w-full tw-object-cover" alt="Event image">
     </div>
