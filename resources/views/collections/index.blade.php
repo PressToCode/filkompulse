@@ -6,7 +6,7 @@
 <div class="tw-container tw-mx-auto tw-px-4 tw-py-8">
     <div class="tw-flex tw-justify-between tw-items-center tw-mb-8">
         <h1 class="tw-text-3xl tw-font-bold tw-text-white">Event Collections</h1>
-        <a href="{{ route('events.index') }}" class="tw-bg-blue-500 hover:tw-bg-blue-600 tw-text-white tw-font-semibold tw-py-2 tw-px-4 tw-rounded-full tw-transition-colors">
+        <a href="{{ route('collections.index') }}" class="tw-bg-blue-500 hover:tw-bg-blue-600 tw-text-white tw-font-semibold tw-py-2 tw-px-4 tw-rounded-full tw-transition-colors">
             Back to Events
         </a>
     </div>

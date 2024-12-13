@@ -24,18 +24,18 @@ Route::get('/search-suggestion', [SearchController::class, 'suggest'])->name('se
 require __DIR__.'/auth.php';
 
 //Andhika
-use App\Http\Controllers\CompetitionController;
+use App\Http\Controllers\EventController;
 
-Route::get('/competitions/{id}', [CompetitionController::class, 'show'])->name('competitions.show');
-Route::get('/competitions/type/{type}', [CompetitionController::class, 'showType'])->name('competitions.type');
-Route::post('/add-to-collection/{competition}', [CompetitionController::class, 'addToCollection'])->name('competitions.addToCollection');
+Route::get('/event/{id}', [EventController::class, 'show'])->name('event.show');
+Route::get('/event/type/{type}', [EventController::class, 'showType'])->name('event.type');
+Route::post('/add-to-collection/{competition}', [EventController::class, 'addToCollection'])->name('event.addToCollection');
 
 
 
 //dari taqi
-use App\Http\Controllers\EventController;
-Route::get('/events', [EventController::class, 'index'])->name('events.index');
-Route::patch('/events/{event}/toggle-reminder', [EventController::class, 'toggleReminder'])->name('events.toggleReminder');
-Route::patch('/events/{event}/toggle-select', [EventController::class, 'toggleSelect'])->name('events.toggleSelect');
-Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
+use App\Http\Controllers\CollectionController;
+Route::get('/collections', [CollectionController::class, 'index'])->name('collections.index');
+Route::patch('/collections/{collection}/toggle-reminder', [CollectionController::class, 'toggleReminder'])->name('collections.toggleReminder');
+Route::patch('/collections/{collection}/toggle-select', [CollectionController::class, 'toggleSelect'])->name('collections.toggleSelect');
+Route::delete('/collections/{collection}', [CollectionController::class, 'destroy'])->name('collections.destroy');
 

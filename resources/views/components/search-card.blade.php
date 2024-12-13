@@ -7,6 +7,6 @@
     <div class="tw-flex tw-flex-col tw-col-span-7 tw-py-2 tw-px-5">
         <h3 class="tw-flex tw-flex-initial tw-text-xl">{{ $title }}</h3>
         <p class="tw-flex tw-flex-auto tw-text-justify">{{ $description }}</p>
-        <p class="tw-flex tw-flex-initial">{{ $date }}</p>
+        <p class="tw-flex tw-flex-initial">{{ $date->format('d F Y') }}</p>
     </div>
 </a>
