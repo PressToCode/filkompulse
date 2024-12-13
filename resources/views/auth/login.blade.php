@@ -1,7 +1,4 @@
 <x-FilkompulseAuth-Layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
     <!-- Splash Image -->
     <div class="tw-flex-auto tw-h-full tw-max-h-full tw-w-full tw-max-w-full tw-rounded-s-3xl tw-overflow-hidden">
         <img src="{{URL::asset('/images/loginSplash.svg')}}" class="tw-h-full tw-w-full tw-object-cover" alt="">
@@ -53,6 +50,8 @@
                         </a>
                     </p>
                 </form>
+                <!-- Session Status -->
+                <x-auth-session-status class="mb-4 tw-text-center" :status="session('status')" />
             </div>
         </div>
     </div>
