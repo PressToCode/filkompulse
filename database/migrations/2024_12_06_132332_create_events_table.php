@@ -11,16 +11,37 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('events', function (Blueprint $table) {
-            $table->id();  // Auto-incrementing ID column
-            $table->string('title');  // 'title' column with string type
-            $table->text('description');  // 'description' column with text type (to store longer text)
-            $table->date('date');  // 'date' column for the event date
-            $table->string('image')->nullable();  // 'image' column to store the image URL
-            $table->boolean('has_reminder')->default(false);  // 'has_reminder' column as a boolean (default to false)
-            $table->boolean('is_selected')->default(false);  // 'is_selected' column as a boolean (default to false)
-            $table->timestamps();  // Laravel's default timestamps (created_at and updated_at)
-        });
+        if(Schema::hasTable('verified_users')) {
+            Schema::create('events', function (Blueprint $table) {
+                $table->id('eventsID')->primary();
+                $table->foreignId('verifiedUserID')->constrained('verified_users', 'VerifiedID')->cascadeOnDelete();
+                $table->string('title'); 
+                $table->text('description')->nullable(); 
+                $table->dateTime('date');
+                $table->string('location_type');
+                $table->string('location')->nullable();
+                $table->timestamps(); 
+            });
+        }
+
+        if(Schema::hasTable('keranjangs') && Schema::hasTable('events')) {
+            Schema::create('keranjangHasEvents', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('keranjangID')->constrained('keranjangs', 'KeranjangID')->cascadeOnDelete();
+                $table->foreignId('eventsID')->constrained('events', 'eventsID')->cascadeOnDelete();
+            });
+        }
+
+        if(Schema::hasTable('users') && Schema::hasTable('events')) {
+            Schema::create('reminders', function (Blueprint $table) {
+                $table->id('reminderID')->primary();
+                $table->foreignId('eventsID')->constrained('events', 'eventsID')->cascadeOnDelete();
+                $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+                // $table->string('user_email');
+                // $table->foreign('user_email')->references('email')->on('users')->cascadeOnDelete();
+                $table->date('reminderDate');
+            });
+        }
     }
 
     /**

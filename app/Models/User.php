@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -45,5 +47,21 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    
+    public function keranjang(): HasOne
+    {
+        // Assumed to have user_id as foreign key in keranjang
+        return $this->hasOne(Keranjang::class, 'user_id', 'user_id');
+    }
+
+    public function verified_user(): HasMany
+    {
+        return $this->hasMany(Verified_user::class, 'user_id', 'user_id');
+    }
+
+    public function reminder(): HasMany
+    {
+        return $this->hasMany(Reminder::class, 'user_id', 'user_id');
     }
 }

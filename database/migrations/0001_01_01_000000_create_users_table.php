@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique()->nullable();
+            $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password')->nullable();
+            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -35,6 +35,21 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+
+        Schema::create('verified_users', function (Blueprint $table) {
+            $table->id('VerifiedID')->primary();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('verified_type');
+            $table->timestamps();
+        });
+        
+        Schema::create('keranjangs', function (Blueprint $table) {
+            $table->id('keranjangID')->primary();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            // $table->string('user_email');
+            // $table->foreign('user_email')->references('email')->on('users')->cascadeOnDelete();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -42,6 +57,8 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('keranjangs');
+        Schema::dropIfExists('verified_users');
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');

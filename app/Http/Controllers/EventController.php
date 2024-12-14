@@ -9,8 +9,7 @@ class EventController extends Controller
 {
     public function show($id)
     {
-        $event = Event::where('id', $id)->firstOrFail();
-        \Log::info($event);
+        $event = Event::where('eventsID', $id)->firstOrFail();
 
         return view('event.show', compact('event'));
     }
