@@ -7,7 +7,7 @@
             <p class="tw-text-5xl tw-text-center tw-font-bold py-3">Your Search Result:</p>
                 @foreach ($result->items() as $event)
                     <x-search-card
-                        :id="$event['id']"
+                        :id="$event['eventsID']"
                         :title="$event['title']"
                         :description="$event['description']"
                         :date="$event['date']" />

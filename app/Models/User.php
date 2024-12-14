@@ -52,16 +52,16 @@ class User extends Authenticatable
     public function keranjang(): HasOne
     {
         // Assumed to have user_id as foreign key in keranjang
-        return $this->hasOne(Keranjang::class, 'user_id', 'user_id');
+        return $this->hasOne(Keranjang::class, 'user_id', 'id');
     }
 
     public function verified_user(): HasMany
     {
-        return $this->hasMany(Verified_user::class, 'user_id', 'user_id');
+        return $this->hasMany(Verified_user::class, 'user_id', 'id');
     }
 
     public function reminder(): HasMany
     {
-        return $this->hasMany(Reminder::class, 'user_id', 'user_id');
+        return $this->hasMany(Reminder::class, 'user_id', 'id');
     }
 }
