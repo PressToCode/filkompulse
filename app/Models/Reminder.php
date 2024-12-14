@@ -15,7 +15,7 @@ class Reminder extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'userID', 'user_id');
+        return $this->belongsTo(User::class, 'userID', 'id');
     }
 
     public function events(): BelongsTo

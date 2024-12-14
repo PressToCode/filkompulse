@@ -14,6 +14,6 @@ class Verified_user extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(user::class, 'user_id', 'user_id');
+        return $this->belongsTo(user::class, 'user_id', 'id');
     }
 }
