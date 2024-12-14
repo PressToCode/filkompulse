@@ -15,7 +15,7 @@
         @foreach ($events as $event)
             <div class="tw-bg-gray-800 tw-rounded-lg tw-overflow-hidden tw-shadow-lg tw-transition-all hover:tw-shadow-2xl">
                 <div class="tw-aspect-w-16 tw-aspect-h-9">
-                    <img src="{{ asset($event->image ?? URL::asset('images/cardPlaceholder.svg')) }}" alt="Event image" class="tw-object-cover tw-w-full tw-h-full" />
+                    <img src="{{ asset($event->image()->first() ?? URL::asset('images/cardPlaceholder.svg')) }}" alt="Event image" class="tw-object-cover tw-w-full tw-h-full" />
                 </div>
                 <div class="tw-p-6">
                     <div class="tw-flex tw-justify-between tw-items-start tw-mb-4">
