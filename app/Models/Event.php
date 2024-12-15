@@ -15,11 +15,11 @@ class Event extends Model
 
     protected $fillable = [
         'verifiedUserID',
-        'title',
+        'title', 
         'description',
-        'date',
+        'date', 
         'location_type',
-        'location',
+        'location', 
     ];
 
     protected $casts = [

@@ -39,3 +39,12 @@ Route::patch('/collections/{collection}/toggle-reminder', [CollectionController:
 Route::patch('/collections/{collection}/toggle-select', [CollectionController::class, 'toggleSelect'])->name('collections.toggleSelect');
 Route::delete('/collections/{collection}', [CollectionController::class, 'destroy'])->name('collections.destroy');
 
+use App\Http\Controllers\EventSubmissionController;
+
+Route::get('/event-submissions', [EventSubmissionController::class, 'index'])->name('event-submissions.index');
+    Route::get('/event-submissions/create', [EventSubmissionController::class, 'create'])->name('event-submissions.create');
+    Route::post('/event-submissions', [EventSubmissionController::class, 'store'])->name('event-submissions.store');
+    Route::get('/event-submissions/{event}', [EventSubmissionController::class, 'show'])->name('event-submissions.show');
+    Route::get('/event-submissions/{event}/edit', [EventSubmissionController::class, 'edit'])->name('event-submissions.edit');
+    Route::put('/event-submissions/{event}', [EventSubmissionController::class, 'update'])->name('event-submissions.update');
+    Route::delete('/event-submissions/{event}', [EventSubmissionController::class, 'destroy'])->name('event-submissions.destroy');
