@@ -1,5 +1,6 @@
 import defaultTheme from "tailwindcss/defaultTheme";
 import forms from "@tailwindcss/forms";
+import preline from "preline/plugin";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -18,7 +19,7 @@ export default {
         },
     },
 
-    plugins: [forms, require("preline/plugin"),],
+    plugins: [forms, preline],
 
-    prefix: "tw-", // Prefixed to tw-....
+    prefix: "tw-",
 };
