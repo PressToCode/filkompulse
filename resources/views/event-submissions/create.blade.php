@@ -7,8 +7,8 @@
 
     <div class="tw-py-12">
         <div class="tw-max-w-7xl tw-mx-auto tw-sm:px-6 tw-lg:px-8">
-            <div class="tw-bg-white tw-overflow-hidden tw-shadow-sm tw-sm:rounded-lg">
-                <div class="tw-p-6 tw-bg-white tw-border-b tw-border-gray-200">
+            <div class="tw-overflow-hidden tw-shadow-sm tw-sm:rounded-lg">
+                <div class="tw-p-6 tw-border-b tw-border-gray-200">
                     @if (session('success'))
                         <div class="tw-mb-4 tw-bg-green-100 tw-border tw-border-green-400 tw-text-green-700 tw-px-4 tw-py-3 tw-rounded relative" role="alert">
                             <strong class="tw-font-bold">Success!</strong>
@@ -39,7 +39,7 @@
 
                             <div>
                                 <x-input-label for="location_type" :value="__('Location Type')" />
-                                <select id="location_type" name="location_type" class="tw-block tw-mt-1 tw-w-full tw-rounded-md tw-shadow-sm tw-border-gray-300 focus:tw-border-indigo-300 focus:tw-ring focus:tw-ring-indigo-200 focus:tw-ring-opacity-50" required>
+                                <select id="location_type" name="location_type" class="tw-block tw-mt-1 tw-w-full tw-rounded-md tw-shadow-sm focus:tw-ring focus:tw-ring-opacity-50 tw-border-gray-700 tw-bg-gray-900 tw-text-gray-300 focus:tw-border-indigo-600 focus:tw-ring-indigo-600" required>
                                     <option value="physical" {{ old('location_type') == 'physical' ? 'selected' : '' }}>Physical</option>
                                     <option value="online" {{ old('location_type') == 'online' ? 'selected' : '' }}>Online</option>
                                 </select>
@@ -53,7 +53,7 @@
 
                         <div class="tw-mt-4">
                             <x-input-label for="description" :value="__('Event Description')" />
-                            <textarea id="description" name="description" rows="4" class="tw-block tw-mt-1 tw-w-full tw-rounded-md tw-shadow-sm tw-border-gray-300 focus:tw-border-indigo-300 focus:tw-ring focus:tw-ring-indigo-200 focus:tw-ring-opacity-50" required>{{ old('description') }}</textarea>
+                            <textarea id="description" name="description" rows="4" class="tw-block tw-mt-1 tw-w-full tw-rounded-md tw-shadow-sm focus:tw-ring focus:tw-ring-opacity-50 tw-border-gray-700 tw-bg-gray-900 tw-text-gray-300 focus:tw-border-indigo-600 focus:tw-ring-indigo-600" required>{{ old('description') }}</textarea>
                         </div>
 
                         <div class="tw-mt-4">
