@@ -1,14 +1,22 @@
+<style>
+    body {
+        padding-top: 80px; 
+    }
+</style>
+
 <x-app-layout>
     <!-- Page Header -->
     <header class="tw-shadow tw-bg-gray-800">
+        <!-- Padding-top memastikan header berada di bawah navbar -->
         <div class="tw-max-w-7xl tw-mx-auto tw-py-6 tw-px-4 sm:tw-px-6 lg:tw-px-8">
             <h1 class="tw-text-3xl tw-font-bold">Profile</h1>
         </div>
     </header>
-
+    
     <!-- Main Content -->
-    <main class="tw-max-w-7xl tw-mx-8 tw-py-6 sm:tw-px-6 lg:tw-px-8 border">
-        <div class="tw-px-4 tw-py-6 sm:tw-px-0">
+    <main class="tw-flex tw-items-center tw-justify-center">
+        <!-- Center content both horizontally and vertically -->
+        <div class="tw-max-w-7xl tw-w-full tw-rounded-lg tw-shadow-md tw-p-6">
             <div x-data="{ activeTab: 0 }" class="tw-space-y-6">
                 <!-- Tab Buttons -->
                 <div class="tw-flex tw-p-1 tw-space-x-1 tw-bg-gray-800 tw-rounded-xl">
@@ -65,5 +73,4 @@
         </div>
     </main>
 </x-app-layout>
-
 
