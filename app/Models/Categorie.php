@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Categorie extends Model
 {
+    protected $table = 'categories';
+    protected $primaryKey = 'categoryID';
     protected $fillable = [
         'categoryName',
         'categoryDescription',

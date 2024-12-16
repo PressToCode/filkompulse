@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Image extends Model
 {
+    protected $table = 'images';
+    protected $primaryKey = 'imageID';
     protected $fillable = [
         'events_id',
         'imageURL',

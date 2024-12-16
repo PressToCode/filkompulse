@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Reminder extends Model
 {
+    protected $table = 'reminders';
+    protected $primaryKey = 'reminderID';
     protected $fillable = [
         'eventsID',
         'userID',

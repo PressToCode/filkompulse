@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Verified_user extends Model
 {
+    protected $table = 'verified_users';
+    protected $primaryKey = 'VerifiedID';
     protected $fillable = [
         'user_id',
         'verified_type',

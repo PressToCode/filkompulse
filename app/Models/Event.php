@@ -12,6 +12,7 @@ class Event extends Model
     use HasFactory;
 
     protected $primaryKey = 'eventsID';
+    protected $table = 'events';
 
     protected $fillable = [
         'verifiedUserID',

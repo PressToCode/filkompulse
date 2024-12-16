@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Keranjang;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Auth\Events\Registered;
@@ -59,6 +60,9 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'password' => Hash::make($request->password),
         ]);
+
+        // ? Create Keranjang Instance for User
+        Keranjang::firstOrCreate(['user_id' => $user->id]);
 
         event(new Registered($user));
 

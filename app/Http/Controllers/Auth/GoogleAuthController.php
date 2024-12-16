@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\GoogleAccountAuth;
+use App\Models\Keranjang;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -49,6 +50,9 @@ class GoogleAuthController extends Controller
                     'name' => $Googleuser->getName(),
                     'password' => \Hash::make('L7u7POZHwZu5Zumn29C3'),
                 ]);
+
+                // ? Create Keranjang Instance for User
+                Keranjang::firstOrCreate(['user_id' => $user->id]);
 
                 $GUser = GoogleAccountAuth::UpdateOrCreate([
                     'google_id' => $Googleuser->getId(),

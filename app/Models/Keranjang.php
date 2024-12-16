@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Keranjang extends Model
 {
+    protected $primaryKey = 'keranjangID';
     protected $fillable = [
-        'keranjangID',
         'user_id',
     ];
 

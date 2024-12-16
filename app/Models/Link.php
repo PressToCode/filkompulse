@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Link extends Model
 {
+    protected $table = 'links';
+    protected $primaryKey = 'linkID';
     protected $fillable = [
         'events_id',
         'URL',
