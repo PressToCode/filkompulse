@@ -23,7 +23,7 @@
                     <button
                         class="tw-w-full tw-py-3 tw-text-sm tw-font-medium tw-rounded-lg focus:tw-outline-none 
                             @if(Auth::guard('google')->check())
-                                {{ !Hash::check('L7u7POZHwZu5Zumn29C3', Auth::guard('google')->user()->user()->first()->password) ? 'tw-hidden' : '' }}
+                                {{ Hash::check('L7u7POZHwZu5Zumn29C3', Auth::guard('google')->user()->user()->first()->password) ? 'tw-hidden' : '' }}
                             @endif
                         " 
                         :class="activeTab === 1 ? 'tw-bg-gray-500 tw-text-gray-800 tw-shadow' : 'tw-text-gray-400 hover:tw-bg-gray-200 hover:tw-text-gray-700'"
