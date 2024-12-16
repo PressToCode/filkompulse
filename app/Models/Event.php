@@ -29,7 +29,7 @@ class Event extends Model
 
     public function keranjang(): BelongsToMany
     {
-        return $this->belongsToMany(Keranjang::class, 'KeranjangHasEvent', 'eventsID', 'eventsID');
+        return $this->belongsToMany(Keranjang::class, 'KeranjangHasEvents', 'eventsID', 'eventsID');
     }
 
     public function categorie(): BelongsToMany

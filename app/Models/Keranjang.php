@@ -20,6 +20,6 @@ class Keranjang extends Model
 
     public function event(): BelongsToMany
     {
-        return $this->belongsToMany(Event::class, 'KeranjangHasEvent', 'keranjangID', 'keranjangID');
+        return $this->belongsToMany(Event::class, 'KeranjangHasEvents', 'keranjangID', 'keranjangID');
     }
 }

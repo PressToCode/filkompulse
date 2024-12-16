@@ -2,6 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Categorie;
+use App\Models\EventHasCategories;
+use App\Models\Keranjang;
+use App\Models\KeranjangHasEvent;
+use App\Models\Reminder;
 use App\Models\User;
 use App\Models\Event;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -17,6 +22,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // 'name',
+        // 'email',
+        // 'password',
         $users = [
             [
                 'name' => 'test',
@@ -32,9 +40,17 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($users as $user) {
-            User::create($user);
+            $createdUser = User::create($user);
+
+            // 'user_id', (FK taken from user)
+            // Dynamically generate keranjang for each user
+            Keranjang::create([
+                'user_id' => $createdUser->id,
+            ]);
         }
 
+        // 'user_id', (FK taken from user)
+        // 'verified_type',
         $verifiedUsers = [
             [
                 'user_id' => User::where('name', 'filkompulse')->first()->id,
@@ -46,12 +62,13 @@ class DatabaseSeeder extends Seeder
             Verified_user::create($user);
         }
 
-        // 'verifiedUserID',
+        // 'verifiedUserID', (FK taken from user)
         // 'title',
         // 'description',
         // 'date',
         // 'location_type',
         // 'location',
+        // Using filkompulse's ID as verifiedUserID
         $a = User::where('name', 'filkompulse')->first()->verified_user()->first()->VerifiedID;
         $events = [
             [
@@ -162,6 +179,90 @@ class DatabaseSeeder extends Seeder
 
         foreach ($events as $event) {
             Event::create($event);
+        }
+
+        // 'eventsID',
+        // 'userID',
+        // 'reminderDate',
+        $totalUser = User::count();
+        $totalEvent = Event::count();
+
+        for ($i = 0; $i < 10; $i++) {
+            $reminders = [                
+                'eventsID' => rand(1, $totalEvent),
+                'user_id' => rand(1, $totalUser),
+                'reminderDate' => Carbon::now()->addDays(rand(1, 100)),
+            ];
+
+            Reminder::create($reminders);
+        }
+
+        // 'keranjangID',
+        // 'eventsID',
+        $totalKeranjang = Keranjang::count();
+
+        for($i = 0; $i < $totalKeranjang; $i++) {
+            for($n = 0; $n < 5; $n++) {
+                $keranjangItem = [
+                    'keranjangID' => ($i+1),
+                    'eventsID' => rand(1, $totalEvent),
+                ];
+
+                KeranjangHasEvent::create($keranjangItem);
+            }
+        }
+
+        // 'categoryName',
+        // 'categoryDescription',
+        $categories = [
+            [
+                'categoryName' => 'Technology',
+                'categoryDescription' => 'Events for Technology Enthusiast!'
+            ],
+            [
+                'categoryName' => 'Health',
+                'categoryDescription' => 'Events related to Health and Wellness.',
+            ],
+            [
+                'categoryName' => 'Art',
+                'categoryDescription' => 'Explore creativity and artistic expressions.',
+            ],
+            [
+                'categoryName' => 'Sports',
+                'categoryDescription' => 'Events for sports lovers and athletes.',
+            ],
+            [
+                'categoryName' => 'Education',
+                'categoryDescription' => 'Events that promote learning and development.',
+            ],
+            [
+                'categoryName' => 'Business',
+                'categoryDescription' => 'Networking and growth opportunities for business professionals.',
+            ],
+            [
+                'categoryName' => 'Entertainment',
+                'categoryDescription' => 'Fun and entertainment-focused events.',
+            ],
+        ];
+
+        foreach($categories as $category) {
+            Categorie::create($category);
+        }
+
+        // Randomize Category
+        // 'events_ID',
+        // 'categories_ID',
+        $totalCategory = Categorie::count();
+
+        for($i = 0; $i < $totalEvent; $i++) {
+            for($n = 0; $n < 3; $n++) {
+                $eventCategory = [
+                    'events_ID' => ($i+1),
+                    'categories_ID' => rand(1, $totalCategory),
+                ];
+
+                EventHasCategories::create($eventCategory);
+            }
         }
     }
 }

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id('categoryID');
             $table->string('categoryName');
             $table->text('categoryDescription');
+            $table->timestamps();
         });
 
         if(Schema::hasTable('events')) {
@@ -23,6 +24,7 @@ return new class extends Migration
                 Schema::create('events_has_categories', function(Blueprint $table) {
                     $table->foreignId('events_id')->constrained('events', 'eventsID')->onDelete('cascade');
                     $table->foreignId('categories_id')->constrained('categories', 'categoryID')->onDelete('cascade');
+                    $table->timestamps();
                 });
             }
 
@@ -30,12 +32,14 @@ return new class extends Migration
                 $table->id('linkID')->primary();
                 $table->foreignId('events_id')->constrained('events', 'eventsID')->onDelete('cascade');
                 $table->string('URL', 150);
+                $table->timestamps();
             });
 
             Schema::create('images', function (Blueprint $table) {
                 $table->id('imageID')->primary();
                 $table->foreignId('events_id')->constrained('events', 'eventsID')->onDelete('cascade');
                 $table->string('imageURL', 200);
+                $table->timestamps();
             });
         }
 

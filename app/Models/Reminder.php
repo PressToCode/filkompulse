@@ -11,13 +11,13 @@ class Reminder extends Model
     protected $primaryKey = 'reminderID';
     protected $fillable = [
         'eventsID',
-        'userID',
+        'user_id',
         'reminderDate',
     ];
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'userID', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function events(): BelongsTo

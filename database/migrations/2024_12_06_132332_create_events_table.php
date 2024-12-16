@@ -29,6 +29,7 @@ return new class extends Migration
                 $table->id();
                 $table->foreignId('keranjangID')->constrained('keranjangs', 'KeranjangID')->cascadeOnDelete();
                 $table->foreignId('eventsID')->constrained('events', 'eventsID')->cascadeOnDelete();
+                $table->timestamps();
             });
         }
 
@@ -40,6 +41,7 @@ return new class extends Migration
                 // $table->string('user_email');
                 // $table->foreign('user_email')->references('email')->on('users')->cascadeOnDelete();
                 $table->date('reminderDate');
+                $table->timestamps();
             });
         }
     }
