@@ -48,6 +48,11 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function googleAccountAuth(): HasOne
+    {
+        return $this->hasOne(GoogleAccountAuth::class, 'user_id', 'id');
+    }
     
     public function keranjang(): HasOne
     {

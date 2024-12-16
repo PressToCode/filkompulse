@@ -38,6 +38,12 @@ return new class extends Migration
                 $table->string('imageURL', 200);
             });
         }
+
+        if(Schema::hasTable('user')) {
+            Schema::table('google_account_auths', function (Blueprint $table) {
+                $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            });
+        }
     }
 
     /**
@@ -45,6 +51,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('google_account_auths', function (Blueprint $table) {
+            $table->dropConstrainedForeignId('user_id');
+        });
         Schema::dropIfExists('images');
         Schema::dropIfExists('links');
         Schema::dropIfExists('events_has_categories');
