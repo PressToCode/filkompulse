@@ -36,39 +36,33 @@ class RegisteredUserController extends Controller
             'password' => ['required', Rules\Password::defaults()],
         ]);
 
-        $validator->after(function ($validator) use ($request){
-            // ? Handle validation fail first before continue
-            if($validator->stopOnFirstFailure()->fails()) {
-                return redirect()->route('register')->withErrors($validator)->withInput();
-            }
+        // ? Handle validation fail first before continue
+        if($validator->fails()) {
+            return redirect()->route('register')->withErrors($validator)->withInput();
+        }
 
-            // ? If validation Succeed
-            $user = User::firstWhere('email', $request->email);
+        // ? If validation Succeed
+        $user = User::firstWhere('email', $request->email);
 
-            // ? Checks if user have registered before & have default password template
-            if($user && Hash::check('L7u7POZHwZu5Zumn29C3', $user->password)) {
-                $user = User::updateOrCreate([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'password' => Hash::make($request->password),
-                ]);
-            
-            // ? However if user exists and not from google
-            } else if ($user) {
-                return redirect()->route('register')->withErrors(['email' => 'email already exists! use another']);
-            }
+        // ? Checks if user have registered before & have default password template
+        if($user && Hash::check('L7u7POZHwZu5Zumn29C3', $user->password)) {
+            $user = User::where('email', $user->email)->first()->update(['password' => Hash::make($request->password)]);
+        
+        // ? However if user exists and not from google
+        } else if ($user) {
+            return redirect()->route('register')->withErrors(['email' => 'email already exists! use another']);
+        }
 
-            $user = User::firstOrCreate([
-                'email' => $request->email,
-            ], [
-                'name' => $request->name,
-                'password' => Hash::make($request->password),
-            ]);
+        $user = User::firstOrCreate([
+            'email' => $request->email,
+        ], [
+            'name' => $request->name,
+            'password' => Hash::make($request->password),
+        ]);
 
-            event(new Registered($user));
-    
-            Auth::login($user);
-        });
+        event(new Registered($user));
+
+        Auth::login($user);
 
         return redirect(route('dashboard', absolute: false));
     }
