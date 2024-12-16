@@ -39,9 +39,12 @@ return new class extends Migration
             });
         }
 
-        if(Schema::hasTable('user')) {
+        if(Schema::hasTable('users')) {
             Schema::table('google_account_auths', function (Blueprint $table) {
                 $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+                $table->string('token')->nullable();
+                $table->string('refreshToken')->nullable();
+                $table->time('expiresIn')->nullable();
             });
         }
     }

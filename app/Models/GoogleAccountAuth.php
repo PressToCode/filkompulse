@@ -17,6 +17,9 @@ class GoogleAccountAuth extends Authenticatable
         'avatar',
         'google_id',
         'user_id',
+        'token',
+        'refreshToken',
+        'expiresIn',
     ];
 
     protected $hidden = [

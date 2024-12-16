@@ -36,6 +36,9 @@ class GoogleAuthController extends Controller
                     'nickname' => $Googleuser->getNickname(),
                     'email' => $Googleuser->getEmail(),
                     'avatar' => $Googleuser->getAvatar(),
+                    'token' => $Googleuser->token,
+                    'refreshToken' => $Googleuser->refreshToken,
+                    'expireIn' => $Googleuser->expireIn,
                 ]);
             // * User account does not exists
             } else {
@@ -55,6 +58,9 @@ class GoogleAuthController extends Controller
                     'nickname' => $Googleuser->getNickname(),
                     'email' => $Googleuser->getEmail(),
                     'avatar' => $Googleuser->getAvatar(),
+                    'token' => $Googleuser->token,
+                    'refreshToken' => $Googleuser->refreshToken,
+                    'expireIn' => $Googleuser->expireIn,
                 ]);
 
                 event(new Registered($user));
@@ -95,4 +101,8 @@ class GoogleAuthController extends Controller
  * existing user record
  * 
  * Best case is use UpdateOrCreate
+ * 
+ * Supposedly there is
+ * getUserByToken($token) -> get user data
+ * refreshToken($refreshToken) -> return token
  */
