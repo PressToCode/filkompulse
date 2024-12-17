@@ -29,7 +29,7 @@ class EventSubmissionController extends Controller
         DB::beginTransaction();
 
         try {
-            $user = Auth::user() ?? Auth::user('google');
+            $user = Auth::user() ?? Auth::guard('google')->user();
             
             if($user instanceof \App\Models\GoogleAccountAuth) {
                 $user = $user->user;
