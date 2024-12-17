@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +12,8 @@ class EventSubmissionController extends Controller
 {
     public function create()
     {
-        return view('event-submissions.create');
+        $categories = Categorie::all();
+        return view('event-submissions.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -24,6 +26,7 @@ class EventSubmissionController extends Controller
             'location' => 'nullable|string|max:255',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048|nullable',
             'links.*' => 'nullable|url',
+            'category.*' => 'nullable',
         ]);
 
         DB::beginTransaction();
@@ -63,6 +66,15 @@ class EventSubmissionController extends Controller
                             'events_ID' => $event->eventsID,
                             'URL' => $url,
                         ]);
+                    }
+                }
+            }
+
+            if(isset($validatedData['category'])) {
+                foreach ($validatedData['category'] as $category) {
+                    if (!empty($category)) {
+                        $categoryID = Categorie::firstWhere('categoryName', $category)->categoryID;
+                        $event->categorie()->attach($categoryID);
                     }
                 }
             }
