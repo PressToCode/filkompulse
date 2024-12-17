@@ -6,6 +6,7 @@ use App\Models\Categorie;
 use App\Models\EventHasCategories;
 use App\Models\Keranjang;
 use App\Models\KeranjangHasEvent;
+use App\Models\Link;
 use App\Models\Reminder;
 use App\Models\User;
 use App\Models\Event;
@@ -314,6 +315,19 @@ class DatabaseSeeder extends Seeder
                 ];
 
                 EventHasCategories::create($eventCategory);
+            }
+        }
+
+        // 'events_id',
+        // 'URL',
+        for($i = 0; $i < $totalEvent; $i++) {
+            for($n = 0; $n < rand(0,2); $n++) {
+                $eventLink = [
+                    'events_id' => ($i+1),
+                    'URL' => \Faker\Factory::create()->url(),
+                ];
+
+                Link::create($eventLink);
             }
         }
     }
