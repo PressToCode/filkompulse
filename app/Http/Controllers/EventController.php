@@ -10,8 +10,9 @@ class EventController extends Controller
     public function show($id)
     {
         $event = Event::where('eventsID', $id)->firstOrFail();
+        $categories = $event->categorie;
 
-        return view('event.show', compact('event'));
+        return view('event.show', compact('event', 'categories'));
     }
 
     public function showType($type)

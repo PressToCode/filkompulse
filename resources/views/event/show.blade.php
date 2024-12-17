@@ -58,5 +58,23 @@
             <p class="tw-max-w-2xl">{{ $event->description }}</p>
         </div>
     </section>
+
+    {{-- Event Types Section --}}
+    <section class="tw-bg-[#4338CA] tw-text-white tw-py-16 tw-rounded-lg">
+        <div class="tw-max-w-6xl tw-mx-auto">
+            <h2 class="tw-text-3xl tw-font-bold tw-mb-8">Event Category</h2>
+            <div class="tw-grid tw-grid-cols-2 md:tw-grid-cols-4 tw-gap-6">
+                @foreach($categories as $category)
+                    <a href="{{ route('event.type', ['type' => $category->categoryName]) }}" class="tw-block">
+                        <div class="tw-bg-white tw-aspect-square tw-rounded-lg tw-mb-4">
+                            <img src="{{ URL::asset('images/cardPlaceholder.svg') }}" alt="{{ $category->categoryName }}" class="tw-w-full tw-h-full tw-object-cover tw-rounded-lg">
+                        </div>
+                        <h3 class="tw-text-center tw-font-bold">{{$category->categoryName}}</h3>
+                        <p class="tw-text-center tw-text-neutral-100/70">{{ $category->categoryDescription }}</p>
+                    </a>
+                @endforeach
+            </div>
+        </div>
+    </section>
 </x-app-layout>
 
