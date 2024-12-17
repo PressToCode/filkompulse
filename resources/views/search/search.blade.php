@@ -13,7 +13,7 @@
                         :date="$event['date']" />
                 @endforeach
                 <div>
-                    {{ $result->links('pagination::bootstrap-5') }}
+                    {{ $result->links('vendor.pagination.tailwind') }}
                 </div>
             @else
                 <p class="tw-text-5xl tw-text-center tw-font-bold tw-animate-bounce">Sorry, No Event Match Your Search <i class="bi bi-emoji-frown"></i></p>

@@ -14,7 +14,7 @@ class SearchController extends Controller
         $result = Event::where('title', 'like', '%' . $query . '%')->paginate(5);
         
         // Pass the query to the view
-        return view('search.search', compact('result'));
+        return view('search.search', compact('result'))->with('paginationView', 'vendor.pagination.tailwind');
     }
     public function suggest(Request $request)
     {
