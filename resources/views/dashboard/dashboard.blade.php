@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout class="tw-bg-gradient-to-b tw-from-[#1D1B20] tw-via-black tw-to-[#797186]">
     <x-slot:header>
         <div class="tw-flex tw-h-dvh">
             <div class="d-flex flex-column flex-md-row flex-grow-1">
@@ -36,6 +36,8 @@
         </div>
     </x-slot:header>
     @include('dashboard.sections.trendingEvent')
+    @include('dashboard.sections.event-list')
+    @stack('scripts')
 </x-app-layout>
 <style>
     @keyframes fadeUptoDown {

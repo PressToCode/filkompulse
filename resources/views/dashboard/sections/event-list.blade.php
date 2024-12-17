@@ -1,4 +1,4 @@
-<section class="tw-py-12 tw-px-4 md:tw-px-6 lg:tw-px-8">
+<section class="tw-py-12 tw-px-4 md:tw-px-6 lg:tw-px-20">
     <div class="tw-max-w-7xl tw-mx-auto">
         <!-- Header -->
         <div class="tw-mb-8">
@@ -9,58 +9,54 @@
         <!-- Filters -->
         <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-3 tw-gap-4 tw-mb-8">
             <!-- Category Dropdown -->
-            <div class="hs-dropdown tw-relative">
-                <button id="category-filter" type="button" class="hs-dropdown-toggle tw-w-full tw-bg-gray-800 tw-text-left tw-text-white tw-rounded-lg tw-px-4 tw-py-3 tw-flex tw-justify-between tw-items-center">
-                    <span>Category</span>
-                    <svg class="tw-w-4 tw-h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </button>
-                <div class="hs-dropdown-menu tw-hidden tw-bg-gray-800 tw-rounded-lg tw-mt-2 tw-w-full">
-                    @foreach($categories as $category)
-                        <a class="tw-block tw-px-4 tw-py-2 tw-text-white hover:tw-bg-gray-700" href="#" data-value="{{ $category->id }}">
-                            {{ $category->name }}
-                        </a>
-                    @endforeach
+            <div id="category-container">
+                <div class="tw-flex tw-space-x-2 tw-mb-2">
+                    <select id="category-filter" name="category" class="filter tw-block tw-mt-1 tw-w-full tw-rounded-md tw-shadow-sm focus:tw-ring focus:tw-ring-opacity-50 tw-bg-transparent tw-border-b-2 tw-border-t-0 tw-border-l-0 tw-border-r-0 tw-text-gray-300 focus:tw-border-indigo-600 focus:tw-ring-indigo-600" required>
+                        <option class="tw-bg-[#1D1B20]" value="" disabled selected>Category</option>
+                        @foreach ($categories as $category)
+                            @php
+                                $name = $category->categoryName;
+                            @endphp
+                            <option class="tw-bg-[#1D1B20]" value="{{$name}}" {{ old('category') == $name ? 'selected' : '' }}>{{$name}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
 
             <!-- Location Type Dropdown -->
-            <div class="hs-dropdown tw-relative">
-                <button id="location-filter" type="button" class="hs-dropdown-toggle tw-w-full tw-bg-gray-800 tw-text-left tw-text-white tw-rounded-lg tw-px-4 tw-py-3 tw-flex tw-justify-between tw-items-center">
-                    <span>Location Type</span>
-                    <svg class="tw-w-4 tw-h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </button>
-                <div class="hs-dropdown-menu tw-hidden tw-bg-gray-800 tw-rounded-lg tw-mt-2 tw-w-full">
-                    <a class="tw-block tw-px-4 tw-py-2 tw-text-white hover:tw-bg-gray-700" href="#" data-value="online">Online</a>
-                    <a class="tw-block tw-px-4 tw-py-2 tw-text-white hover:tw-bg-gray-700" href="#" data-value="offline">Offline</a>
-                    <a class="tw-block tw-px-4 tw-py-2 tw-text-white hover:tw-bg-gray-700" href="#" data-value="hybrid">Hybrid</a>
+            <div id="location-container">
+                <div class="tw-flex tw-space-x-2 tw-mb-2">
+                    <select id="location-filter" name="locationtype" class="filter tw-block tw-mt-1 tw-w-full tw-rounded-md tw-shadow-sm focus:tw-ring focus:tw-ring-opacity-50 tw-bg-transparent tw-border-b-2 tw-border-t-0 tw-border-l-0 tw-border-r-0 tw-text-gray-300 focus:tw-border-indigo-600 focus:tw-ring-indigo-600">
+                        <option class="tw-bg-[#1D1B20]" value="" disabled selected>Location Type</option>
+                        <option class="tw-bg-[#1D1B20]" value="physical" {{ old('locationtype') == 'physical' ? 'selected' : '' }}>Physical</option>
+                        <option class="tw-bg-[#1D1B20]" value="online" {{ old('locationtype') == 'online' ? 'selected' : '' }}>Online</option>
+                    </select>
                 </div>
             </div>
 
             <!-- Date Picker -->
             <div class="tw-relative">
-                <input type="date" id="date-filter" class="tw-w-full tw-bg-gray-800 tw-text-white tw-rounded-lg tw-px-4 tw-py-3">
+                <x-text-input type="date" id="date-filter" class="tw-w-full tw-block tw-mt-1 tw-bg-transparent tw-border-b-2 tw-border-t-0 tw-border-l-0 tw-border-r-0" />
             </div>
         </div>
 
+        
         <!-- Events Grid -->
         <div id="events-container" class="tw-grid tw-gap-6">
+            <!-- Pagination -->
+            <div class="">
+                {{ $events->links('vendor.pagination.customPagination') }}
+            </div>
             @foreach($events as $event)
                 <x-dashboard-event-card 
-                    :image-url="$event->image_url"
+                    :image-url="$event->image()->first()"
                     :title="$event->title"
                     :description="$event->description"
                     :button-text="'View Details'"
+                    :eventid="$event->eventsID"
+                    :date="$event->date"
                 />
             @endforeach
-        </div>
-
-        <!-- Pagination -->
-        <div class="tw-mt-8">
-            {{ $events->links('vendor.pagination.customPagination') }}
         </div>
     </div>
 </section>
@@ -71,8 +67,8 @@ $(document).ready(function() {
     // Function to update events
     function updateEvents() {
         let filters = {
-            category: $('#category-filter').data('selected'),
-            location_type: $('#location-filter').data('selected'),
+            category: $('#category-filter').val(),
+            location_type: $('#location-filter').val(),
             date: $('#date-filter').val(),
             page: {{ request()->get('page', 1) }}
         };
@@ -84,7 +80,7 @@ $(document).ready(function() {
             success: function(response) {
                 $('#events-container').html(response.html);
                 // Update URL with new parameters without page reload
-                window.history.pushState({}, '', response.url);
+                // window.history.pushState({}, '', response.url);
             },
             error: function(xhr) {
                 console.error('Error fetching events:', xhr);
@@ -93,21 +89,13 @@ $(document).ready(function() {
     }
 
     // Event listeners for filters
-    $('.hs-dropdown-menu a').click(function(e) {
-        e.preventDefault();
-        const value = $(this).data('value');
-        const dropdown = $(this).closest('.hs-dropdown');
-        dropdown.find('.hs-dropdown-toggle span').text($(this).text());
-        dropdown.find('.hs-dropdown-toggle').data('selected', value);
+    $('.filter').change(function() {
         updateEvents();
     });
 
     $('#date-filter').change(function() {
         updateEvents();
     });
-
-    // Initialize Preline dropdown
-    HSDropdown.init();
 });
 </script>
 @endpush

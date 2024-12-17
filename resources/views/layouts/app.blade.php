@@ -20,7 +20,7 @@
             ])
     </head>
     <body class="tw-font-sans tw-antialiased">
-        <div class="tw-min-h-screen tw-bg-gray-900 tw-pb-10">
+        <div {{$attributes->merge(['class' => 'tw-min-h-screen tw-bg-gray-900 tw-pb-10'])}}>
             @include('layouts.navigation')
 
             <!-- Hero Image -->
