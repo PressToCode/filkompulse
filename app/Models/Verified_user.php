@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Verified_user extends Model
 {
@@ -17,5 +18,10 @@ class Verified_user extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(user::class, 'user_id', 'id');
+    }
+
+    public function event(): HasMany
+    {
+        return $this->hasMany(Event::class, 'verifiedUserID', 'VerifiedID');
     }
 }

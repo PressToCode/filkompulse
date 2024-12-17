@@ -2,14 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\DashboardController;
 
-Route::get('/', function () {
-    return view('dashboard.dashboard');
-})->name('dashboard');
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return view('dashboard.dashboard');
-});
+Route::get('/dashboard', [DashboardController::class, 'index']);
 
 // for testing purposes
 // TODO: BLOCK W/ MIDDLEWARE LATER!!!

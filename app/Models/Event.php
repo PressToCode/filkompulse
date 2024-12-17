@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -45,6 +46,11 @@ class Event extends Model
     public function link(): HasMany
     {
         return $this->hasMany(Link::class, 'events_id', 'eventsID');
+    }
+
+    public function verified_user(): BelongsTo
+    {
+        return $this->belongsTo(Verified_user::class, 'verifiedUserID', 'VerifiedID');
     }
 }
 

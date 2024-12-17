@@ -17,102 +17,25 @@
     <div class="hs-carousel tw-w-full tw-overflow-hidden tw-bg-transparent tw-rounded-lg">
         <div class="tw-relative tw--mx-1">
             <div class="hs-carousel-body tw-relative tw-flex tw-flex-nowrap tw-opacity-0 tw-transition-transform tw-duration-700">
+                @foreach ($randomTrend as $event)
                 <div class="hs-carousel-slide tw-px-1">
-                <div class="tw-flex tw-justify-center tw-h-full tw-bg-transparent tw-p-6">
-                    @php
-                    $event = [
-                                'avatarLetter' => 'A',
-                                'organizer' => 'Admin',
-                                'organizerRole' => 'Administrator',
-                                'imageUrl' => URL::asset("images/cardPlaceholder.svg"),
-                                'title' => 'Hology 9.9',
-                                'dateTime' => '14:00 | 1 October 2025',
-                                'location' => 'FILKOM Auditorium G2',
-                                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
-                            ];
-                    @endphp
-                    <x-event-card
-                        :avatar-letter="$event['avatarLetter']"
-                        :organizer="$event['organizer']"
-                        :organizer-role="$event['organizerRole']"
-                        :image-url="$event['imageUrl']"
-                        :title="$event['title']"
-                        :date-time="$event['dateTime']"
-                        :location="$event['location']"
-                        :description="$event['description']"
-                    ></x-event-card>
+                    <div class="tw-flex tw-justify-center tw-h-full tw-bg-transparent tw-p-6">
+                        @php
+                            $firstLetter = substr($event->verified_user->user->name, 0, 1);
+                        @endphp
+                        <x-event-card
+                            :avatar-letter="$firstLetter"
+                            :organizer="$event->verified_user->user->name"
+                            :organizer-role="$event->verified_user->user->name"
+                            :image-url="''"
+                            :title="$event->title"
+                            :date-time="$event->date"
+                            :location="$event->location"
+                            :description="$event->description"
+                        ></x-event-card>
+                    </div>
                 </div>
-                </div>
-                <div class="hs-carousel-slide tw-px-1">
-                <div class="tw-flex tw-justify-center tw-h-full tw-bg-transparent tw-p-6">
-                    <x-event-card
-                        :avatar-letter="$event['avatarLetter']"
-                        :organizer="$event['organizer']"
-                        :organizer-role="$event['organizerRole']"
-                        :image-url="$event['imageUrl']"
-                        :title="$event['title']"
-                        :date-time="$event['dateTime']"
-                        :location="$event['location']"
-                        :description="$event['description']"
-                    ></x-event-card>
-                </div>
-                </div>
-                <div class="hs-carousel-slide tw-px-1">
-                <div class="tw-flex tw-justify-center tw-h-full tw-bg-transparent tw-p-6">
-                    <x-event-card
-                        :avatar-letter="$event['avatarLetter']"
-                        :organizer="$event['organizer']"
-                        :organizer-role="$event['organizerRole']"
-                        :image-url="$event['imageUrl']"
-                        :title="$event['title']"
-                        :date-time="$event['dateTime']"
-                        :location="$event['location']"
-                        :description="$event['description']"
-                    ></x-event-card>
-                </div>
-                </div>
-                <div class="hs-carousel-slide tw-px-1">
-                <div class="tw-flex tw-justify-center tw-h-full tw-bg-transparent tw-p-6">
-                    <x-event-card
-                        :avatar-letter="$event['avatarLetter']"
-                        :organizer="$event['organizer']"
-                        :organizer-role="$event['organizerRole']"
-                        :image-url="$event['imageUrl']"
-                        :title="$event['title']"
-                        :date-time="$event['dateTime']"
-                        :location="$event['location']"
-                        :description="$event['description']"
-                    ></x-event-card>
-                </div>
-                </div>
-                <div class="hs-carousel-slide tw-px-1">
-                <div class="tw-flex tw-justify-center tw-h-full tw-bg-transparent tw-p-6">
-                    <x-event-card
-                        :avatar-letter="$event['avatarLetter']"
-                        :organizer="$event['organizer']"
-                        :organizer-role="$event['organizerRole']"
-                        :image-url="$event['imageUrl']"
-                        :title="$event['title']"
-                        :date-time="$event['dateTime']"
-                        :location="$event['location']"
-                        :description="$event['description']"
-                    ></x-event-card>
-                </div>
-                </div>
-                <div class="hs-carousel-slide tw-px-1">
-                <div class="tw-flex tw-justify-center tw-h-full tw-bg-transparent tw-p-6">
-                    <x-event-card
-                        :avatar-letter="$event['avatarLetter']"
-                        :organizer="$event['organizer']"
-                        :organizer-role="$event['organizerRole']"
-                        :image-url="$event['imageUrl']"
-                        :title="$event['title']"
-                        :date-time="$event['dateTime']"
-                        :location="$event['location']"
-                        :description="$event['description']"
-                    ></x-event-card>
-                </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

@@ -8,7 +8,7 @@
             <small class="text-secondary">{{ $organizerRole }}</small>
         </div>
     </div>
-    <img src="{{ $imageUrl }}" class="img-fluid tw-w-full mb-3 rounded" alt="Event image">
+    <img src="{{ URL::asset('images/cardPlaceholder.svg') }}" class="img-fluid tw-w-full mb-3 rounded" alt="Event image">
     <h4 class="fw-bold mb-2">{{ $title }}</h4>
     <p class="tw-text-slate-300/80 small mb-3">{{ $dateTime }} | {{ $location }}</p>
     <p class="text-light small mb-4">{{ $description }}</p>
