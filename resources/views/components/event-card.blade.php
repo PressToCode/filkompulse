@@ -1,6 +1,6 @@
-<div class="event-card bg-dark text-white rounded p-4 h-100">
+<div class="tw-bg-[#322F35]/50 text-white rounded p-4 tw-h-full">
     <div class="d-flex align-items-center gap-3 mb-3">
-        <div class="avatar bg-purple rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+        <div class="tw-bg-[#6c5dd3] rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
             <span class="fw-bold">{{ $avatarLetter }}</span>
         </div>
         <div>
@@ -9,8 +9,8 @@
         </div>
     </div>
     <img src="{{ $imageUrl }}" class="img-fluid mb-3 rounded" alt="Event image">
-    <h4 class="event-title fw-bold mb-2">{{ $title }}</h4>
-    <p class="event-time text-secondary small mb-3">{{ $dateTime }} | {{ $location }}</p>
-    <p class="event-description text-light small mb-4">{{ $description }}</p>
-    <button class="btn btn-purple px-4 rounded-pill">Enabled</button>
+    <h4 class="fw-bold mb-2">{{ $title }}</h4>
+    <p class="tw-text-slate-300/80 small mb-3">{{ $dateTime }} | {{ $location }}</p>
+    <p class="text-light small mb-4">{{ $description }}</p>
+    <button class="btn tw-bg-[#6c5dd3] hover:tw-bg-[#6c5dd3]/80 px-4 rounded-pill">Enabled</button>
 </div>
