@@ -11,6 +11,8 @@
     <img src="{{ URL::asset('images/cardPlaceholder.svg') }}" class="img-fluid tw-w-full mb-3 rounded" alt="Event image">
     <h4 class="fw-bold mb-2">{{ $title }}</h4>
     <p class="tw-text-slate-300/80 small mb-3">{{ $dateTime }} | {{ $location }}</p>
-    <p class="text-light small mb-4">{{ $description }}</p>
-    <button class="btn tw-bg-[#6c5dd3] hover:tw-bg-[#6c5dd3]/80 px-4 rounded-pill tw-self-end">Enabled</button>
+    <p class="text-light small mb-4">{{ $description }} </p>
+    <a href="{{ route('event.show', $eventId) }}" class="tw-self-center">
+        <button class="btn tw-bg-[#6c5dd3] hover:tw-bg-[#6c5dd3]/80 px-4 rounded-pill">Click Here!</button>
+    </a>
 </div>

@@ -16,10 +16,11 @@ class EventCard extends Component
     public $dateTime;
     public $location;
     public $description;
+    public $eventId;
     /**
      * Create a new component instance.
      */
-    public function __construct($avatarLetter, $organizer, $organizerRole, $imageUrl, $title, $dateTime, $location, $description)
+    public function __construct($avatarLetter, $organizer, $organizerRole, $imageUrl, $title, $dateTime, $location, $description, $eventId)
     {
         $this->avatarLetter = $avatarLetter;
         $this->organizer = $organizer;
@@ -29,6 +30,7 @@ class EventCard extends Component
         $this->dateTime = $dateTime;
         $this->location = $location;
         $this->description = $description;
+        $this->eventId = $eventId;
     }
 
     /**
