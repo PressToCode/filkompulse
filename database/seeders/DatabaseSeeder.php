@@ -217,31 +217,83 @@ class DatabaseSeeder extends Seeder
         $categories = [
             [
                 'categoryName' => 'Technology',
-                'categoryDescription' => 'Events for Technology Enthusiast!'
+                'categoryDescription' => 'Events for Technology Enthusiasts!'
             ],
             [
                 'categoryName' => 'Health',
-                'categoryDescription' => 'Events related to Health and Wellness.',
+                'categoryDescription' => 'Events related to Health and Wellness.'
             ],
             [
                 'categoryName' => 'Art',
-                'categoryDescription' => 'Explore creativity and artistic expressions.',
+                'categoryDescription' => 'Explore creativity and artistic expressions.'
             ],
             [
                 'categoryName' => 'Sports',
-                'categoryDescription' => 'Events for sports lovers and athletes.',
+                'categoryDescription' => 'Events for sports lovers and athletes.'
             ],
             [
                 'categoryName' => 'Education',
-                'categoryDescription' => 'Events that promote learning and development.',
+                'categoryDescription' => 'Events that promote learning and development.'
             ],
             [
                 'categoryName' => 'Business',
-                'categoryDescription' => 'Networking and growth opportunities for business professionals.',
+                'categoryDescription' => 'Networking and growth opportunities for business professionals.'
             ],
             [
                 'categoryName' => 'Entertainment',
-                'categoryDescription' => 'Fun and entertainment-focused events.',
+                'categoryDescription' => 'Fun and entertainment-focused events.'
+            ],
+            [
+                'categoryName' => 'Food & Drink',
+                'categoryDescription' => 'Culinary experiences and beverage tastings.'
+            ],
+            [
+                'categoryName' => 'Music',
+                'categoryDescription' => 'Concerts, festivals, and musical performances.'
+            ],
+            [
+                'categoryName' => 'Science',
+                'categoryDescription' => 'Explore scientific discoveries and advancements.'
+            ],
+            [
+                'categoryName' => 'Environment',
+                'categoryDescription' => 'Events focused on sustainability and environmental issues.'
+            ],
+            [
+                'categoryName' => 'Fashion',
+                'categoryDescription' => 'Showcases of style, design, and fashion trends.'
+            ],
+            [
+                'categoryName' => 'Literature',
+                'categoryDescription' => 'Book launches, readings, and literary discussions.'
+            ],
+            [
+                'categoryName' => 'Travel',
+                'categoryDescription' => 'Explore destinations and travel experiences.'
+            ],
+            [
+                'categoryName' => 'Charity',
+                'categoryDescription' => 'Fundraising and awareness events for various causes.'
+            ],
+            [
+                'categoryName' => 'Fitness',
+                'categoryDescription' => 'Workouts, training sessions, and fitness challenges.'
+            ],
+            [
+                'categoryName' => 'Photography',
+                'categoryDescription' => 'Exhibitions, workshops, and photography meetups.'
+            ],
+            [
+                'categoryName' => 'Film',
+                'categoryDescription' => 'Movie screenings, film festivals, and cinema events.'
+            ],
+            [
+                'categoryName' => 'Networking',
+                'categoryDescription' => 'Meet new people and expand your professional circle.'
+            ],
+            [
+                'categoryName' => 'Family',
+                'categoryDescription' => 'Family-friendly events and activities for all ages.'
             ],
         ];
 

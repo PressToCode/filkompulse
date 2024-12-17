@@ -59,6 +59,24 @@
         </div>
     </section>
 
+    <!-- Links -->
+    @if (!$event->link->isEmpty())
+    <section id="links" class="tw-bg-[#0C0E17] tw-py-16">
+        <div class="tw-max-w-6xl tw-mx-auto tw-px-8 md:tw-px-0">
+            <h2 class="tw-text-3xl tw-font-bold tw-mb-6">MORE INFORMATION</h2>
+            @php
+                $i = 1;
+            @endphp
+            @foreach ($event->link as $link)
+                <div class="tw-py-3 tw-px-3 tw-rounded-lg tw-bg-white/10">
+                    <span class="tw-font-extrabold">Link {{$i++}}:  </span>
+                    <a href="{{$link->URL}}" class="tw-max-w-2xl">{{ $link->URL }}</a>
+                </div>
+            @endforeach
+        </div>
+    </section>
+    @endif
+
     {{-- Event Types Section --}}
     <section class="tw-text-white tw-py-16 tw-rounded-lg">
         <div class="tw-max-w-6xl tw-mx-auto">
