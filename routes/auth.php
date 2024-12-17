@@ -10,6 +10,9 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Auth\GoogleAuthController;
+use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\EventSubmissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\AuthCheck;
 use Illuminate\Support\Facades\Route;
@@ -67,4 +70,21 @@ Route::middleware([AuthCheck::class])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    //dari taqi
+    Route::get('/collections', [CollectionController::class, 'index'])->name('collections.index');
+    Route::patch('/collections/{collection}/toggle-reminder', [CollectionController::class, 'toggleReminder'])->name('collections.toggleReminder');
+    Route::patch('/collections/{collection}/toggle-select', [CollectionController::class, 'toggleSelect'])->name('collections.toggleSelect');
+    Route::delete('/collections/{collection}', [CollectionController::class, 'destroy'])->name('collections.destroy');
+
+    Route::post('/add-to-collection/{competition}', [EventController::class, 'addToCollection'])->name('event.addToCollection');
+
+
+    Route::get('/event-submissions', [EventSubmissionController::class, 'index'])->name('event-submissions.index');
+    Route::get('/event-submissions/create', [EventSubmissionController::class, 'create'])->name('event-submissions.create');
+    Route::post('/event-submissions', [EventSubmissionController::class, 'store'])->name('event-submissions.store');
+    Route::get('/event-submissions/{event}', [EventSubmissionController::class, 'show'])->name('event-submissions.show');
+    Route::get('/event-submissions/{event}/edit', [EventSubmissionController::class, 'edit'])->name('event-submissions.edit');
+    Route::put('/event-submissions/{event}', [EventSubmissionController::class, 'update'])->name('event-submissions.update');
+    Route::delete('/event-submissions/{event}', [EventSubmissionController::class, 'destroy'])->name('event-submissions.destroy');
 });
