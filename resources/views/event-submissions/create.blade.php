@@ -88,7 +88,7 @@
             const newField = document.createElement('div');
             newField.className = 'tw-flex tw-space-x-2 tw-mb-2';
             newField.innerHTML = `
-                <input type="url" name="links[]" class="tw-block tw-w-full tw-rounded-md tw-shadow-sm tw-border-gray-300 focus:tw-border-indigo-300 focus:tw-ring focus:tw-ring-indigo-200 focus:tw-ring-opacity-50" placeholder="https://example.com">
+                <x-text-input type="url" name="links[]" class="tw-block tw-w-full tw-rounded-md tw-shadow-sm tw-border-gray-300 focus:tw-border-indigo-300 focus:tw-ring focus:tw-ring-indigo-200 focus:tw-ring-opacity-50" placeholder="https://example.com" />
                 <button type="button" class="tw-bg-red-500 tw-text-white tw-px-4 tw-py-2 tw-rounded" onclick="this.parentElement.remove()">-</button>
             `;
             container.appendChild(newField);

@@ -60,9 +60,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Keranjang::class, 'user_id', 'id');
     }
 
-    public function verified_user(): HasMany
+    public function verified_user(): HasOne
     {
-        return $this->hasMany(Verified_user::class, 'user_id', 'id');
+        return $this->hasOne(Verified_user::class, 'user_id', 'id');
     }
 
     public function reminder(): HasMany

@@ -22,15 +22,23 @@ class EventSubmissionController extends Controller
             'date' => 'required|date',
             'location_type' => 'required|in:physical,online',
             'location' => 'nullable|string|max:255',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048|nullable',
             'links.*' => 'nullable|url',
         ]);
 
         DB::beginTransaction();
 
         try {
+            $user = Auth::user() ?? Auth::user('google');
+            
+            if($user instanceof \App\Models\GoogleAccountAuth) {
+                $user = $user->user;
+            }
+
+            $userID = $user->verified_user()->first()->VerifiedID;
+
             $event = Event::create([
-                'verifiedUserID' => Auth::id(),
+                'verifiedUserID' => $userID,
                 'title' => $validatedData['title'],
                 'description' => $validatedData['description'],
                 'date' => $validatedData['date'],

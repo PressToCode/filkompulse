@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'filkompulse',
-                'email' => 'filkompulse@gmail.com',
+                'email' => 'adminfilkompulse@gmail.com',
                 'password' => Hash::make('filkompulse101'),
                 'email_verified_at' => Carbon::now(),
             ]
