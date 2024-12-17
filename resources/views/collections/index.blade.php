@@ -13,11 +13,12 @@
 
     <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-6">
         @foreach ($events as $event)
-        <a href="{{ route('event.show',$event->eventsID) }}">
             <div class="tw-bg-gray-800 tw-rounded-lg tw-overflow-hidden tw-shadow-lg tw-transition-all hover:tw-shadow-2xl tw-ease-out hover:tw-scale-105 tw-duration-200 event-card" data-event-id="{{ $event->eventsID }}">
-                <div class="tw-aspect-w-16 tw-aspect-h-9">
-                    <img src="{{ asset($event->image()->first() ?? URL::asset('images/cardPlaceholder.svg')) }}" alt="Event image" class="tw-object-cover tw-w-full tw-h-full" />
-                </div>
+                <a href="{{ route('event.show',$event->eventsID) }}">
+                    <div class="tw-aspect-w-16 tw-aspect-h-9">
+                        <img src="{{ asset($event->image()->first() ?? URL::asset('images/cardPlaceholder.svg')) }}" alt="Event image" class="tw-object-cover tw-w-full tw-h-full" />
+                    </div>
+                </a>
                 <div class="tw-p-6">
                     <div class="tw-flex tw-justify-between tw-items-start tw-mb-4">
                         <h2 class="tw-text-xl tw-font-semibold tw-text-white tw-mb-2">{{ $event->title }}</h2>
@@ -27,19 +28,16 @@
                     
                     <div class="tw-flex tw-justify-between tw-items-center tw-mb-4">
                         <span class="tw-text-sm tw-text-gray-400">{{ $event->date->format('d M, Y') }}</span>
-                        <div class="tw-flex tw-items-center">
-                            <span class="tw-text-sm tw-text-gray-400 tw-mr-2">Reminder</span>
-                            <input 
-                                type="checkbox" 
-                                name="reminder" 
-                                {{ $event->reminder ? 'checked' : '' }}
-                                class="tw-form-checkbox tw-h-5 tw-w-5 tw-text-blue-500 tw-rounded tw-border-gray-600 tw-bg-gray-700"
-                            >
-                        </div>
                     </div>
                     
                     <!-- Delete Button -->
-                    <div class="tw-flex tw-justify-end">
+                    <div class="tw-flex tw-justify-end tw-gap-5">
+                        <button 
+                            class="tw-bg-blue-600/70 hover:tw-bg-blue-800 tw-text-white tw-font-semibold tw-py-2 tw-px-4 tw-rounded tw-text-sm tw-transition-colors tw-flex tw-flex-auto tw-justify-center"
+                        > <a href="{{ route('reminder.send', $event->eventsID)}}" class="tw-flex tw-flex-auto tw-flex-grow tw-justify-center">
+                            Remind
+                        </a>
+                        </button>
                         <button 
                             class="delete-event tw-bg-red-500 hover:tw-bg-red-600 tw-text-white tw-font-semibold tw-py-2 tw-px-4 tw-rounded tw-text-sm tw-transition-colors"
                             data-event-id="{{ $event->eventsID }}"
@@ -47,9 +45,19 @@
                             Delete
                         </button>
                     </div>
+
+                    <!-- Send Status -->
+                    @if(session('success') && $event->eventsID == session('chosenEvent'))
+                        <div class="tw-text-white tw-font-extrabold" role="alert">
+                            {{ session('success') }}
+                        </div>
+                    @elseif(session('fail') && $event->eventsID == session('chosenEvent'))
+                        <div class="tw-text-white tw-font-extrabold" role="alert">
+                            {{ session('fail') }}
+                        </div>
+                    @endif
                 </div>
             </div>
-        </a>
         @endforeach
     </div>
 </div>
