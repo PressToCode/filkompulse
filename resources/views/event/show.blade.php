@@ -1,6 +1,6 @@
 <x-app-layout>
     {{-- Hero Section --}}
-    <section class="tw-bg-[#4338CA] tw-text-white tw-p-8 tw-rounded-lg">
+    <section class="tw-text-white tw-p-8 tw-rounded-lg">
         <div class="tw-max-w-6xl tw-mx-auto">
             <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-8 tw-pt-10">
                 <div class="">
@@ -22,7 +22,7 @@
                                     {{ $errors->first() }}
                                 </div>
                             @else
-                                <button type="submit" class="tw-bg-blue-500 tw-px-6 tw-py-2 tw-rounded-full tw-transition tw-ease-out hover:tw-scale-110 tw-duration-200">Add to Collection</button>
+                                <button type="submit" class="tw-bg-[#6C5DD3] tw-px-6 tw-py-2 tw-rounded-full tw-transition tw-ease-out hover:tw-scale-110 tw-duration-200">Add to Collection</button>
                             @endif
                         </form>
                     </div>
@@ -42,7 +42,7 @@
                                     {{ $errors->first() }}
                                 </div>
                             @else
-                                <button type="submit" class="tw-bg-blue-500 tw-px-6 tw-py-2 tw-rounded-full tw-transition tw-ease-out hover:tw-scale-110 tw-duration-200">Add to Collection</button>
+                                <button type="submit" class="tw-bg-[#6C5DD3] tw-px-6 tw-py-2 tw-rounded-full tw-transition tw-ease-out hover:tw-scale-110 tw-duration-200">Add to Collection</button>
                             @endif
                         </form>
                     </div>
@@ -52,7 +52,7 @@
     </section>
 
     {{-- About Section --}}
-    <section id="about" class="tw-py-16">
+    <section id="about" class="tw-bg-[#0C0E17] tw-py-16">
         <div class="tw-max-w-6xl tw-mx-auto tw-px-8 md:tw-px-0">
             <h2 class="tw-text-3xl tw-font-bold tw-mb-6">ABOUT</h2>
             <p class="tw-max-w-2xl">{{ $event->description }}</p>
@@ -60,7 +60,7 @@
     </section>
 
     {{-- Event Types Section --}}
-    <section class="tw-bg-[#4338CA] tw-text-white tw-py-16 tw-rounded-lg">
+    <section class="tw-text-white tw-py-16 tw-rounded-lg">
         <div class="tw-max-w-6xl tw-mx-auto">
             <h2 class="tw-text-3xl tw-font-bold tw-mb-8">Event Category</h2>
             <div class="tw-grid tw-grid-cols-2 md:tw-grid-cols-4 tw-gap-6">
