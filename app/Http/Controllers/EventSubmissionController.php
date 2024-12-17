@@ -50,6 +50,7 @@ class EventSubmissionController extends Controller
                 foreach ($request->file('images') as $imageFile) {
                     $path = $imageFile->store('event_images', 'public');
                     $event->image()->create([
+                        'events_ID' => $event->eventsID,
                         'imageURL' => $path,
                     ]);
                 }
