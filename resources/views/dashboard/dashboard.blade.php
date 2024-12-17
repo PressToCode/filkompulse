@@ -16,7 +16,7 @@
                             <p class="popout">Be Verified and Host your <br> own events! </p>
                             <p class="popout">Chat Forum and More! </p>
                             <button class="btn btn-outline-light popout">
-                                <a href="">
+                                <a href="{{ route('search') }}">
                                     {{ __('Find Events') }}
                                 </a>
                             </button>

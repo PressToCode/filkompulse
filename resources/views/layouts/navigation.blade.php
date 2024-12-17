@@ -29,6 +29,8 @@
                     <i class="bi bi-three-dots-vertical fs-4"></i>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="{{ route('collections.index') }}">Keranjang</a></li>
+                    <li><a class="dropdown-item" href="{{ route('event-submissions.create') }}">Submit Events</a></li>
                     <li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -40,8 +42,6 @@
                             </a>
                         </form>
                     </li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
             </div>
         </div>

@@ -6,14 +6,14 @@
 <div class="tw-container tw-mx-auto tw-px-4 tw-py-8 tw-pt-20">
     <div class="tw-flex tw-justify-between tw-items-center tw-mb-8">
         <h1 class="tw-text-3xl tw-font-bold tw-text-white">Event Collections</h1>
-        <a href="{{ route('collections.index') }}" class="tw-bg-blue-500 hover:tw-bg-blue-600 tw-text-white tw-font-semibold tw-py-2 tw-px-4 tw-rounded-full tw-transition-colors">
-            Back to Events
+        <a href="{{ route('dashboard') }}" class="tw-bg-blue-500 hover:tw-bg-blue-600 tw-text-white tw-font-semibold tw-py-2 tw-px-4 tw-rounded-full tw-transition-colors">
+            Back to Homepage
         </a>
     </div>
 
     <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-6">
         @foreach ($events as $event)
-            <div class="tw-bg-gray-800 tw-rounded-lg tw-overflow-hidden tw-shadow-lg tw-transition-all hover:tw-shadow-2xl">
+            <div class="tw-bg-gray-800 tw-rounded-lg tw-overflow-hidden tw-shadow-lg tw-transition-all hover:tw-shadow-2xl event-card" data-event-id="{{ $event->eventsID }}">
                 <div class="tw-aspect-w-16 tw-aspect-h-9">
                     <img src="{{ asset($event->image()->first() ?? URL::asset('images/cardPlaceholder.svg')) }}" alt="Event image" class="tw-object-cover tw-w-full tw-h-full" />
                 </div>
@@ -37,9 +37,11 @@
                         </div>
                     </div>
                     
+                    <!-- Delete Button -->
                     <div class="tw-flex tw-justify-end">
                         <button 
-                            class="tw-bg-red-500 hover:tw-bg-red-600 tw-text-white tw-font-semibold tw-py-2 tw-px-4 tw-rounded tw-text-sm tw-transition-colors"
+                            class="delete-event tw-bg-red-500 hover:tw-bg-red-600 tw-text-white tw-font-semibold tw-py-2 tw-px-4 tw-rounded tw-text-sm tw-transition-colors"
+                            data-event-id="{{ $event->eventsID }}"
                         >
                             Delete
                         </button>
@@ -49,5 +51,35 @@
         @endforeach
     </div>
 </div>
-@endsection
 
+<script>
+$(document).ready(function() {
+    $('.delete-event').on('click', function() {
+        var eventId = $(this).data('event-id');
+        var card = $(this).closest('.event-card');
+        
+        if (confirm('Are you sure you want to delete this event?')) {
+            $.ajax({
+                url: '/collections/' + eventId,
+                type: 'DELETE',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(result) {
+                    if (result.success) {
+                        card.fadeOut(800, function() {
+                            $(this).remove();
+                        });
+                    } else {
+                        alert('Failed to delete the event. Please try again.');
+                    }
+                },
+                error: function() {
+                    alert('An error occurred. Please try again.');
+                }
+            });
+        }
+    });
+});
+</script>
+@endsection

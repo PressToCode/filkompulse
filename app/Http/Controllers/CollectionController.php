@@ -3,13 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class CollectionController extends Controller
 {
     public function index()
     {
-        $events = Event::all();
+        $user = Auth::user() ?? Auth::guard('google')->user();
+
+        if(!$user) {
+            return redirect()->route('login');
+        }
+
+        if($user instanceof \App\Models\GoogleAccountAuth) {
+            $user = $user->user;
+        }
+
+        $keranjang = $user->keranjang;
+        $events = $keranjang->event()->get();
+
         return view('collections.index', compact('events'));
     }
 
@@ -25,9 +38,24 @@ class CollectionController extends Controller
         return back();
     }
 
-    public function destroy(Event $event)
+    public function destroy($id)
     {
-        $event->delete();
+        $user = Auth::user() ?? Auth::guard('google')->user();
+
+        if(!$user) {
+            return redirect()->route('login');
+        }
+
+        if($user instanceof \App\Models\GoogleAccountAuth) {
+            $user = $user->user;
+        }
+        
+        $user->keranjang->event()->find($id)->pivot->delete();
+        
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
+        
         return back();
     }
 }

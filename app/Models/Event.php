@@ -29,12 +29,12 @@ class Event extends Model
 
     public function keranjang(): BelongsToMany
     {
-        return $this->belongsToMany(Keranjang::class, 'KeranjangHasEvents', 'eventsID', 'eventsID');
+        return $this->belongsToMany(Keranjang::class, 'KeranjangHasEvents', 'eventsID', 'keranjangID');
     }
 
     public function categorie(): BelongsToMany
     {
-        return $this->belongsToMany(Categorie::class, 'EventHasCategories', 'eventsID', 'events_ID');
+        return $this->belongsToMany(Categorie::class, 'EventHasCategories', 'eventsID', 'CategoryID');
     }
 
     public function image(): HasMany
