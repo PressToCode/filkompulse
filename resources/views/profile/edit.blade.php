@@ -6,7 +6,7 @@
 
 <x-app-layout>
     <!-- Page Header -->
-    <header class="tw-shadow tw-bg-gray-800 tw-pt-16">
+    <header class="tw-shadow tw-bg-gray-800 tw-pt-8">
         <div class="tw-max-w-7xl tw-mx-auto tw-py-6 tw-px-4 sm:tw-px-6 lg:tw-px-8">
             <h1 class="tw-text-3xl tw-font-bold">Profile</h1>
         </div>
