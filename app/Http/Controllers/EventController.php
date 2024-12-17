@@ -20,13 +20,26 @@ class EventController extends Controller
         return view('event.type', compact('type'));
     }
 
-    public function addToCollection(Request $request, Event $competition)
+    public function addToCollection(Request $request, $id)
     {
-        // Logic to add competition to collection
-        // You might want to use the authenticated user here
-        // $request->user()->competitions()->attach($competition->id);
+        $user = $request->user() ?? $request->user('google');
         
-        return back()->with('success', 'Competition added to collection');
+        if($user instanceof \App\Models\GoogleAccountAuth) {
+            $user = $user->user;
+        }
+        // \Log::info($id);
+
+        // \Log::info('checkpoint A');
+        if($user->keranjang->event()->wherePivot('eventsID', $id)->exists()) {
+            // \Log::info('checkpoint B');
+            return back()->withErrors('Event already in collection');
+        }
+
+        // \Log::info('checkpoint C');
+        $user->keranjang->event()->attach($id);
+        
+        // \Log::info('checkpoint D');
+        return back()->with('success', 'Event added to collection');
     }
 }
 

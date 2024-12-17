@@ -17,7 +17,13 @@
                         <a href="#about" class="tw-bg-white/20 tw-px-6 tw-py-2 tw-rounded-full tw-transition tw-ease-out hover:tw-scale-110 tw-duration-200">{{ __('Details')}}</a>
                         <form action="{{ route('event.addToCollection', $event) }}" method="POST">
                             @csrf
-                            <button type="submit" class="tw-bg-blue-500 tw-px-6 tw-py-2 tw-rounded-full tw-transition tw-ease-out hover:tw-scale-110 tw-duration-200">Add to Collection</button>
+                            @if ($errors->any()) 
+                                <div class="tw-bg-red-500 tw-px-6 tw-py-2 tw-rounded-full tw-transition tw-ease-out hover:tw-scale-110 tw-duration-200">
+                                    {{ $errors->first() }}
+                                </div>
+                            @else
+                                <button type="submit" class="tw-bg-blue-500 tw-px-6 tw-py-2 tw-rounded-full tw-transition tw-ease-out hover:tw-scale-110 tw-duration-200">Add to Collection</button>
+                            @endif
                         </form>
                     </div>
                     <div class="tw-bg-white/20 tw-p-4 tw-rounded-lg tw-flex tw-justify-between tw-items-center">
@@ -31,7 +37,13 @@
                         </div>
                         <form action="{{ route('event.addToCollection', $event) }}" method="POST">
                             @csrf
-                            <button type="submit" class="tw-bg-blue-500 tw-px-6 tw-py-2 tw-rounded-full tw-transition tw-ease-out hover:tw-scale-110 tw-duration-200">Add to Collection</button>
+                            @if ($errors->any()) 
+                                <div class="tw-bg-red-500 tw-px-6 tw-py-2 tw-rounded-full tw-transition tw-ease-out hover:tw-scale-110 tw-duration-200">
+                                    {{ $errors->first() }}
+                                </div>
+                            @else
+                                <button type="submit" class="tw-bg-blue-500 tw-px-6 tw-py-2 tw-rounded-full tw-transition tw-ease-out hover:tw-scale-110 tw-duration-200">Add to Collection</button>
+                            @endif
                         </form>
                     </div>
                 </div>
