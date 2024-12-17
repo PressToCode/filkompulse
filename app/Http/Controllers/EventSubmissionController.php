@@ -60,6 +60,7 @@ class EventSubmissionController extends Controller
                 foreach ($validatedData['links'] as $url) {
                     if (!empty($url)) {
                         $event->link()->create([
+                            'events_ID' => $event->eventsID,
                             'URL' => $url,
                         ]);
                     }
