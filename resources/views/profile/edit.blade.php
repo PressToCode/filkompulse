@@ -1,9 +1,3 @@
-<style>
-    body {
-        padding-top: 80px; 
-    }
-</style>
-
 <x-app-layout>
     <!-- Page Header -->
     <header class="tw-shadow tw-bg-gray-800 tw-pt-16">
