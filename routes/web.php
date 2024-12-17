@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EventSubmissionController;
+use App\Http\Controllers\ReminderController;
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -36,8 +38,6 @@ Route::patch('/collections/{collection}/toggle-reminder', [CollectionController:
 Route::patch('/collections/{collection}/toggle-select', [CollectionController::class, 'toggleSelect'])->name('collections.toggleSelect');
 Route::delete('/collections/{collection}', [CollectionController::class, 'destroy'])->name('collections.destroy');
 
-use App\Http\Controllers\EventSubmissionController;
-
 Route::get('/event-submissions', [EventSubmissionController::class, 'index'])->name('event-submissions.index');
     Route::get('/event-submissions/create', [EventSubmissionController::class, 'create'])->name('event-submissions.create');
     Route::post('/event-submissions', [EventSubmissionController::class, 'store'])->name('event-submissions.store');
@@ -45,3 +45,5 @@ Route::get('/event-submissions', [EventSubmissionController::class, 'index'])->n
     Route::get('/event-submissions/{event}/edit', [EventSubmissionController::class, 'edit'])->name('event-submissions.edit');
     Route::put('/event-submissions/{event}', [EventSubmissionController::class, 'update'])->name('event-submissions.update');
     Route::delete('/event-submissions/{event}', [EventSubmissionController::class, 'destroy'])->name('event-submissions.destroy');
+
+Route::get('/reminder/send/{id}', [ReminderController::class, 'sendReminder'])->name('reminder.send');

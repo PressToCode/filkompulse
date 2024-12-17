@@ -22,6 +22,7 @@
                     <div class="tw-flex tw-justify-center tw-h-full tw-bg-transparent tw-p-6">
                         @php
                             $firstLetter = substr($event->verified_user->user->name, 0, 1);
+                            $eventID = $event->eventsID;
                         @endphp
                         <x-event-card
                             :avatar-letter="$firstLetter"
@@ -32,6 +33,7 @@
                             :date-time="$event->date"
                             :location="$event->location"
                             :description="$event->description"
+                            :eventId="$eventID"
                         ></x-event-card>
                     </div>
                 </div>

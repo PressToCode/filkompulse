@@ -65,7 +65,7 @@
             <h2 class="tw-text-3xl tw-font-bold tw-mb-8">Event Category</h2>
             <div class="tw-grid tw-grid-cols-2 md:tw-grid-cols-4 tw-gap-6">
                 @foreach($categories as $category)
-                    <a href="{{ route('event.type', ['type' => $category->categoryName]) }}" class="tw-block">
+                    <a class="tw-block tw-transition tw-ease-out hover:tw-scale-105 tw-duration-200">
                         <div class="tw-bg-white tw-aspect-square tw-rounded-lg tw-mb-4">
                             <img src="{{ URL::asset('images/cardPlaceholder.svg') }}" alt="{{ $category->categoryName }}" class="tw-w-full tw-h-full tw-object-cover tw-rounded-lg">
                         </div>
