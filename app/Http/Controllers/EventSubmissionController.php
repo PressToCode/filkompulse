@@ -27,16 +27,18 @@ class EventSubmissionController extends Controller
 
     public function store(Request $request)
     {
+        \Log::info('A');
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'date' => 'required|date',
-            'location_type' => 'required|in:offline,online',
+            'location_type' => 'required|in:offline,online,Offline,Online',
             'location' => 'nullable|string|max:255',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048|nullable',
             'links.*' => 'nullable|url',
             'category.*' => 'nullable',
         ]);
+        \Log::info('A');
 
         DB::beginTransaction();
 
@@ -46,8 +48,10 @@ class EventSubmissionController extends Controller
             if($user instanceof \App\Models\GoogleAccountAuth) {
                 $user = $user->user;
             }
+            \Log::info('B');
 
             $userID = $user->verified_user()->first()->VerifiedID;
+            \Log::info('C');
 
             $event = Event::updateOrCreate([
                 'title' => $validatedData['title'],
@@ -58,6 +62,7 @@ class EventSubmissionController extends Controller
                 'location_type' => $validatedData['location_type'],
                 'location' => $validatedData['location'],
             ]);
+            \Log::info('D');
 
             if ($request->hasFile('images')) {
                 foreach ($request->file('images') as $imageFile) {
@@ -95,9 +100,10 @@ class EventSubmissionController extends Controller
                     }
                 }
             }
+            \Log::info('E');
 
             DB::commit();
-
+            \Log::info('F');
             return redirect()->route('event-submissions.create')->with('success', 'Event submitted successfully.');
         } catch (\Exception $e) {
             DB::rollBack();
