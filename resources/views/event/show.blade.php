@@ -27,7 +27,7 @@
                         </form>
                     </div>
                     <div class="tw-bg-white/20 tw-p-4 tw-rounded-lg tw-flex tw-justify-between tw-items-center">
-                        <div>
+                        <div class="tw-max-w-[40%]">
                             <p class="tw-text-sm tw-mb-1">LOCATION</p>
                             <p>{{ $event->location }}</p>
                         </div>
