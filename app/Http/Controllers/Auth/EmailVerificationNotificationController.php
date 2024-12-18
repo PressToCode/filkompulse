@@ -15,10 +15,10 @@ class EmailVerificationNotificationController extends Controller
     {
         $user = $request->user() ?? $request->user('google')->user();
         if ($user->hasVerifiedEmail()) {
-            $user->verified_user()->updateOrCreate(
-                ['user_id' => $user->id],
-                ['verified_type' => 'Verified User']
-            );            
+            // $user->verified_user()->updateOrCreate(
+            //     ['user_id' => $user->id],
+            //     ['verified_type' => 'Verified User']
+            // );            
 
             return redirect()->intended(route('dashboard', absolute: false));
         }
