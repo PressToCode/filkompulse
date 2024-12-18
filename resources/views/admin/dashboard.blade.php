@@ -133,7 +133,7 @@
                                 <div class="card">
                                     <div class="card-header">
                                         <div class="tw-flex">
-                                            <h4 class="card-title tw-my-auto">Users List</h4>
+                                            <h4 class="card-title tw-my-auto">Events List</h4>
                                         </div>
                                     </div>
                                     <div class="card-body">
