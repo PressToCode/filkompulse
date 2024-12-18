@@ -20,7 +20,7 @@ class DashboardController extends Controller
         if (!$request->ajax()) {
             return redirect()->route('dashboard');
         }
-        
+
         // Get the current page from the request, default to 1
         $page = $request->input('page', 1);
         
@@ -58,8 +58,9 @@ class DashboardController extends Controller
             'category' => $request->category,
             'location_type' => $request->location_type,
             'date' => $request->date,
-            'page' => $events->currentPage()
+            'page' => $page
         ]);
+        \Log::info($url);
     
         return response()->json([
             'html' => $html,

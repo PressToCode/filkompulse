@@ -75,19 +75,29 @@ $(document).ready(function() {
         // If a pagination URL is provided, use it directly without adding filters
         // Otherwise use the filter route with filters
         let requestUrl = url || '{{ route("dashboard.filter") }}';
-        let requestData = url ? {} : filters; // Only send filters if not using pagination URL
+        
+        // Add the filters to the URL if it's a pagination request
+        if (url) {
+            // Create URL object to handle query parameters
+            let urlObj = new URL(url);
+            // Add current filters to pagination URL
+            if (filters.category) urlObj.searchParams.set('category', filters.category);
+            if (filters.location_type) urlObj.searchParams.set('location_type', filters.location_type);
+            if (filters.date) urlObj.searchParams.set('date', filters.date);
+            requestUrl = urlObj.toString();
+        }
 
         $.ajax({
             url: requestUrl,
             method: 'GET',
-            data: requestData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            data: url ? {} : filters,
             success: function(response) {
                 $('#events-container').html(response.html);
                 // Update URL with new parameters without page reload
                 window.history.pushState({}, '', response.url);
-
-                // Reattach pagination click handlers after content update
-                attachPaginationHandlers();
             },
             error: function(xhr) {
                 console.error('Error fetching events:', xhr);
@@ -95,23 +105,19 @@ $(document).ready(function() {
         });
     }
 
-    // Function to attach pagination click handlers
-    function attachPaginationHandlers() {
-        $('#events-container').find('.pagination a').on('click', function(e) {
-            e.preventDefault();
-            let url = $(this).attr('href');
-            updateEvents(url);
-        });
-    }
-
     $(document).on('click', '.pagination-link', function(e) {
         e.preventDefault(); // Prevent default link behavior
-        let url = $(this).attr('href');
+        let url = $(this).attr('href')
+        let urlObject = new URL(url);
+        let pageValue = urlObject.searchParams.get('page');
+        if (url.includes('dashboard')) { 
+            url = $(this).attr('href').replace(/dashboard\?page=\d+/, `dashboard?page=${pageValue}`);
+        } else { 
+            url = $(this).attr('href').replace(/\?page=\d+/, `/dashboard?page=${pageValue}`);
+        }
+        console.log(url);
         updateEvents(url);
     });
-
-    // Initial attachment of pagination handlers
-    attachPaginationHandlers();
 
     // Event listeners for filters
     $('.filter').change(function() {
