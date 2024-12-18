@@ -14,7 +14,7 @@
                     @csrf
             
                     <!-- Email Address -->
-                    <div class="d-flex flex-col">
+                    <div>
                         <x-text-input id="email" class="d-block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="Email"/>
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
