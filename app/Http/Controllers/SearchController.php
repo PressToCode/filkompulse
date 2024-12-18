@@ -35,11 +35,18 @@ class SearchController extends Controller
     }
 
     public function filter(Request $request) {
-        // Get the current page from the request, default to 1
-        $page = $request->input('page', 1);
+        // Check if request is AJAX, if not redirect to search
+        if (!$request->ajax()) {
+            return redirect()->route('search');
+        }
         
         // Start building the query for the Event model
         $queryEvent = Event::query();
+        
+        // Apply search query if it exists
+        if ($request->has('q')) {
+            $queryEvent->where('title', 'like', '%' . $request->q . '%');
+        }
         
         // Apply category filter if it's set
         if ($request->has('category') && $request->category) {
@@ -57,33 +64,25 @@ class SearchController extends Controller
         if ($request->has('date') && $request->date) {
             $queryEvent->whereDate('date', $request->date);
         }
-
-        \Log::info('SQL Query:', ['query' => $queryEvent->toSql()]);
-
-        // Get paginated results (5 per page)
-        $result = $queryEvent->paginate(5);
-        \Log::info("Events: ".$result);
-
-        \Log::info('SQL Query with Bindings:', [
-            'query' => $queryEvent->toSql(),
-            'bindings' => $queryEvent->getBindings(),
-        ]);
-
-        // Prepare the response data to return to the frontend
+    
+        // Get paginated results
+        $result = $queryEvent->paginate(5)->withQueryString();
+        
+        // Prepare the response data
         $categories = Categorie::all();
-        $html = view('search.search-partial', compact('result', 'categories'))->with('paginationView', 'vendor.pagination.tailwind')->render();
-
-        // Update the URL without reloading the page (using the same filters and current page)
-        $url = route('search.filter', [
-            'category' => $request->category,
-            'location_type' => $request->location_type,
-            'date' => $request->date,
-            'page' => $result->currentPage()
-        ]);
-
+        $html = view('search.search-partial', compact('result', 'categories'))
+            ->with('paginationView', 'vendor.pagination.tailwind')
+            ->render();
+    
         return response()->json([
             'html' => $html,
-            'url' => $url,
+            'url' => $request->fullUrlWithQuery([
+                'q' => $request->q,
+                'category' => $request->category,
+                'location_type' => $request->location_type,
+                'date' => $request->date,
+                'page' => $result->currentPage()
+            ])
         ]);
     }
 }
