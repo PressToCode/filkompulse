@@ -489,7 +489,12 @@ class DatabaseSeeder extends Seeder
             array('imageID' => '99','events_id' => '41','imageURL' => 'https://fastly.picsum.photos/id/384/800/800.jpg?hmac=TEew91c6Nr1mOYq70VMCJuk1_5_7W13GKZjlECCpqWg','created_at' => '2024-12-18 07:04:43','updated_at' => '2024-12-18 07:04:43'),
             array('imageID' => '100','events_id' => '42','imageURL' => 'https://fastly.picsum.photos/id/872/800/800.jpg?hmac=O06y5t2D8wKzFH27WcMB_gBjkpCNa6OG_T7TQBnRx4o','created_at' => '2024-12-18 07:04:44','updated_at' => '2024-12-18 07:04:44'),
             array('imageID' => '101','events_id' => '43','imageURL' => 'https://fastly.picsum.photos/id/74/800/800.jpg?hmac=Yutsm46dgDawaiRdN9msXB--hf1oPGE3wr96b_aSdY0','created_at' => '2024-12-18 07:04:52','updated_at' => '2024-12-18 07:04:52'),
-            array('imageID' => '102','events_id' => '43','imageURL' => 'https://fastly.picsum.photos/id/722/800/800.jpg?hmac=Y8RnWwTn-UVoogRjGMrMAI-zMZ-6pXElm7AAa2uHMYA','created_at' => '2024-12-18 07:04:54','updated_at' => '2024-12-18 07:04:54')
+            array('imageID' => '102','events_id' => '43','imageURL' => 'https://fastly.picsum.photos/id/722/800/800.jpg?hmac=Y8RnWwTn-UVoogRjGMrMAI-zMZ-6pXElm7AAa2uHMYA','created_at' => '2024-12-18 07:04:54','updated_at' => '2024-12-18 07:04:54'),
+            array('imageID' => '103','events_id' => '20','imageURL' => 'https://fastly.picsum.photos/id/337/800/800.jpg?hmac=KB_5m2B1S_S959W25fClnhdwEHmvjxRJXLMvAxSStxs','created_at' => '2024-12-18 07:04:22','updated_at' => '2024-12-18 07:04:22'),
+            array('imageID' => '104','events_id' => '21','imageURL' => 'https://fastly.picsum.photos/id/966/800/800.jpg?hmac=92hmxUBsan1DCvpnd890-5dVO9A5Tjq0GOVbbxFS3gk','created_at' => '2024-12-18 07:04:25','updated_at' => '2024-12-18 07:04:25'),
+            array('imageID' => '105','events_id' => '22','imageURL' => 'https://fastly.picsum.photos/id/634/800/800.jpg?hmac=k2afT7WKvZoDlw8BKPoh0tKp2suyM4CTU6T-l57MUqs','created_at' => '2024-12-18 07:04:27','updated_at' => '2024-12-18 07:04:27'),
+            array('imageID' => '106','events_id' => '23','imageURL' => 'https://fastly.picsum.photos/id/545/800/800.jpg?hmac=zFvcodIjcgCP1A2w5cr_miGWMJvkGPVj8SXkxBeyVCw','created_at' => '2024-12-18 07:04:37','updated_at' => '2024-12-18 07:04:37'),
+            array('imageID' => '107','events_id' => '40','imageURL' => 'https://fastly.picsum.photos/id/545/800/800.jpg?hmac=zFvcodIjcgCP1A2w5cr_miGWMJvkGPVj8SXkxBeyVCw','created_at' => '2024-12-18 07:04:37','updated_at' => '2024-12-18 07:04:37'),
         );
 
         foreach($images as $image) {
