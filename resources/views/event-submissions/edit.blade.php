@@ -55,8 +55,8 @@
 
                         <!-- Deskripsi Event -->
                         <div class="tw-mt-4">
-                            <x-input-label for="description" :value="__('Event Description') ?? $event->description" />
-                            <textarea id="description" name="description" rows="4" class="tw-block tw-mt-1 tw-w-full tw-rounded-md tw-shadow-sm focus:tw-ring focus:tw-ring-opacity-50 tw-border-gray-700 tw-bg-gray-900 tw-text-gray-300 focus:tw-border-indigo-600 focus:tw-ring-indigo-600" required>{{ old('description') }}</textarea>
+                            <x-input-label for="description" :value="__('Event Description')" />
+                            <textarea id="description" name="description" rows="4" class="tw-block tw-mt-1 tw-w-full tw-rounded-md tw-shadow-sm focus:tw-ring focus:tw-ring-opacity-50 tw-border-gray-700 tw-bg-gray-900 tw-text-gray-300 focus:tw-border-indigo-600 focus:tw-ring-indigo-600" required>{{ old('description') ?? $event->description }}</textarea>
                         </div>
 
                         <!-- Attachment -->
