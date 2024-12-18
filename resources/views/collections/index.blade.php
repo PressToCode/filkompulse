@@ -16,7 +16,7 @@
             <div class="tw-bg-gray-800 tw-rounded-lg tw-overflow-hidden tw-shadow-lg tw-transition-all hover:tw-shadow-2xl tw-ease-out hover:tw-scale-105 tw-duration-200 event-card" data-event-id="{{ $event->eventsID }}">
                 <a href="{{ route('event.show',$event->eventsID) }}">
                     <div class="tw-aspect-w-16 tw-aspect-h-9">
-                        <img src="{{ asset($event->image()->first() ?? URL::asset('images/cardPlaceholder.svg')) }}" alt="Event image" class="tw-object-cover tw-w-full tw-h-full" />
+                        <img src="{{ asset($event->image()->first()->imageURL ?? URL::asset('images/cardPlaceholder.svg')) }}" alt="Event image" class="tw-object-cover tw-w-full tw-h-full" />
                     </div>
                 </a>
                 <div class="tw-p-6">
