@@ -28,8 +28,8 @@
                 <div class="tw-flex tw-space-x-2 tw-mb-2">
                     <select id="location-filter" name="locationtype" class="filter tw-block tw-mt-1 tw-w-full tw-rounded-md tw-shadow-sm focus:tw-ring focus:tw-ring-opacity-50 tw-bg-transparent tw-border-b-2 tw-border-t-0 tw-border-l-0 tw-border-r-0 tw-text-gray-300 focus:tw-border-indigo-600 focus:tw-ring-indigo-600">
                         <option class="tw-bg-[#1D1B20]" value="" disabled selected>Location Type</option>
-                        <option class="tw-bg-[#1D1B20]" value="physical" {{ old('locationtype') == 'physical' ? 'selected' : '' }}>Physical</option>
-                        <option class="tw-bg-[#1D1B20]" value="online" {{ old('locationtype') == 'online' ? 'selected' : '' }}>Online</option>
+                        <option class="tw-bg-[#1D1B20]" value="Offline" {{ old('locationtype') == 'Offline' ? 'selected' : '' }}>Offline</option>
+                        <option class="tw-bg-[#1D1B20]" value="Online" {{ old('locationtype') == 'Online' ? 'selected' : '' }}>Online</option>
                     </select>
                 </div>
             </div>
@@ -65,28 +65,53 @@
 <script>
 $(document).ready(function() {
     // Function to update events
-    function updateEvents() {
+    function updateEvents(url = null) {
         let filters = {
             category: $('#category-filter').val(),
             location_type: $('#location-filter').val(),
             date: $('#date-filter').val(),
-            page: {{ request()->get('page', 1) }}
         };
 
+        // If a pagination URL is provided, use it directly without adding filters
+        // Otherwise use the filter route with filters
+        let requestUrl = url || '{{ route("dashboard.filter") }}';
+        let requestData = url ? {} : filters; // Only send filters if not using pagination URL
+
         $.ajax({
-            url: '{{ route("dashboard.filter") }}',
+            url: requestUrl,
             method: 'GET',
-            data: filters,
+            data: requestData,
             success: function(response) {
                 $('#events-container').html(response.html);
                 // Update URL with new parameters without page reload
-                // window.history.pushState({}, '', response.url);
+                window.history.pushState({}, '', response.url);
+
+                // Reattach pagination click handlers after content update
+                attachPaginationHandlers();
             },
             error: function(xhr) {
                 console.error('Error fetching events:', xhr);
             }
         });
     }
+
+    // Function to attach pagination click handlers
+    function attachPaginationHandlers() {
+        $('#events-container').find('.pagination a').on('click', function(e) {
+            e.preventDefault();
+            let url = $(this).attr('href');
+            updateEvents(url);
+        });
+    }
+
+    $(document).on('click', '.pagination-link', function(e) {
+        e.preventDefault(); // Prevent default link behavior
+        let url = $(this).attr('href');
+        updateEvents(url);
+    });
+
+    // Initial attachment of pagination handlers
+    attachPaginationHandlers();
 
     // Event listeners for filters
     $('.filter').change(function() {

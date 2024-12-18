@@ -17,6 +17,10 @@ class DashboardController extends Controller
     }
 
     public function filter(Request $request) {
+        if (!$request->ajax()) {
+            return redirect()->route('dashboard');
+        }
+        
         // Get the current page from the request, default to 1
         $page = $request->input('page', 1);
         
@@ -39,30 +43,24 @@ class DashboardController extends Controller
         if ($request->has('date') && $request->date) {
             $queryEvent->whereDate('date', $request->date);
         }
-
-        // \Log::info('SQL Query:', ['query' => $queryEvent->toSql()]);
-
+    
         // Get paginated results (5 per page)
-        $events = $queryEvent->paginate(5);
-        // \Log::info("Events: ".$events);
-
-        // \Log::info('SQL Query with Bindings:', [
-        //     'query' => $queryEvent->toSql(),
-        //     'bindings' => $queryEvent->getBindings(),
-        // ]);
-
-        // Prepare the response data to return to the frontend
+        $events = $queryEvent->paginate(5)->withQueryString();
+    
+        // Prepare the response data
         $categories = Categorie::all();
-        $html = view('dashboard.sections.partial', compact('events', 'categories'))->with('paginationView', 'vendor.pagination.customPagination')->render();
-
-        // Update the URL without reloading the page (using the same filters and current page)
-        $url = route('dashboard.filter', [
+        $html = view('dashboard.sections.partial', compact('events', 'categories'))
+            ->with('paginationView', 'vendor.pagination.customPagination')
+            ->render();
+    
+        // Build the URL with all current parameters
+        $url = $request->fullUrlWithQuery([
             'category' => $request->category,
             'location_type' => $request->location_type,
             'date' => $request->date,
             'page' => $events->currentPage()
         ]);
-
+    
         return response()->json([
             'html' => $html,
             'url' => $url,

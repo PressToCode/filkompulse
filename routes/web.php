@@ -8,7 +8,7 @@ use App\Http\Controllers\ReminderController;
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
-Route::get('/dashboard/filters', [DashboardController::class, 'filter'])->name('dashboard.filter');
+Route::get('/dashboard', [DashboardController::class, 'filter'])->name('dashboard.filter');
 
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 Route::get('/search/filter', [SearchController::class, 'filter'])->name('search.filter');

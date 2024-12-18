@@ -22,8 +22,8 @@
                 <div class="tw-flex tw-space-x-2 tw-mb-2">
                     <select id="location-filter" name="locationtype" class="filter tw-block tw-mt-1 tw-w-full tw-rounded-md tw-shadow-sm focus:tw-ring focus:tw-ring-opacity-50 tw-bg-transparent tw-border-b-2 tw-border-t-0 tw-border-l-0 tw-border-r-0 tw-text-gray-300 focus:tw-border-indigo-600 focus:tw-ring-indigo-600">
                         <option class="tw-bg-[#1D1B20]" value="" disabled selected>Location Type</option>
-                        <option class="tw-bg-[#1D1B20]" value="physical" {{ old('locationtype') == 'physical' ? 'selected' : '' }}>Physical</option>
-                        <option class="tw-bg-[#1D1B20]" value="online" {{ old('locationtype') == 'online' ? 'selected' : '' }}>Online</option>
+                        <option class="tw-bg-[#1D1B20]" value="Offline" {{ old('locationtype') == 'Offline' ? 'selected' : '' }}>Offline</option>
+                        <option class="tw-bg-[#1D1B20]" value="Online" {{ old('locationtype') == 'Online' ? 'selected' : '' }}>Online</option>
                     </select>
                 </div>
             </div>
@@ -37,6 +37,9 @@
             <!-- data, total, per_page, current_page -->
             @if(!empty($result->items()))
             <p class="tw-text-5xl tw-text-center tw-font-bold py-3">Your Search Result:</p>
+                <div class="tw-pb-5">
+                    {{ $result->links('vendor.pagination.tailwind') }}
+                </div>
                 @foreach ($result->items() as $event)
                     <x-search-card
                         :id="$event['eventsID']"
@@ -44,9 +47,6 @@
                         :description="$event['description']"
                         :date="$event['date']" />
                 @endforeach
-                <div>
-                    {{ $result->links('vendor.pagination.tailwind') }}
-                </div>
             @else
                 <p class="tw-text-5xl tw-text-center tw-font-bold tw-animate-bounce">Sorry, No Event Match Your Search <i class="bi bi-emoji-frown"></i></p>
             @endif
@@ -55,34 +55,45 @@
     <script>
     $(document).ready(function() {
         // Function to update events
-        function updateEvents() {
+        function updateEvents(url = null) {
             let filters = {
+                q: new URLSearchParams(window.location.search).get('q'), // Get search query from URL
                 category: $('#category-filter').val(),
                 location_type: $('#location-filter').val(),
                 date: $('#date-filter').val(),
-                page: {{ request()->get('page', 1) }}
             };
-    
+
+            // If a pagination URL is provided, use it directly
+            let requestUrl = url || '{{ route("search.filter") }}';
+            let requestData = url ? {} : filters; // Only send filters if not using pagination URL
+
             $.ajax({
-                url: '{{ route("search.filter") }}',
+                url: requestUrl,
                 method: 'GET',
-                data: filters,
+                data: requestData,
                 success: function(response) {
                     $('#result-container').html(response.html);
-                    // Update URL with new parameters without page reload
-                    // window.history.pushState({}, '', response.url);
+                    // Update URL without page reload
+                    window.history.pushState({}, '', response.url);
                 },
                 error: function(xhr) {
                     console.error('Error fetching events:', xhr);
                 }
             });
         }
-    
+
+        // Event delegation for pagination links
+        $(document).on('click', '.pagination-link', function(e) {
+            e.preventDefault();
+            let url = $(this).attr('href');
+            updateEvents(url);
+        });
+
         // Event listeners for filters
         $('.filter').change(function() {
             updateEvents();
         });
-    
+
         $('#date-filter').change(function() {
             updateEvents();
         });

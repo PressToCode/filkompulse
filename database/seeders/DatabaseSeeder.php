@@ -15,6 +15,7 @@ use App\Models\Verified_user;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use \Faker\Factory as Faker;
 
 class DatabaseSeeder extends Seeder
 {
@@ -182,6 +183,19 @@ class DatabaseSeeder extends Seeder
             Event::create($event);
         }
 
+        for($i = 0; $i < 30; $i++) {
+            $events = [
+                'verifiedUserID' => $a,
+                'title' => Faker::create()->sentences(rand(1, 3), true),
+                'description' => Faker::create()->paragraphs(rand(1, 2), true),
+                'date' => Faker::create()->dateTimeBetween('now', '+1 year'),
+                'location_type' => rand(0, 1) ? 'Offline' : 'Online',
+                'location' => Faker::create()->address(),
+            ];
+
+            Event::create($events);
+        }
+
         // 'eventsID',
         // 'userID',
         // 'reminderDate',
@@ -324,7 +338,7 @@ class DatabaseSeeder extends Seeder
             for($n = 0; $n < rand(0,2); $n++) {
                 $eventLink = [
                     'events_id' => ($i+1),
-                    'URL' => \Faker\Factory::create()->url(),
+                    'URL' => Faker::create()->url(),
                 ];
 
                 Link::create($eventLink);
