@@ -2,7 +2,7 @@
   <div class="d-flex flex-row flex-grow-1 px-3 px-md-4">
     <div class="d-flex col">
         <a href="{{ route('dashboard') }}">
-            <x-application-logo class="d-flex tw-h-full tw-w-[2.0625rem]" />    
+            <x-application-logo class="d-flex tw-h-full tw-w-[2.0625rem]" />        
         </a>
     </div>
     <form class="d-flex flex-grow-1 col-4" role="search" method="GET" action="{{ route('search') }}">
@@ -31,6 +31,16 @@
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="{{ route('collections.index') }}">Keranjang</a></li>
                     <li><a class="dropdown-item" href="{{ route('event-submissions.create') }}">Submit Events</a></li>
+                    @php
+                        $user = Auth::user() ?? Auth::guard('google')->user()->user;
+                        $verifiedUser = $user->verified_user;
+                        $verifiedType = $verifiedUser ? $verifiedUser->verified_type : null;
+                    @endphp
+                    @if ($verifiedType == 'administrator')
+                        <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Admin Dashboard</a></li>
+                    @elseif ($verifiedType != 'Verified User' && $verifiedType != 'administrator')
+                        <li><a class="dropdown-item" href="{{ route('admin.get-verified') }}">{{__('Get Verified')}}</a></li>
+                    @endif
                     <li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

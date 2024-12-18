@@ -1,4 +1,4 @@
-<div class="tw-bg-[#322F35]/50 text-white rounded p-4 tw-h-full tw-flex tw-flex-col tw-justify-between">
+<div class="tw-bg-[#322F35]/50 text-white rounded p-4 tw-h-full tw-flex tw-flex-col tw-justify-between tw-transition-all tw-duration-300 hover:tw-scale-105">
     <div class="d-flex align-items-center gap-3 mb-3">
         <div class="tw-bg-[#6c5dd3] rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
             <span class="fw-bold">{{ $avatarLetter }}</span>

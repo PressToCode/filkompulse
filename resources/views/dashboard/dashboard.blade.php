@@ -1,4 +1,5 @@
 <x-app-layout class="tw-bg-gradient-to-b tw-from-[#1D1B20] tw-via-black tw-to-[#797186]">
+    @section('title', 'Filkom Pulse - Homepage')
     <x-slot:header>
         <div class="tw-flex tw-h-dvh">
             <div class="d-flex flex-column flex-md-row flex-grow-1">

@@ -28,13 +28,13 @@
                                 {{ __('Submit New Event') }}
                                 </h1>
                                 <x-input-label for="title" :value="__('Event Title')" />
-                                <x-text-input id="title" class="tw-block tw-mt-1 tw-w-full" type="text" name="title" :value="old('title')" required autofocus />
+                                <x-text-input id="title" class="tw-block tw-mt-1 tw-w-full" type="text" name="title" :value=" old('title') ?? $event->title" required autofocus />
                             </div>
 
                             <!-- Tanggal Event -->
                             <div>
                                 <x-input-label for="date" :value="__('Event Date and Time')" />
-                                <x-text-input id="date" class="tw-block tw-mt-1 tw-w-full" type="datetime-local" name="date" :value="old('date')" required />
+                                <x-text-input id="date" class="tw-block tw-mt-1 tw-w-full" type="datetime-local" name="date" :value="old('date') ?? $event->date" required />
                             </div>
 
                             <!-- Tipe Lokasi Event -->
@@ -49,13 +49,13 @@
                             <!-- Lokasi Event -->
                             <div>
                                 <x-input-label for="location" :value="__('Location')" />
-                                <x-text-input id="location" class="tw-block tw-mt-1 tw-w-full" type="text" name="location" :value="old('location')" />
+                                <x-text-input id="location" class="tw-block tw-mt-1 tw-w-full" type="text" name="location" :value="old('location') ?? $event->location" />
                             </div>
                         </div>
 
                         <!-- Deskripsi Event -->
                         <div class="tw-mt-4">
-                            <x-input-label for="description" :value="__('Event Description')" />
+                            <x-input-label for="description" :value="__('Event Description') ?? $event->description" />
                             <textarea id="description" name="description" rows="4" class="tw-block tw-mt-1 tw-w-full tw-rounded-md tw-shadow-sm focus:tw-ring focus:tw-ring-opacity-50 tw-border-gray-700 tw-bg-gray-900 tw-text-gray-300 focus:tw-border-indigo-600 focus:tw-ring-indigo-600" required>{{ old('description') }}</textarea>
                         </div>
 
@@ -73,6 +73,12 @@
                                     <x-text-input type="url" name="links[]" class="tw-block tw-w-full" placeholder="https://example.com" />
                                     <button type="button" class="tw-bg-blue-500 tw-text-white tw-px-4 tw-py-2 tw-rounded" onclick="addLinkField()">+</button>
                                 </div>
+                                @foreach ($eventLink as $link)
+                                <div class="tw-flex tw-space-x-2 tw-mb-2">
+                                    <x-text-input type="url" name="links[]" class="tw-block tw-w-full tw-rounded-md tw-shadow-sm tw-border-gray-300 focus:tw-border-indigo-300 focus:tw-ring focus:tw-ring-indigo-200 focus:tw-ring-opacity-50" value="{{$link->URL}}" />
+                                    <button type="button" class="tw-bg-red-500 tw-text-white tw-px-4 tw-py-2 tw-rounded" onclick="this.parentElement.remove()">-</button>
+                                </div>
+                                @endforeach
                             </div>
                         </div>
 
@@ -82,6 +88,7 @@
                             <div id="category-container">
                                 <div class="tw-flex tw-space-x-2 tw-mb-2">
                                     <select id="category" name="category[]" class="tw-block tw-mt-1 tw-w-full tw-rounded-md tw-shadow-sm focus:tw-ring focus:tw-ring-opacity-50 tw-border-gray-700 tw-bg-gray-900 tw-text-gray-300 focus:tw-border-indigo-600 focus:tw-ring-indigo-600" required>
+                                        <option value="no" selected disabled>Choose Category</option>
                                         @foreach ($categories as $category)
                                             @php
                                                 $name = $category->categoryName;
@@ -91,6 +98,26 @@
                                     </select>
                                     <button type="button" class="tw-bg-blue-500 tw-text-white tw-px-4 tw-py-2 tw-rounded" onclick="addCategoryField()">+</button>
                                 </div>
+                                @foreach ($eventCategories as $eventCategory)
+                                <div class="tw-flex tw-space-x-2 tw-mb-2">
+                                    <select id="category" name="category[]" class="tw-block tw-mt-1 tw-w-full tw-rounded-md tw-shadow-sm focus:tw-ring focus:tw-ring-opacity-50 tw-border-gray-700 tw-bg-gray-900 tw-text-gray-300 focus:tw-border-indigo-600 focus:tw-ring-indigo-600" required>
+                                        @php
+                                            $value=$categories->firstWhere('categoryID', $eventCategory)->categoryName;
+                                            $filtered=$categories->filter(function ($category) use ($eventCategory) { 
+                                                return !in_array($category->categoryID, (array)$eventCategory); 
+                                            });
+                                        @endphp
+                                        <option value="{{$value}}" {{ old('category') == $value ? 'selected' : '' }}>{{$value}}</option>
+                                        @foreach ($filtered as $category)
+                                            @php
+                                                $name = $category->categoryName;
+                                            @endphp
+                                            <option value="{{$name}}" {{ old('category') == $name ? 'selected' : '' }}>{{$name}}</option>
+                                        @endforeach
+                                    </select>
+                                    <button type="button" class="tw-bg-red-500 tw-text-white tw-px-4 tw-py-2 tw-rounded" onclick="this.parentElement.remove()">-</button>
+                                </div>
+                                @endforeach
                             </div>
                         </div>
 

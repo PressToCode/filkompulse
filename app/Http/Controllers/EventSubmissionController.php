@@ -12,8 +12,17 @@ class EventSubmissionController extends Controller
 {
     public function create()
     {
-        $categories = Categorie::all();
-        return view('event-submissions.create', compact('categories'));
+        $user = Auth::user() ?? Auth::guard('google')->user()->user;
+        $verifiedUser = $user->verified_user;
+        $verifiedType = $verifiedUser ? $verifiedUser->verified_type : null;
+
+        if($verifiedType == 'Verified User' || $verifiedType == 'administrator') {
+            // User is verified, allow access to the create event page
+            $categories = Categorie::all();
+            return view('event-submissions.create', compact('categories'));
+        }
+
+        return redirect()->route('admin.get-verified');
     }
 
     public function store(Request $request)
@@ -86,5 +95,15 @@ class EventSubmissionController extends Controller
             DB::rollBack();
             return back()->withInput()->with('error', 'An error occurred while submitting the event. Please try again.');
         }
+    }
+
+    public function edit(Request $request, Event $event) {
+        $categories = Categorie::all();
+        $eventCategories = $event->categorie()->pluck('categoryID')->toArray();
+        $filteredCategories = $categories->filter(function ($category) use ($eventCategories) { 
+            return !in_array($category->id, $eventCategories); 
+        });
+        $eventLink = $event->link()->get();
+        return view('event-submissions.edit', compact('event', 'categories', 'eventCategories', 'filteredCategories', 'eventLink'));
     }
 }
