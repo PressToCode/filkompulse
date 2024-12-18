@@ -31,7 +31,7 @@ class EventSubmissionController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'date' => 'required|date',
-            'location_type' => 'required|in:physical,online',
+            'location_type' => 'required|in:offline,online',
             'location' => 'nullable|string|max:255',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048|nullable',
             'links.*' => 'nullable|url',
