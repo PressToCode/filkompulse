@@ -13,13 +13,13 @@
 
     <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-6">
         @foreach ($events as $event)
-            <div class="tw-bg-gray-800 tw-rounded-lg tw-overflow-hidden tw-shadow-lg tw-transition-all hover:tw-shadow-2xl tw-ease-out hover:tw-scale-105 tw-duration-200 event-card" data-event-id="{{ $event->eventsID }}">
+            <div class="tw-bg-gray-800 tw-flex tw-flex-col tw-rounded-lg tw-shadow-lg tw-transition-all hover:tw-shadow-2xl tw-ease-out hover:tw-scale-105 tw-duration-200 event-card" data-event-id="{{ $event->eventsID }}">
                 <a href="{{ route('event.show',$event->eventsID) }}">
                     <div class="tw-aspect-w-16 tw-aspect-h-9">
-                        <img src="{{ asset($event->image()->first()->imageURL ?? URL::asset('images/cardPlaceholder.svg')) }}" alt="Event image" class="tw-object-cover tw-w-full tw-h-full" />
+                        <img src="{{ asset($event->image()->first()->imageURL ?? URL::asset('images/cardPlaceholder.svg')) }}" alt="Event image" class="tw-object-cover tw-w-full tw-max-h-72" />
                     </div>
                 </a>
-                <div class="tw-p-6">
+                <div class="tw-p-6 tw-flex tw-flex-auto tw-flex-col tw-justify-between">
                     <div class="tw-flex tw-justify-between tw-items-start tw-mb-4">
                         <h2 class="tw-text-xl tw-font-semibold tw-text-white tw-mb-2">{{ $event->title }}</h2>
                     </div>
