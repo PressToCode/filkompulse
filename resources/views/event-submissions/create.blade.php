@@ -1,9 +1,4 @@
 <x-app-layout>
-    <x-slot:header>
-        <h2 class="tw-font-semibold tw-text-xl tw-text-gray-800 tw-leading-tight">
-            {{ __('Submit New Event') }}
-        </h2>
-    </x-slot:header>
 
     <div class="tw-py-12">
         <div class="tw-max-w-7xl tw-mx-auto tw-sm:px-6 tw-lg:px-8">
@@ -29,6 +24,9 @@
                         <div class="tw-grid tw-grid-cols-1 tw-gap-6 tw-mt-4 tw-sm:grid-cols-2">
                             <!-- Judul Event -->
                             <div>
+                                <h1 class="tw-font-bold tw-text-3xl tw-leading-tight tw-mb-6">
+                                {{ __('Submit New Event') }}
+                                </h1>
                                 <x-input-label for="title" :value="__('Event Title')" />
                                 <x-text-input id="title" class="tw-block tw-mt-1 tw-w-full" type="text" name="title" :value="old('title')" required autofocus />
                             </div>
