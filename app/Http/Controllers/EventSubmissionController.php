@@ -49,9 +49,10 @@ class EventSubmissionController extends Controller
 
             $userID = $user->verified_user()->first()->VerifiedID;
 
-            $event = Event::create([
-                'verifiedUserID' => $userID,
+            $event = Event::updateOrCreate([
                 'title' => $validatedData['title'],
+            ], [
+                'verifiedUserID' => $userID,
                 'description' => $validatedData['description'],
                 'date' => $validatedData['date'],
                 'location_type' => $validatedData['location_type'],
@@ -61,7 +62,10 @@ class EventSubmissionController extends Controller
             if ($request->hasFile('images')) {
                 foreach ($request->file('images') as $imageFile) {
                     $path = $imageFile->store('event_images', 'public');
-                    $event->image()->create([
+                    $event->image()->updateOrCreate([
+                        'imageURL' => $path,
+                        'events_ID' => $event->eventsID,
+                    ], [
                         'events_ID' => $event->eventsID,
                         'imageURL' => $path,
                     ]);
@@ -71,7 +75,10 @@ class EventSubmissionController extends Controller
             if (isset($validatedData['links'])) {
                 foreach ($validatedData['links'] as $url) {
                     if (!empty($url)) {
-                        $event->link()->create([
+                        $event->link()->updateOrCreate([
+                            'events_ID' => $event->eventsID,
+                            'URL' => $url,
+                        ],[
                             'events_ID' => $event->eventsID,
                             'URL' => $url,
                         ]);
@@ -83,7 +90,8 @@ class EventSubmissionController extends Controller
                 foreach ($validatedData['category'] as $category) {
                     if (!empty($category)) {
                         $categoryID = Categorie::firstWhere('categoryName', $category)->categoryID;
-                        $event->categorie()->attach($categoryID);
+                        // $event->categorie()->attach($categoryID);
+                        $event->categorie()->syncWithoutDetaching($categoryID);
                     }
                 }
             }
