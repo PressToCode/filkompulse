@@ -85,7 +85,7 @@
                 @foreach($categories as $category)
                     <a class="tw-block tw-transition tw-ease-out hover:tw-scale-105 tw-duration-200">
                         <div class="tw-bg-white tw-aspect-square tw-rounded-lg tw-mb-4">
-                            <img src="{{ URL::asset('images/cardPlaceholder.svg') }}" alt="{{ $category->categoryName }}" class="tw-w-full tw-h-full tw-object-cover tw-rounded-lg">
+                            <img src="{{ $category->categoryImageURL ?? URL::asset('images/cardPlaceholder.svg') }}" alt="{{ $category->categoryName }}" class="tw-w-full tw-h-full tw-object-cover tw-rounded-lg">
                         </div>
                         <h3 class="tw-text-center tw-font-bold">{{$category->categoryName}}</h3>
                         <p class="tw-text-center tw-text-neutral-100/70">{{ $category->categoryDescription }}</p>

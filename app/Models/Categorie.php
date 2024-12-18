@@ -12,6 +12,7 @@ class Categorie extends Model
     protected $fillable = [
         'categoryName',
         'categoryDescription',
+        'categoryImageURL',
     ];
 
     public function event(): BelongsToMany

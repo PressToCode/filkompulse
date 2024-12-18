@@ -231,86 +231,112 @@ class DatabaseSeeder extends Seeder
 
         // 'categoryName',
         // 'categoryDescription',
+        // Technology: 370
+        // Health: 785
+        // Art: 679
+        // Sport: 281
+        // Education: 193
+        // Business: 378
+        // Entertainment: 590
+        // F&B: 493
+        // Music: 304
+        // Science: 527
+        // Environment: 502
+        // Fashion: 669
+        // Literature: 464
+        // Travel: 364
+        // Charity: 660
+        // Fitness: 331
+        // Photography: 91
+        // Film: 250
+        // Networking: 348
+        // Family: 822
+        $id = [370, 785, 679, 281, 193, 
+            378, 590, 493, 304, 527, 
+            502, 669, 464, 364, 660,
+            331, 91, 250, 348, 822];
+
         $categories = [
             [
                 'categoryName' => 'Technology',
-                'categoryDescription' => 'Events for Technology Enthusiasts!'
+                'categoryDescription' => 'Events for Technology Enthusiasts!',
+                'categoryImageURL' => Http::Http::withoutVerifying()->withOptions(["verify"=>false])->maxRedirects(10)->get('https://picsum.photos/id/'.$id[0].'/800')->effectiveUri(),
             ],
             [
                 'categoryName' => 'Health',
-                'categoryDescription' => 'Events related to Health and Wellness.'
+                'categoryDescription' => Http::Http::withoutVerifying()->withOptions(["verify"=>false])->maxRedirects(10)->get('https://picsum.photos/id/'.$id[1].'/800')->effectiveUri()
             ],
             [
                 'categoryName' => 'Art',
-                'categoryDescription' => 'Explore creativity and artistic expressions.'
+                'categoryDescription' => Http::Http::withoutVerifying()->withOptions(["verify"=>false])->maxRedirects(10)->get('https://picsum.photos/id/'.$id[2].'/800')->effectiveUri()
             ],
             [
                 'categoryName' => 'Sports',
-                'categoryDescription' => 'Events for sports lovers and athletes.'
+                'categoryDescription' => Http::Http::withoutVerifying()->withOptions(["verify"=>false])->maxRedirects(10)->get('https://picsum.photos/id/'.$id[3].'/800')->effectiveUri()
             ],
             [
                 'categoryName' => 'Education',
-                'categoryDescription' => 'Events that promote learning and development.'
+                'categoryDescription' => Http::Http::withoutVerifying()->withOptions(["verify"=>false])->maxRedirects(10)->get('https://picsum.photos/id/'.$id[4].'/800')->effectiveUri()
             ],
             [
                 'categoryName' => 'Business',
-                'categoryDescription' => 'Networking and growth opportunities for business professionals.'
+                'categoryDescription' => Http::Http::withoutVerifying()->withOptions(["verify"=>false])->maxRedirects(10)->get('https://picsum.photos/id/'.$id[5].'/800')->effectiveUri()
             ],
             [
                 'categoryName' => 'Entertainment',
-                'categoryDescription' => 'Fun and entertainment-focused events.'
+                'categoryDescription' => Http::Http::withoutVerifying()->withOptions(["verify"=>false])->maxRedirects(10)->get('https://picsum.photos/id/'.$id[6].'/800')->effectiveUri()
             ],
             [
                 'categoryName' => 'Food & Drink',
-                'categoryDescription' => 'Culinary experiences and beverage tastings.'
+                'categoryDescription' => Http::Http::withoutVerifying()->withOptions(["verify"=>false])->maxRedirects(10)->get('https://picsum.photos/id/'.$id[7].'/800')->effectiveUri()
             ],
             [
                 'categoryName' => 'Music',
-                'categoryDescription' => 'Concerts, festivals, and musical performances.'
+                'categoryDescription' => Http::Http::withoutVerifying()->withOptions(["verify"=>false])->maxRedirects(10)->get('https://picsum.photos/id/'.$id[8].'/800')->effectiveUri()
             ],
             [
                 'categoryName' => 'Science',
-                'categoryDescription' => 'Explore scientific discoveries and advancements.'
+                'categoryDescription' => Http::Http::withoutVerifying()->withOptions(["verify"=>false])->maxRedirects(10)->get('https://picsum.photos/id/'.$id[9].'/800')->effectiveUri()
             ],
             [
                 'categoryName' => 'Environment',
-                'categoryDescription' => 'Events focused on sustainability and environmental issues.'
+                'categoryDescription' => Http::Http::withoutVerifying()->withOptions(["verify"=>false])->maxRedirects(10)->get('https://picsum.photos/id/'.$id[10].'/800')->effectiveUri()
             ],
             [
                 'categoryName' => 'Fashion',
-                'categoryDescription' => 'Showcases of style, design, and fashion trends.'
+                'categoryDescription' => Http::Http::withoutVerifying()->withOptions(["verify"=>false])->maxRedirects(10)->get('https://picsum.photos/id/'.$id[11].'/800')->effectiveUri()
             ],
             [
                 'categoryName' => 'Literature',
-                'categoryDescription' => 'Book launches, readings, and literary discussions.'
+                'categoryDescription' => Http::Http::withoutVerifying()->withOptions(["verify"=>false])->maxRedirects(10)->get('https://picsum.photos/id/'.$id[12].'/800')->effectiveUri()
             ],
             [
                 'categoryName' => 'Travel',
-                'categoryDescription' => 'Explore destinations and travel experiences.'
+                'categoryDescription' => Http::Http::withoutVerifying()->withOptions(["verify"=>false])->maxRedirects(10)->get('https://picsum.photos/id/'.$id[13].'/800')->effectiveUri()
             ],
             [
                 'categoryName' => 'Charity',
-                'categoryDescription' => 'Fundraising and awareness events for various causes.'
+                'categoryDescription' => Http::Http::withoutVerifying()->withOptions(["verify"=>false])->maxRedirects(10)->get('https://picsum.photos/id/'.$id[14].'/800')->effectiveUri()
             ],
             [
                 'categoryName' => 'Fitness',
-                'categoryDescription' => 'Workouts, training sessions, and fitness challenges.'
+                'categoryDescription' => Http::Http::withoutVerifying()->withOptions(["verify"=>false])->maxRedirects(10)->get('https://picsum.photos/id/'.$id[15].'/800')->effectiveUri()
             ],
             [
                 'categoryName' => 'Photography',
-                'categoryDescription' => 'Exhibitions, workshops, and photography meetups.'
+                'categoryDescription' => Http::Http::withoutVerifying()->withOptions(["verify"=>false])->maxRedirects(10)->get('https://picsum.photos/id/'.$id[16].'/800')->effectiveUri()
             ],
             [
                 'categoryName' => 'Film',
-                'categoryDescription' => 'Movie screenings, film festivals, and cinema events.'
+                'categoryDescription' => Http::Http::withoutVerifying()->withOptions(["verify"=>false])->maxRedirects(10)->get('https://picsum.photos/id/'.$id[17].'/800')->effectiveUri()
             ],
             [
                 'categoryName' => 'Networking',
-                'categoryDescription' => 'Meet new people and expand your professional circle.'
+                'categoryDescription' => Http::Http::withoutVerifying()->withOptions(["verify"=>false])->maxRedirects(10)->get('https://picsum.photos/id/'.$id[18].'/800')->effectiveUri()
             ],
             [
                 'categoryName' => 'Family',
-                'categoryDescription' => 'Family-friendly events and activities for all ages.'
+                'categoryDescription' => Http::Http::withoutVerifying()->withOptions(["verify"=>false])->maxRedirects(10)->get('https://picsum.photos/id/'.$id[19].'/800')->effectiveUri()
             ],
         ];
 
@@ -352,7 +378,7 @@ class DatabaseSeeder extends Seeder
         // 'imageURL',
         for($i = 1; $i < $totalEvent+1; $i++) {
             for($n = 0; $n < rand(1, 3); $n++) {
-                $finalUrl = Http::maxRedirects(10)->get('https://picsum.photos/800?random=1')->effectiveUri();
+                $finalUrl = Http::withoutVerifying()->withOptions(["verify"=>false])->maxRedirects(10)->get('https://picsum.photos/800?random=1')->effectiveUri();
                 $eventImage = [
                     'events_id' => $i,
                     'imageURL' => $finalUrl,
