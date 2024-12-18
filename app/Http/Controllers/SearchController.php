@@ -39,6 +39,8 @@ class SearchController extends Controller
         if (!$request->ajax()) {
             return redirect()->route('search');
         }
+
+        $page = $request->input('page', 1);
         
         // Start building the query for the Event model
         $queryEvent = Event::query();
@@ -81,7 +83,7 @@ class SearchController extends Controller
                 'category' => $request->category,
                 'location_type' => $request->location_type,
                 'date' => $request->date,
-                'page' => $result->currentPage()
+                'page' => $page
             ])
         ]);
     }

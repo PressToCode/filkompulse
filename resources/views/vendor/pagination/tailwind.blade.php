@@ -75,7 +75,7 @@
                         <span class="tw-relative tw-inline-flex tw-items-center tw-px-4 tw-py-2 -tw-ml-px tw-text-sm tw-font-medium tw-text-gray-500 tw-border tw-cursor-default tw-leading-5 tw-bg-gray-800 tw-border-gray-600">{{ $page }}</span>
                     </span>
                 @else
-                    <a href="{{ $url }}" class="tw-relative tw-inline-flex tw-items-center tw-px-4 tw-py-2 -tw-ml-px tw-text-sm tw-font-medium tw-border tw-leading-5 focus:tw-z-10 focus:tw-outline-none focus:tw-ring tw-ring-gray-300 active:tw-text-gray-700 tw-transition tw-ease-in-out tw-duration-150 tw-bg-gray-800 tw-border-gray-600 tw-text-gray-400 hover:tw-text-gray-300 active:tw-bg-gray-700 focus:tw-border-blue-800" aria-label="{{ __('Go to page :page', ['page' => $page]) }}">
+                    <a href="{{ $url }}" class="pagination-link tw-relative tw-inline-flex tw-items-center tw-px-4 tw-py-2 -tw-ml-px tw-text-sm tw-font-medium tw-border tw-leading-5 focus:tw-z-10 focus:tw-outline-none focus:tw-ring tw-ring-gray-300 active:tw-text-gray-700 tw-transition tw-ease-in-out tw-duration-150 tw-bg-gray-800 tw-border-gray-600 tw-text-gray-400 hover:tw-text-gray-300 active:tw-bg-gray-700 focus:tw-border-blue-800" aria-label="{{ __('Go to page :page', ['page' => $page]) }}">
                         {{ $page }}
                     </a>
                 @endif
@@ -92,7 +92,7 @@
                     </a>
                 @else
                     <span aria-disabled="true" aria-label="{{ __('pagination.next') }}">
-                        <span class="tw-relative tw-inline-flex tw-items-center tw-px-2 tw-py-2 -tw-ml-px text-sm tw-font-medium tw-text-gray-500 tw-border tw-cursor-default tw-rounded-r-md tw-leading-5 tw-bg-gray-800 tw-border-gray-600" aria-hidden="true">
+                        <span class="pagination-link tw-relative tw-inline-flex tw-items-center tw-px-2 tw-py-2 -tw-ml-px text-sm tw-font-medium tw-text-gray-500 tw-border tw-cursor-default tw-rounded-r-md tw-leading-5 tw-bg-gray-800 tw-border-gray-600" aria-hidden="true">
                             <svg class="tw-w-5 tw-h-5" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                             </svg>

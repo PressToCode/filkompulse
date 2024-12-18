@@ -66,13 +66,26 @@
 
             // If a pagination URL is provided, use it directly
             let requestUrl = url || '{{ route("search.filter") }}';
-            let requestData = url ? {} : filters; // Only send filters if not using pagination URL
+            // Add the filters to the URL if it's a pagination request
+            if (url) {
+                // Create URL object to handle query parameters
+                let urlObj = new URL(url);
+                // Add current filters to pagination URL
+                if (filters.category) urlObj.searchParams.set('category', filters.category);
+                if (filters.location_type) urlObj.searchParams.set('location_type', filters.location_type);
+                if (filters.date) urlObj.searchParams.set('date', filters.date);
+                requestUrl = urlObj.toString();
+            }
 
             $.ajax({
                 url: requestUrl,
                 method: 'GET',
-                data: requestData,
+                headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+                },
+                data: url ? {} : filters,
                 success: function(response) {
+                    console.log(response);
                     $('#result-container').html(response.html);
                     // Update URL without page reload
                     window.history.pushState({}, '', response.url);
@@ -86,7 +99,15 @@
         // Event delegation for pagination links
         $(document).on('click', '.pagination-link', function(e) {
             e.preventDefault();
-            let url = $(this).attr('href');
+            let url = $(this).attr('href')
+            let urlObject = new URL(url);
+            let pageValue = urlObject.searchParams.get('page');
+            if (url.includes('search')) { 
+                url = $(this).attr('href').replace(/search\?page=\d+/, `search/filter?page=${pageValue}`);
+            } else { 
+                url = $(this).attr('href').replace(/\?page=\d+/, `?page=${pageValue}`);
+            }
+            console.log(url);
             updateEvents(url);
         });
 
