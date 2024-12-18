@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Categorie;
 use App\Models\EventHasCategories;
+use App\Models\Image;
 use App\Models\Keranjang;
 use App\Models\KeranjangHasEvent;
 use App\Models\Link;
@@ -16,6 +17,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 use \Faker\Factory as Faker;
+use Illuminate\Support\Facades\Http;
 
 class DatabaseSeeder extends Seeder
 {
@@ -342,6 +344,21 @@ class DatabaseSeeder extends Seeder
                 ];
 
                 Link::create($eventLink);
+            }
+        }
+
+        // https://picsum.photos/800?random=1
+        // 'events_id',
+        // 'imageURL',
+        for($i = 1; $i < $totalEvent+1; $i++) {
+            for($n = 0; $n < rand(1, 3); $n++) {
+                $finalUrl = Http::maxRedirects(10)->get('https://picsum.photos/800?random=1')->effectiveUri();
+                $eventImage = [
+                    'events_id' => $i,
+                    'imageURL' => $finalUrl,
+                ];
+
+                Image::create($eventImage);
             }
         }
     }

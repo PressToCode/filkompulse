@@ -5,8 +5,8 @@
             <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-8 tw-pt-10">
                 <div class="">
                     <h1 class="tw-text-4xl tw-font-bold tw-mb-4 tw-col-span-1">{{ $event->title }}</h1>
-                    <div class="tw-bg-white tw-w-full tw-rounded-lg">
-                        <img src="{{ URL::asset('images/cardPlaceholder.svg') }}" alt="{{ $event->title }}" class="tw-w-full tw-h-full tw-object-cover tw-rounded-lg tw-transition tw-ease-out hover:tw-scale-105 tw-duration-200">
+                    <div class="tw-flex tw-w-full tw-max-w-full tw-rounded-lg tw-overflow-hidden tw-transition tw-ease-out hover:tw-scale-105 tw-duration-200">
+                        <img src="{{ $event->image()->first()->imageURL ?? URL::asset('images/cardPlaceholder.svg') }}" alt="{{ $event->title }}" class="tw-w-full tw-max-h-80 tw-object-cover tw-rounded-lg">
                     </div>
                 </div>
                 <div>

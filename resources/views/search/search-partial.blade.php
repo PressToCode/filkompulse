@@ -9,7 +9,8 @@
             :id="$event['eventsID']"
             :title="$event['title']"
             :description="$event['description']"
-            :date="$event['date']" />
+            :date="$event['date']"
+            :image="$event->image()->first()->imageURL" />
     @endforeach
 @else
     <p class="tw-text-5xl tw-text-center tw-font-bold tw-animate-bounce">Sorry, No Event Match Your Search <i class="bi bi-emoji-frown"></i></p>

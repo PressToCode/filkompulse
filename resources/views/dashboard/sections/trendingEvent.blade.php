@@ -28,7 +28,7 @@
                             :avatar-letter="$firstLetter"
                             :organizer="$event->verified_user->user->name"
                             :organizer-role="$event->verified_user->user->name"
-                            :image-url="''"
+                            :image-url="$event->image()->first()->imageURL"
                             :title="$event->title"
                             :date-time="$event->date"
                             :location="$event->location"

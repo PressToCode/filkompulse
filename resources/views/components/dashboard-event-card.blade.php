@@ -1,6 +1,6 @@
 <div class="tw-flex tw-flex-col md:tw-flex-row tw-bg-gray-800/30 tw-backdrop-blur-lg tw-rounded-lg tw-overflow-hidden tw-shadow-lg tw-transition tw-ease-out hover:tw-scale-[1.01] hover:tw-subpixel-antialiased tw-duration-200">
-    <div class="tw-w-full md:tw-w-1/3">
-        <img src="{{ $imageUrl ?? URL::asset('images/cardPlaceholder.svg') }}" alt="{{ $title }}" class="tw-w-full tw-h-full tw-object-cover">
+    <div class="tw-w-full md:tw-w-1/3 tw-overflow-hidden">
+        <img src="{{ $imageUrl ?? URL::asset('images/cardPlaceholder.svg') }}" alt="{{ $title }}" class="tw-w-full tw-max-h-64 tw-object-cover">
     </div>
     <div class="tw-flex tw-flex-col tw-justify-between tw-p-6 tw-w-full md:tw-w-2/3">
         <div>

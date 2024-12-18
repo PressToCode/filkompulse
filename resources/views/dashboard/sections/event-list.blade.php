@@ -49,7 +49,7 @@
             </div>
             @foreach($events as $event)
                 <x-dashboard-event-card 
-                    :image-url="$event->image()->first()"
+                    :image-url="$event->image()->first()->imageURL"
                     :title="$event->title"
                     :description="$event->description"
                     :button-text="'View Details'"
