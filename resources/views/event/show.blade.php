@@ -77,8 +77,8 @@
     </section>
     @endif
 
-    {{-- Event Types Section --}}
-    <section class="tw-text-white tw-py-16 tw-rounded-lg">
+    {{-- Event Category Section --}}
+    <section class="tw-text-white tw-py-16 tw-rounded-lg tw-px-5">
         <div class="tw-max-w-6xl tw-mx-auto">
             <h2 class="tw-text-3xl tw-font-bold tw-mb-8">Event Category</h2>
             <div class="tw-grid tw-grid-cols-2 md:tw-grid-cols-4 tw-gap-6">
