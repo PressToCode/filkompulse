@@ -11,6 +11,7 @@ class EventController extends Controller
     {
         $event = Event::where('eventsID', $id)->firstOrFail();
         $categories = $event->categorie;
+        \Log::info(json_encode($categories));
 
         return view('event.show', compact('event', 'categories'));
     }

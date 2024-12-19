@@ -217,14 +217,30 @@ class DatabaseSeeder extends Seeder
         // 'eventsID',
         $totalKeranjang = Keranjang::count();
 
-        for($i = 0; $i < $totalKeranjang; $i++) {
-            for($n = 0; $n < 5; $n++) {
-                $keranjangItem = [
-                    'keranjangID' => ($i+1),
-                    'eventsID' => rand(1, $totalEvent),
-                ];
+        for ($i = 0; $i < $totalKeranjang; $i++) {
+            $eventsForKeranjang = [];
 
-                KeranjangHasEvent::create($keranjangItem);
+            for ($n = 0; $n < 5; $n++) {
+                $eventID = rand(1, $totalEvent);
+
+                // Check if the event is already associated with the keranjang
+                $exists = KeranjangHasEvent::where('keranjangID', $i + 1)
+                            ->where('eventsID', $eventID)
+                            ->exists();
+
+                if (!$exists) {
+                    // Avoid adding the same event more than once within this loop
+                    if (!in_array($eventID, $eventsForKeranjang)) {
+                        $eventsForKeranjang[] = $eventID;
+
+                        $keranjangItem = [
+                            'keranjangID' => $i + 1,
+                            'eventsID' => $eventID,
+                        ];
+
+                        KeranjangHasEvent::create($keranjangItem);
+                    }
+                }
             }
         }
 
@@ -365,14 +381,30 @@ class DatabaseSeeder extends Seeder
         // 'categories_ID',
         $totalCategory = Categorie::count();
 
-        for($i = 0; $i < $totalEvent; $i++) {
-            for($n = 0; $n < 3; $n++) {
-                $eventCategory = [
-                    'events_ID' => ($i+1),
-                    'categories_ID' => rand(1, $totalCategory),
-                ];
+        for ($i = 0; $i < $totalEvent; $i++) {
+            $categoriesForEvent = [];
 
-                EventHasCategories::create($eventCategory);
+            for ($n = 0; $n < 3; $n++) {
+                $categoryID = rand(1, $totalCategory);
+
+                // Check if the category is already associated with the event
+                $exists = EventHasCategories::where('events_ID', $i + 1)
+                            ->where('categories_ID', $categoryID)
+                            ->exists();
+
+                if (!$exists) {
+                    // Avoid adding the same category more than once within this loop
+                    if (!in_array($categoryID, $categoriesForEvent)) {
+                        $categoriesForEvent[] = $categoryID;
+
+                        $eventCategory = [
+                            'events_ID' => $i + 1,
+                            'categories_ID' => $categoryID,
+                        ];
+
+                        EventHasCategories::create($eventCategory);
+                    }
+                }
             }
         }
 

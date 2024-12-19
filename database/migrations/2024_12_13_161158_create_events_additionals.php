@@ -14,7 +14,7 @@ return new class extends Migration
         // Membuat tabel Categories
         Schema::create('categories', function (Blueprint $table) {
             $table->id('categoryID');
-            $table->string('categoryName');
+            $table->string('categoryName')->unique();
             $table->text('categoryDescription')->nullable();
             $table->string('categoryImageURL', 200)->nullable();
             $table->timestamps();
@@ -26,6 +26,8 @@ return new class extends Migration
                     $table->foreignId('events_id')->constrained('events', 'eventsID')->onDelete('cascade');
                     $table->foreignId('categories_id')->constrained('categories', 'categoryID')->onDelete('cascade');
                     $table->timestamps();
+
+                    $table->unique(['events_id', 'categories_id']);
                 });
             }
 

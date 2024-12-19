@@ -30,6 +30,8 @@ return new class extends Migration
                 $table->foreignId('keranjangID')->constrained('keranjangs', 'KeranjangID')->cascadeOnDelete();
                 $table->foreignId('eventsID')->constrained('events', 'eventsID')->cascadeOnDelete();
                 $table->timestamps();
+
+                $table->unique(['keranjangID', 'eventsID']);
             });
         }
 
@@ -51,6 +53,8 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('reminders');
+        Schema::dropIfExists('keranjangHasEvents');
         Schema::dropIfExists('events');
     }
 };
