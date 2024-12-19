@@ -4,49 +4,38 @@
             {{-- Previous Page Link (Mobile) --}}
             @if ($paginator->onFirstPage())
                 <span class="tw-relative tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-text-sm tw-font-medium tw-text-purple-500/50 tw-border tw-border-purple-600 tw-cursor-default tw-rounded-md">
-                    @lang('pagination.previous')
+                    {{__('Previous')}}
                 </span>
             @else
                 <a href="{{ $paginator->previousPageUrl() }}" class="pagination-link tw-relative tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-text-sm tw-font-medium tw-text-purple-200 tw-border tw-border-purple-600 tw-rounded-md hover:tw-bg-purple-800/60">
-                    @lang('pagination.previous')
+                    {{__('Previous')}}  
                 </a>
             @endif
 
-            <div class="tw-flex tw-gap-5">
-                {{-- Pagination Elements --}}
-                @foreach ($elements as $element)
-                    {{-- "Three Dots" Separator --}}
-                    @if (is_string($element))
-                        <span class="tw-relative tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-text-sm tw-font-medium tw-text-gray-400">
-                            ...
-                        </span>
+            <div class="tw-flex tw-flex-auto tw-align-middle tw-justify-center tw-text-center tw-items-center">
+                <p class="tw-text-sm tw-leading-5 tw-text-purple-300 tw-drop-shadow-[0_0_10px_rgba(147,51,234,0.7)]">
+                    {!! __('Showing') !!}
+                    @if ($paginator->firstItem())
+                        <span class="tw-font-medium">{{ $paginator->firstItem() }}</span>
+                        {!! __('to') !!}
+                        <span class="tw-font-medium">{{ $paginator->lastItem() }}</span>
+                    @else
+                        {{ $paginator->count() }}
                     @endif
-
-                    {{-- Array Of Links --}}
-                    @if (is_array($element))
-                        @foreach ($element as $page => $url)
-                            @if ($page == $paginator->currentPage())
-                                <span class="tw-relative tw-z-10 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-text-sm tw-font-medium tw-bg-purple-600 tw-text-white tw-rounded-md">
-                                    {{ $page }}
-                                </span>
-                            @else
-                                <a href="{{ $url }}" class="pagination-link tw-relative tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-text-sm tw-font-medium tw-text-gray-400 hover:tw-text-white focus:tw-z-20">
-                                    {{ $page }}
-                                </a>
-                            @endif
-                        @endforeach
-                    @endif
-                @endforeach
+                    {!! __('of') !!}
+                    <span class="tw-font-medium">{{ $paginator->total() }}</span>
+                    {!! __('results') !!}
+                </p>
             </div>
 
             {{-- Next Page Link (Mobile) --}}
             @if ($paginator->hasMorePages())
                 <a href="{{ $paginator->nextPageUrl() }}" class="pagination-link tw-relative tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-text-sm tw-font-medium tw-text-purple-200 tw-border tw-border-purple-600 tw-rounded-md hover:tw-bg-purple-800/60">
-                    @lang('pagination.next')
+                    {{__('Next')}}
                 </a>
             @else
                 <span class="tw-relative tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-text-sm tw-font-medium tw-text-purple-500/50 tw-border tw-border-purple-600 tw-cursor-default tw-rounded-md">
-                    @lang('pagination.next')
+                    {{__('Next')}}
                 </span>
             @endif
         </div>
@@ -84,11 +73,11 @@
                         @if (is_array($element))
                             @foreach ($element as $page => $url)
                                 @if ($page == $paginator->currentPage())
-                                    <span class="tw-relative tw-z-10 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-text-sm tw-font-medium tw-bg-purple-600 tw-text-white tw-rounded-md">
+                                    <span class="tw-relative tw-z-10 tw-inline-flex tw-items-center tw-p-4 tw-text-sm tw-font-medium tw-bg-purple-600 tw-text-white tw-rounded-md">
                                         {{ $page }}
                                     </span>
                                 @else
-                                    <a href="{{ $url }}" class="pagination-link tw-relative tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-text-sm tw-font-medium tw-text-gray-400 hover:tw-text-white focus:tw-z-20">
+                                    <a href="{{ $url }}" class="pagination-link tw-relative tw-inline-flex tw-items-center tw-p-4 tw-text-sm tw-font-medium tw-text-gray-400 hover:tw-text-white focus:tw-z-20">
                                         {{ $page }}
                                     </a>
                                 @endif
