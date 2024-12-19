@@ -1,6 +1,6 @@
 @props(['id', 'title', 'description', 'date', 'image'])
 
-<a href="event/{{ $id }}" class="tw-grid tw-grid-cols-10 overflow-hidden tw-rounded-md tw-mb-5 tw-transition tw-ease-out hover:tw-scale-105 tw-duration-200 tw-bg-gray-800/50">
+<a href="{{env('APP_URL', 'filkompulse.dev')."/"}}event/{{ $id }}" class="tw-grid tw-grid-cols-10 overflow-hidden tw-rounded-md tw-mb-5 tw-transition tw-ease-out hover:tw-scale-105 tw-duration-200 tw-bg-gray-800/50">
     <div class="tw-col-span-3 tw-overflow-hidden tw-object-cover">
     <img src="{{ $image ?? URL::asset('images/cardPlaceholder.svg') }}" class="tw-w-full tw-max-h-64 tw-object-cover tw-overflow-hidden" alt="Event image">
     </div>
